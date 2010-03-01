@@ -1,0 +1,227 @@
+Defining sets via ZCML
+---------------------------------------------------
+
+A set is a collection of templates, it is also known as a 'PasterConfiguration'.
+::
+
+    -------------------------------------------
+    | configuration                           |
+    |                                         |
+    |       -----------------------------------
+    |       |  templates                      |
+    |       -----------------------------------
+    |       |       |  group                  |
+    |       |       [--------------------------
+    |       |       |      |  options         |
+    |       |       |      --------------------
+    |       |       |      |                  |
+    -------------------------------------------
+
+
+We will redefine the 'well known' plone template as an example.
+
+First of all, we need to define a template
+::
+
+    >>> from zope.configuration import xmlconfig
+    >>> from zope.configuration.config import ConfigurationMachine
+    >>> from collective.generic.webbuilder.zcml import PasterConfiguration, Template, Group, ExcludeOption, Option
+    >>> from collective.generic.webbuilder.models import root
+    >>> from minitage.paste.projects import plone3
+    >>> import collective.generic.webbuilder
+    >>> context = ConfigurationMachine()
+    >>> xmlconfig.registerCommonDirectives(context)
+    >>> xmlconfig.include(context, 'meta.zcml', collective.generic.webbuilder)
+    >>> context = xmlconfig.string("""
+    ... <configure xmlns="http://webbuilder.org/webbuilder">
+    ...  <genericpaster name="Test Generic Portal Plone">
+    ...    <!--<plugin name="dummy_plugin" order="1"/>-->
+    ...    <plugin name="egg_plugin" order="2"/>
+    ...    <template name="collective.generic.policy" output="src" order="200">
+    ...       <excludeoptions prefix="project_.*" />
+    ...       <excludeoption  name="python" />
+    ...    </template>
+    ...    <template name="minitage.plone3" order="1">
+    ...       <group name="Minitage" order="05">
+    ...         <option name="install_method" alias="ai"/>
+    ...         <options prefix=".*with.*" default="true" type="boolean"/>
+    ...         <excludeoptions prefix="project_.*" />
+    ...         <excludeoption  name="python" />
+    ...       </group>
+    ...    </template>
+    ...  </genericpaster>
+    ... </configure>
+    ... """, context = context)
+
+
+It will register/update the ``collective.generic.webbuilder.root.configurations`` module variable
+
+The *genericpaster* directive
+++++++++++++++++++++++++++++++
+- Must be used at top level.
+- Name of a configuration of templates.
+
+::
+
+    <genericpaster name="Name of the configuration"/>
+
+It contains a list of underlying configurations
+::
+
+    >>> 'Test Generic Portal Plone' in root.configurations
+    True
+
+The configurations objects contain a list of templates and plugins
+::
+
+    >>> templates = root.configurations['Test Generic Portal Plone'].templates
+    >>> sorted(templates.keys())
+    ['collective.generic.policy', 'minitage.plone3']
+
+
+The *template* directive
++++++++++++++++++++++++++
+- Must be used at genericpaster level.
+- It describe a relative "paster template". The name which you could get with ``paster create -t --list-templates``.
+- It has also an order which is used to order templates in the webinterface for lower to upper.
+
+::
+
+     <template name="Template Name" order="int">
+
+::
+
+    >>> t = templates['minitage.plone3']
+    >>> t.order
+    1
+    >>> t.name
+    'minitage.plone3'
+
+
+A template can also say that it must be generated under a 'subdirectory' with the ``output`` attribute.
+::
+
+    >>> templates['collective.generic.policy'].output
+    'src'
+
+
+The *group* directive
+++++++++++++++++++++++
+- A template has a list of groups of options.
+- Groups are represented by a block of questions surrounded by the group name in the webinterface.
+
+::
+
+    <group name="GroupName" order="int"/>
+
+Those groups group 'paster questions'.
+
+::
+
+    >>> groups = t.groups
+    >>> groups.keys()
+    ['default', 'Minitage']
+    >>> g = t.groups['Minitage']
+    >>> t.groups['Minitage'].order
+    5
+    >>> t.groups['Minitage'].name
+    'Minitage'
+
+The *options* directive
+++++++++++++++++++++++++
+- Must be used at group level.
+- Groups group options, Which can be grabbed by a regular expression with this directive.
+
+::
+
+    <options prefix="Regular expression"  type="boolean|" default="value"/>
+
+- *type* can be omitted and defaults to None (text).
+- *default* can be omitted and no default value will be assigned (or the paster default value).
+
+::
+
+    >>> opts = g.options['.*with.*']
+    >>> opts.type, opts.default
+    ('boolean', 'true')
+
+As you can see, there is a default group where go non-matched options which are not excluded via the ``excludeoptions`` directive.
+
+
+The *option* directive
+++++++++++++++++++++++++
+- Must be used at group level.
+- Groups group also 'single options', Which can be grabbed by their name.
+- Single options and can have an alias. It is useful  if we have the same 'option name' in 2 templates of the configuration and we don't want that they share the same value (default behaviour). To be clear, we have the option 'project', in template 'a' and 'b', by default, if we choose 'foo' for 'project', the value will be 'foo' in template 'a' and 'b', and with an alias, we can choose the value for 'a' *_and_* for 'b'.
+
+::
+
+    <options name="name" alias="alias name"  type="boolean|" default="value"/>
+
+- *alias* can be omitted.
+- *type* can be omitted and defaults to None (text).
+- *default* can be omitted and no default value will be assigned (or the paster default value).
+
+::
+
+    >>> opt = g.single_options['install_method']
+    >>> opt.type, opt.alias, opt.default
+    (None, 'ai', None)
+
+
+The *excludeoptions* & *excludeoption* directives
++++++++++++++++++++++++++++++++++++++++++++++++++++
+- Must be used at group or template level (in any group of the template).
+
+::
+
+    <excludeoptions prefix="regular expression"/>
+
+- exclude options from the interface
+- *prefix*: regular expression for the options to exclude.
+
+
+::
+
+    <excludeoption name="option name"/>
+
+- exclude an option from the interface
+- *name*: name for the options to exclude.
+
+::
+
+    >>> [[getattr(templates[template].groups['default'], attr).keys() for attr in 'exclude_options', 'excludes_options'] for template in 'minitage.plone3', 'collective.generic.policy']
+    [[['python'], ['project_.*']], [['python'], ['project_.*']]]
+
+
+The *plugin* directive
+++++++++++++++++++++++++
+- Must be used at template level.
+- Declare which plugin must run after the templates collection generation.
+- This is useful for example, to rearrange things which are generated.
+
+To run a plugin which is declared  under "plugin name".
+::
+
+    <plugin name="plugin name" order="int"/>
+
+- *name*: name of the adapter
+- *order*: control order to run if there are more than one plugin
+
+A plugin, is a simple adapter which takes a IPasterAssembly and provides IPostGenerationPlugin
+::
+
+    <adapter
+      name="plugin name"
+      provides=".interfaces.IPostGenerationPlugin"
+      factory=".plugins.MyPluginFactory"
+      for=".interfaces.IPasterAssembly"
+    />
+
+::
+
+    >>> plugins = root.configurations['Test Generic Portal Plone'].plugins
+    >>> plugins
+    [('egg_plugin', 2)]
+
+

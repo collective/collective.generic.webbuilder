@@ -1,0 +1,11 @@
+namespace                 =>            $namespace
+nested_namespace          =>            $nested_namespace
+version                   =>            $version
+author                    =>            $author
+author_email              =>            $author_email
+tp1option                 =>            $tp1option
+tp1option2                =>            $tp1option2
+tp1option3                =>            $tp1option3
+keywords                  =>            $keywords
+license_name              =>            $license_name
+project_name              =>            $project_name

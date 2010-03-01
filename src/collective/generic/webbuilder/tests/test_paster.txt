@@ -1,0 +1,353 @@
+The paster dance
+--------------------------
+
+Heart of cgwb is pythonpaste, take some of paster templates, gather them in an ihm for user inputs and answears for generating a final composition of those templates, with or without been modificated by surrounded plugins.
+::
+
+    User choose a configuration
+        --------->
+            read variables from templates which are in the configuration and give the appropriate choice to the user
+        ------------->
+                User inputs and submit it
+        -------------------->
+                    We generate a tarball of the assembled templates according to the answers
+
+* An option is asked only once, only you make aliases for each of the options which have the same name among templates.
+* As a question is asked only once, if its type is not default, you must define it in the configuration of the template which has the less order number, because there will be there the question will be asked.
+
+
+Loading a zcml representation of a configuration
+---------------------------------------------------
+
+Testing the zcml to python represetation
++++++++++++++++++++++++++++++++++++++++++++++
+
+Load our test package where we have three templates
+::
+
+    >>> import collective.generic.webbuilder.tests
+    >>> testegg = os.path.join( collective.generic.webbuilder.tests.__path__[0], 'egg', 'src')
+    >>> pkg_resources.working_set.add_entry(testegg)
+    >>> env = pkg_resources.Environment()
+    >>> egg = env['cgwb.tp'][0]
+
+
+We have 3 templates in there waiting to be assembled
+::
+
+    >>> pprint(egg.get_entry_map())
+    {'paste.paster_create_template': {'cgwb.testpackage1': EntryPoint.parse('cgwb.testpackage1 = tp.package:Package'),
+                                      'cgwb.testpackage2': EntryPoint.parse('cgwb.testpackage2 = tp1.package:Package'),
+                                      'cgwb.testpackage3': EntryPoint.parse('cgwb.testpackage3 = tp2.package:Package')}}
+
+
+The configuration
++++++++++++++++++++
+It is more described in the zcml part of the documentation, but it's a zcml representation of which variables from the pastertemplates we want to extract and how we want to present them to users.
+
+
+A sample zcml needed to assemble the packages we declared before is as follow:
+::
+
+    >>> paster_zcml = """
+    ... <configure xmlns="http://namespaces.repoze.org/bfg" xmlns:meta="http://namespaces.zope.org/meta">
+    ...   <include package="collective.generic.webbuilder" file="meta.zcml"/>
+    ...   <configure xmlns="http://webbuilder.org/webbuilder">
+    ...     <genericpaster name="test Assembler">
+    ...         <template name="cgwb.testpackage1" output="1" order="1000">
+    ...           <group name="Minitage" order="05">
+    ...             <option name="tp1option" type="boolean"/>
+    ...             <option name="tp1option3" default="y"/>
+    ...           </group>
+    ...         </template>
+    ...         <template name="cgwb.testpackage2" output="2" order="200">
+    ...           <group name="Authors" order="20">
+    ...             <options prefix="^author.*"/>
+    ...           </group>
+    ...           <excludeoptions prefix=".*"/>
+    ...         </template>
+    ...         <template name="cgwb.testpackage3" output="3" order="500">
+    ...           <group name="Plone Settings" order="8">
+    ...             <option name="tp2opton2" />
+    ...             <option name="author_email" />
+    ...           </group>
+    ...           <group name="Authors" order="20">
+    ...             <options prefix="^author.*"/>
+    ...           </group>
+    ...           <group name="Package tuning" order="1">
+    ...             <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
+    ...           </group>
+    ...         </template>
+    ...     </genericpaster>
+    ...   </configure>
+    ... </configure>
+    ... """
+    >>> noecho = xmlconfig.string(paster_zcml)
+    >>> root.configurations['test Assembler']
+    <collective.generic.webbuilder.zcml.PasterConfiguration object at ...>
+
+
+PasterAssembly object
+++++++++++++++++++++++++++++
+have some "log variables" and the configuration name to search for in the "bfgroot".configurations dictionnary.
+
+
+    - ``template_data``: list of mappings in the form::
+
+        [
+         {
+          'self': template 'zcml' object,
+          'name': paster template name,
+          'added_options': option added by this template,
+          'not_explicit_options': option added by this template which were not explicitly matched,
+          'display' : display a template or not
+          'groups':
+             {
+                groupname: 
+                    {
+                        'name': groupname,
+                        'group': zcml group object:
+                        'options': [(paster variablen, type, optionn name, alias|None, zcml optionn|None )]
+                    }
+
+             },
+          'aliases': [ (varName, aliasName),]
+
+         }
+        ]
+
+
+    - ``added_options``: All options added for all templates
+
+
+Get an assembly for the wanted configuration
+::
+
+    >>> ta = gpaster.PasterAssembly('test Assembler')
+    >>> pprint(ta.__dict__.items())
+    [('templates_data', []),
+     ('configuration',
+      <collective.generic.webbuilder.zcml.PasterConfiguration object at ...>),
+     ('added_options', []),
+     ('configuration_name', 'test Assembler')]
+
+The PasterAssemblyReader object
++++++++++++++++++++++++++++++++++
+This adapter takes as input a IPasterAssembly object and implements the IPasterAssemblyReader interface.
+
+We have configurations stored into zcml representation, now we need to gather and map the configuration informations with the content of each "paster template" into a python friendly structure.
+This Reader component is responsible for storing in the assembly object:
+
+    - The extracted template name
+    - Each group of options
+    - For each of those groups:
+
+        - The excluded options
+        - For the options which are not excluded, if applicable:
+
+          - making its alias
+          - Assign the default value
+
+What will finnally load the assembly data structures is a reader that now how to parse a configuration
+::
+
+    >>> reader = gpaster.PasterAssemblyReader(ta)
+    >>> reader.readed
+    False
+    >>> reader.read()
+    >>> len(ta.added_options) > 0
+    True
+    >>> reader.readed
+    True
+
+
+We will check now that the structure loaded is as we wanted
+::
+
+    >>> t1 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage1')
+    >>> t2 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage2')
+    >>> t3 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage3')
+
+
+Templates
+++++++++++
+
+Order of templates is respected
+::
+
+    >>> [t['name'] for t in ta.templates_data]
+    ['cgwb.testpackage2', 'cgwb.testpackage3', 'cgwb.testpackage1']
+    >>> rt2, rt3, rt1 =  ta.templates_data
+
+Groups
+++++++
+Options in template3, on the paster side, that we ll find on the next example
+::
+
+    >>> pprint([v.name for v in t3.vars])
+    ['namespace',
+     'nested_namespace',
+     'version',
+     'author',
+     'author_email',
+     'tp3option',
+     'tp3option3',
+     'keywords',
+     'license_name',
+     'project_name']
+
+For each templates, options are grouped, and groups respect order defined in zcml::
+
+    >>> pprint([(rt3['groups'][n]['name'] , rt3['groups'][n]['options']) for n in range(len(rt3['groups']))])
+    [('Package tuning',
+      [(<var project_name default='tma' should_echo=True>,
+        'hidden',
+        'tmapn',
+        <collective.generic.webbuilder.zcml.Option object at ...>)]),
+     ('Plone Settings',
+      [(<var author_email default='bar@localhost' should_echo=True>,
+        'default',
+        None,
+        <collective.generic.webbuilder.zcml.Option object at ...>)]),
+     ('Authors',
+      [(<var author default='foo' should_echo=True>,
+        'default',
+        None,
+        <collective.generic.webbuilder.zcml.Options object at ...>)]),
+     ('default',
+      [(<var namespace default='%(namespace)s' should_echo=True>,
+        'default',
+        None,
+        None),
+       (<var nested_namespace default='%(package)s' should_echo=True>,
+        'default',
+        None,
+        None),
+       (<var version default='1.0' should_echo=True>, 'default', None, None),
+       (<var tp3option default='http://python.org' should_echo=True>,
+        'default',
+        None,
+        None),
+       (<var tp3option3 default='Project %s' should_echo=True>,
+        'default',
+        None,
+        None),
+       (<var keywords default='' should_echo=True>, 'default', None, None),
+       (<var license_name default='GPL' should_echo=True>,
+        'default',
+        None,
+        None)])]
+
+
+As you can see project_name has been aliased and will be explained after.
+
+
+Consumed options
++++++++++++++++++
+Goal is to insist loudly on consumed option.
+When an option is consumed by another template, it is not available in others to be asked only once.
+That's why , template1 has no variables which were first asked in template3.
+::
+
+    >>> rt3options = []; noecho = [rt3options.extend(g['options']) for g in rt3['groups']]; rt3options = [opt[0].name for opt in rt3options]
+    >>> rtp1options = []; noecho = [rtp1options.extend(g['options']) for g in rt1['groups']]; rtp1options = [opt[0].name for opt in rtp1options]
+
+project_name, author, etc. are not part of template1 options even if they are in the paster template.
+They have been consumed by template3
+::
+
+    >>> pprint([v.name for v in t1.vars])
+    ['namespace',
+     'nested_namespace',
+     'version',
+     'author',
+     'author_email',
+     'tp1option',
+     'tp1option2',
+     'tp1option3',
+     'keywords',
+     'license_name',
+     'project_name']
+    >>> rt3options
+    ['project_name', 'author_email', 'author', 'namespace', 'nested_namespace', 'version', 'tp3option', 'tp3option3', 'keywords', 'license_name']
+    >>> rtp1options
+    ['tp1option', 'tp1option3', 'tp1option2', 'project_name']
+
+Excluded options
++++++++++++++++++
+
+Template2 ignore all opions per default, even adding an option can't precedence over ignoring options.
+Take care of your regexes !
+::
+
+    >>> [g['options'] for g in rt2['groups']]
+    [[], []]
+
+
+Typed  options
+++++++++++++++++
+
+We can assign type to values to use different widgets to display them in the UI for example.
+Supported types are:
+
+    - boolean (checkbox)
+    - hidden (hidden)
+    - default (textarea)
+
+template3 define project_name as ``hidden``
+::
+
+    >>> rt3['groups'][0]['options'][0][1]
+    'hidden'
+
+template1 define tp1option as ``boolean``.
+::
+
+    >>> rt1['groups'][0]['options'][0][1]
+    'boolean'
+
+If an option default startswith 'y', 'true', or 'on', we switch the option type to boolean
+::
+
+    >>> rt1['groups'][0]['options'][1][1]
+    'boolean'
+
+Options in the default group have ``default`` as type, as for options without explicit type
+::
+
+    >>> rt3["groups"][3]['options'][0][1]
+    'default'
+    >>> rt3["groups"][2]['options'][0][1]
+    'default'
+
+Option aliases
++++++++++++++++
+We have defined a default value and a default type for template3.project_name which is also an alias.
+Alias allow options with the same name but not the same value to exists within the same Assembly.
+Default behaviour tells that one value is asked only once and used for all options that have the same name unless they are aliased explicitly each one of them.::
+
+    >>> rt3['groups'][0]['options']
+    [(<var project_name default='tma' should_echo=True>, 'hidden', 'tmapn', <collective.generic.webbuilder.zcml.Option object at ...>)]
+
+
+Added options
++++++++++++++
+
+We can retrieve options added
+
+    * For one template ::
+
+        >>> rt1['added_options']
+        ['tp1option', 'tp1option2', 'tp1option3', 'project_name']
+        >>> rt2['added_options']
+        []
+        >>> rt3['added_options']
+        ['namespace', 'nested_namespace', 'version', 'author', 'author_email', 'tp3option', 'tp3option3', 'keywords', 'license_name', 'project_name']
+
+
+    * For all templates ::
+
+        >>> ta.added_options
+        ['namespace', 'nested_namespace', 'version', 'author', 'author_email', 'tp3option', 'tp3option3', 'keywords', 'license_name', 'tmapn', 'tp1option', 'tp1option2', 'tp1option3', 'project_name']
+
+

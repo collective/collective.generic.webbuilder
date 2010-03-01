@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  metal:define-macro="main">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="alternate" type="application/rss+xml" title="Feed Title" href="_static/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Feed Title" href="_static/devs_feed.xml" />
+    <title>Welcome to Collective.generic.webbbuilder generator</title>
+    <meta name="keywords" content="python web application" />
+    <meta name="description" content="repoze.bfg web application" />
+    <link href="${request.application_url}/static/makina.css" rel="stylesheet" type="text/css" />
+    <tal metal:define-slot="css" tal:omit-tag=""></tal>
+    <tal metal:define-slot="js" tal:omit-tag=""></tal>
+    <link href="${request.application_url}/static/images/favicon.ico" rel="shortcut icon"/>
+  </head>
+  <body tal:define="url python:request.application_url">
+    <div class="document">
+      <div id="header">
+        <a href="${url}"><h1>Collective.generic.webuilder</h1></a>
+        <a href="${url}"><h2>The Magic Generator</h2></a>
+      </div>
+      <div class="errors" tal:condition="errors">
+        <ul tal:repeat="error errors"> <li tal:replace="structure error"></li></ul>
+      </div>
+      <div metal:define-slot="content">CONTENT</div>
+      <div id="footer">
+        <p>A solution initiated by <a target="blank" href="http://www.makina-corpus.com">Makina Corpus</a> developers</p>
+      </div> 
+    </div>
+  </body>
+</html>

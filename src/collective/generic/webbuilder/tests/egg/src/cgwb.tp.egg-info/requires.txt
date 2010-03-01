@@ -1,0 +1,6 @@
+setuptools
+
+[test]
+ipython
+zope.testing
+lxml

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://judith:8080/" />
+<title>withoutminitagefull</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">withoutminitagefull</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Generic Portal Plone</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project</td>
+	<td>fd</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>inside_minitage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_database_postgresql</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[7]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_p4a_cal</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_plonearticle</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_plonesurvey</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_ploneboard</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_p4a_vid</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_collage</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_truegallery</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[9]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[11]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>address</td>
+	<td>0.0.0.0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>http_port</td>
+	<td>8081</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_autoinstall_ploneproduct_plonesurvey</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_maps</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_autoinstall_ploneproduct_flowplayer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_flowplayer</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='minitageplone3groups']/h2[8]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_wc_dd_menu</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_vaporisation</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_tal_portlet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_quills</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_quillsenabled</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_ldap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_easyshop</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_cpwkf</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_facultystaff</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_ploneformgen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_ploneformgen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_ploneformgen</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_sgdcg</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_schematuning</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_lingua</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_atbackref</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_iterate</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='collectivegenericpolicygroups']/h2[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_contentlicensing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_ploneproduct_plomino</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_autoinstall_ploneproduct_plonesurvey</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>with_autoinstall_ploneproduct_flowplayer</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

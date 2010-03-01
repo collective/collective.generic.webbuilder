@@ -1,0 +1,8 @@
+<tal metal:use-macro="main.macros['main']">
+<div metal:fill-slot="content" class="main_index">
+  <h1>Choose a configuration</h1>
+  <ul tal:repeat="c python:root.configurations.keys()">
+    <li><a tal:attributes="href string:collect/$c" tal:content="c"/></li>
+  </ul>
+</div>
+</tal>

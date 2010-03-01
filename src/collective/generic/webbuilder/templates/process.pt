@@ -1,0 +1,24 @@
+<tal metal:use-macro="main.macros['main']">
+  <tal metal:fill-slot="js" tal:omit-tag="">
+    <script src="${request.application_url}/static/jquery-ui/js/jquery-1.3.2.min.js"></script>
+    <script src="${request.application_url}/static/jquery-ui/js/jquery-ui-1.7.2.custom.min.js"></script>
+  </tal>
+  <tal metal:fill-slot="css" tal:omit-tag="">
+    <link href="${request.application_url}/static/jquery-ui/css/ui-darkness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
+  </tal>
+  <div metal:fill-slot="content">
+    <div class="generated" tal:condition="python: not errors">
+      <h2>Congratulations</h2>
+      <p tal:condition="python: not download_path">Your project has been generated in <tal tal:omit-tag="" tal:replace="output"></tal></p>
+      <p tal:condition="python: download_path">  Your project is available
+        <a href="/download/${download_path}">here</a>.
+      </p>
+    </div>
+  </div>
+</tal>
+
+
+
+
+
+

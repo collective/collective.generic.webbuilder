@@ -1,0 +1,111 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
+body {font:12px Verdana, Tahoma, Arial,sans-serif;margin:100px 5px 5px 150px;padding:5px;background-color:#E7E7E7;width:960px;}
+h1 {font-size: 28px; letter-spacing: -2px; font-weight: normal;margin-top:30px;}
+#header {height:80px;background-color:#000000;background-image:url(images/logo.png); background-repeat:no-repeat ;color:#ffffff;padding:2px 40px 10px 20px;}
+#header h1 {color:white;}
+#header h2 {color:#87B220;margin:0;padding-left:20px;padding-bottom:20px;font-size:16px;letter-spacing:-1px;font-weight:normal;}
+/* h2 {font-size: 16px; letter-spacing: -1px; font-weight: normal;margin-top:15px;}*/
+.document {color: #ffffff;background-color:#515151;padding:10px;}
+.document .template h1{color:#87B220;margin-bottom:20px;}
+div.template {padding-top:5px;}
+#projectaccordion {
+    padding-top:25px;
+    padding-left:50px;
+    padding-right:50px;
+}
+#projectaccordion h2.ui-accordion-header {
+    padding-left:30px;color:white;
+}
+#projectaccordion p{
+    padding-top:5px;
+    clear:both;
+    padding-bottom:5px;
+}
+#projectaccordion input{margin-bottom:10px;padding:2px 15px 2px 6px;
+}
+#projectaccordion pre{
+    padding-top:5px;
+    float:right;
+    clear:both;
+    padding-bottom:5px;
+}
+div.group {
+    border:white solid 1px;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding-left:50px;
+    padding-right:30px;
+    padding-top:15;
+    position:relative;
+}
+.template h2.ui-accordion-header {
+    padding-left:30px;color:white;
+}
+.options span {padding:0;margin:0;width:400px;margin-left:10px;padding-top:20px;}
+.options .even{float:left;}
+.options  .odd{float:right;clear:right;}
+.options {color:#ab8c67 !important ;}
+.template .options div {    z-index:-1;        display:inline;width:250px;margin-bottom:10px;padding:0 15px 0 0;}
+.template .options input {color:black;float:right;display:inline;width:120px;margin-bottom:10px;padding:2px 15px 2px 6px;}
+.spacer{clear:both;}
+.ui-widget-content {background:#262626 !important;}
+a.option-desc-url {
+    position:absolute;
+    float:right;
+    width: 32px !important;
+    height:32px !important;
+    margin-left:10px;
+    background: transparent url(images/googles.png) no-repeat ;
+    display:inline;z-index:1;
+}
+.template h2.ui-accordion-header {
+    padding-left:30px;color:white;
+}
+img   {border: 0 none;}
+a img {border: 0 none;}
+a:link    {color:orange; text-decoration:none;}
+a:visited {color:orange; text-decoration:none;}
+a:hover   {color:white; text-decoration:none;}
+a:active  {color:black; text-decoration:none;}
+
+.main_index li {font-size: 16px; letter-spacing: -1px; font-weight: normal;margin-top:15px;color:white;margin-left:50px;margin-top:10px;}
+.main_index ul {margin-bottom:200px;padding-left:35px;}
+.main_index h1 {padding-left:40px;}
+div.actions {
+    float:right;
+    margin-top:20px;
+    height:100px;
+    margin-bottom:5px;
+}
+input.download {
+    border:none;
+    color:transparent;
+    width:32px;height:32px;
+    background: transparent url(images/disk.png) no-repeat;
+}
+input.hidden {
+    border:none;
+    color:transparent;
+    width:0;height:0;
+    background: transparent;
+} 
+input.generate {
+    border:none;
+    color:transparent;
+    width:32px;height:32px;
+    background: transparent url(images/work.png) no-repeat;
+}
+
+
+.errors {
+    margin-left:250px;
+    padding:left:50px;
+    margin-top:50px;
+    margin-bottom:20px;
+    padding-left: 40px;
+    padding-bottom: 50px;
+    line-height:auto;
+    background: transparent url(/static/images/error.png) no-repeat;
+
+}
+

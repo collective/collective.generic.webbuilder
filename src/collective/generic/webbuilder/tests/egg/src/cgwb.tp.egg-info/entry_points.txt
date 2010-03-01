@@ -1,0 +1,5 @@
+[paste.paster_create_template]
+cgwb.testpackage1 = tp.package:Package
+cgwb.testpackage2 = tp1.package:Package
+cgwb.testpackage3 = tp2.package:Package
+

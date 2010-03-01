@@ -1,0 +1,27 @@
+* Release
+* *-* Add tests
+* Add docs
+* Integrate django and pylons minitage templates
+* Add a type "multiple" for options wich parse variables descipriptions for
+  "a/b/c" or
+* Add session support (beaker) for user and the collect view.
+* Add a "regenerate tab"
+
+    - Tthis conduct to a view with a file input
+    - There we can upload a config file with the variables of a previous
+      generation
+    - When we validate, we are redirected to collect with config in session
+    - From there the user can regenerate/edit his project
+
+* add a configuration result file plugin where we list all the paster commands issued
+  in policy,
+
+    - report test loadings into policy configure.zcml
+    - add a minimal content profile
+    - verify functionall test case support for session is ok
+
+in all products,
+
+    - *-* move all import steps to zcml declaration
+
+.. vim:set ft=rst:

@@ -1,0 +1,87 @@
+Creating plugins to rearrange things after a successfull templates generation
+-------------------------------------------------------------------------------
+
+
+
+A plugin is a simple adapter
+++++++++++++++++++++++++++++
+
+Creating plugins to run after a generation is really simple.
+It is just a matter of implementing an adapter which takes an ``\IPasterConfiguration`` and provided ``IPostGenerationPlugin``.
+::
+
+    <adapter
+      name="plugin name"
+      provides=".interfaces.IPostGenerationPlugin"
+      factory=".plugins.MyPluginFactory"
+      for=".interfaces.IPasterAssembly"
+    />
+
+The eggs plugin
++++++++++++++++++
+
+For example, here is a simple plugin which take all eggs in a 'src' directory and register them in 'zcml' and 'develop' in the relative ''buildout.cfg''
+It will add just the 'policy' egg to the intance's zcml option.
+
+
+Boiler plate to simulate a generation
+
+    >>> import tempfile, shutil, os
+    >>> c = os.getcwd()
+    >>> d = tempfile.mkdtemp()
+    >>> os.chdir(d)
+    >>> open('buildout.cfg', 'w').write('[buildout]\ndevelop+=\n   foo\n[instance]\nzcml=  too\n')
+    >>> os.makedirs('src/bar/src')
+    >>> os.makedirs('src/policy/src')
+    >>> open('src/bar/setup.py', 'w').write('')
+    >>> open('src/policy/setup.py', 'w').write('')
+
+Running the plugin
+
+    >>> from collective.generic.webbuilder.models import root
+    >>> conf = root.configurations['Generic Portal Plone3']
+    >>> from collective.generic.webbuilder import interfaces, paster
+    >>> pa = paster.PasterAssembly('Generic Portal Plone3')
+    >>> plugin = zope.component.queryAdapter(pa, interfaces.IPostGenerationPlugin, name='egg_plugin')
+    >>> plugin.process(d, 'foo', {})
+    >>> print open('buildout.cfg').read()
+    [buildout]
+    develop+=src/bar
+       src/policy
+       foo
+    eggs += bar
+            policy
+    [instance]
+    zcml=  policy
+            too
+    <BLANKLINE>
+
+Cleanup
+
+    >>> os.chdir(c);shutil.rmtree(d)
+
+
+Registering plugins
++++++++++++++++++++++
+Please refer to the *plugin* zcml directive to know how to add plugins for a 'Configuration'.
+
+Here is an example about the "eggs_plugins"
+::
+
+    <configure xmlns="http://namespaces.repoze.org/bfg"
+        xmlns:meta="http://namespaces.zope.org/meta"
+        xmlns:cgwb=xmlns="http://webbuilder.org/webbuilder">
+        <adapter
+            name="egg_plugin"
+            provides=".interfaces.IPostGenerationPlugin"
+            factory=".plugins.EggPlugin"
+            for=".interfaces.IPasterAssembly"
+        />
+        <cgwb:genericpaster name="Generic Portal Plone">
+            <cgwb:plugin name="egg_plugin" order="2"/>
+            <cgwb:template name="minitage.plone3" order="1">
+            </template>
+        </genericpaster>
+    </configure>
+
+

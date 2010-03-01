@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: cgwb.tp
+Version: 1.0
+Summary: Yet another WSGI Paste factory for paste
+Home-page: UNKNOWN
+Author: Mathieu Pasquet
+Author-email: mpakiorky@cryptelium.net
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

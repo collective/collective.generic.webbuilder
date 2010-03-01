@@ -1,0 +1,193 @@
+The paster dance
+--------------------------
+
+Heart of cgwb is pythonpaste, take some of paster templates, gather them in an ihm for user inputs and answears for generating a final composition of those templates, with or without been modificated by surrounded plugins.
+::
+
+    User choose a configuration
+        --------->
+            read variables from templates which are in the configuration and give the appropriate choice to the user
+        ------------->
+                User inputs and submit it
+        -------------------->
+                    We generate a tarball of the assembled templates according to the answers
+
+* An option is asked only once, only you make aliases for each of the options which have the same name among templates.
+* As a question is asked only once, if its type is not default, you must define it in the configuration of the template which has the less order number, because there will be there the question will be asked.
+
+
+Loading a zcml representation of a configuration
+---------------------------------------------------
+
+Testing the zcml to python represetation
++++++++++++++++++++++++++++++++++++++++++++++
+
+Load our test package where we have three templates
+::
+
+    >>> import collective.generic.webbuilder.tests
+    >>> testegg = os.path.join( collective.generic.webbuilder.tests.__path__[0], 'egg', 'src')
+    >>> pkg_resources.working_set.add_entry(testegg)
+    >>> env = pkg_resources.Environment()
+    >>> egg = env['cgwb.tp'][0]
+
+The configuration
++++++++++++++++++++
+It is more described in the zcml part of the documentation, but it's a zcml representation of which variables from the pastertemplates we want to extract and how we want to present them to users.
+
+
+A sample zcml needed to assemble the packages we declared before is as follow:
+::
+
+    >>> paster_zcml = """
+    ... <configure xmlns="http://namespaces.repoze.org/bfg" xmlns:meta="http://namespaces.zope.org/meta">
+    ...   <include package="collective.generic.webbuilder" file="meta.zcml"/>
+    ...   <configure xmlns="http://webbuilder.org/webbuilder">
+    ...     <genericpaster name="test Assembler">
+    ...         <template name="cgwb.testpackage1" output="1" order="1000">
+    ...           <group name="Minitage" order="05">
+    ...             <option name="tp1option" type="boolean"/>
+    ...             <option name="tp1option3" default="y"/>
+    ...           </group>
+    ...         </template>
+    ...         <template name="cgwb.testpackage2" output="2" order="200">
+    ...           <group name="Authors" order="20">
+    ...             <options prefix="^author.*"/>
+    ...           </group>
+    ...           <excludeoptions prefix=".*"/>
+    ...         </template>
+    ...         <template name="cgwb.testpackage3" output="3" order="500">
+    ...           <group name="Plone Settings" order="8">
+    ...             <option name="tp2opton2" />
+    ...             <option name="author_email" />
+    ...           </group>
+    ...           <group name="Authors" order="20">
+    ...             <options prefix="^author.*"/>
+    ...           </group>
+    ...           <group name="Package tuning" order="1">
+    ...             <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
+    ...           </group>
+    ...         </template>
+    ...     </genericpaster>
+    ...   </configure>
+    ... </configure>
+    ... """
+    >>> noecho = xmlconfig.string(paster_zcml)
+    >>> root.configurations['test Assembler']
+    <collective.generic.webbuilder.zcml.PasterConfiguration object at ...>
+
+We will check now that the structure loaded is as we wanted
+::
+
+    >>> t1 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage1')
+    >>> t2 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage2')
+    >>> t3 = pkg_resources.load_entry_point('cgwb.tp', 'paste.paster_create_template', 'cgwb.testpackage3')
+    >>> server, url = launch_server()
+    >>> browser = Browser(url)
+
+We can see that in the main page we have the default configurations and the custom loaded one
+::
+
+    >>> 'test Assembler' in browser.contents
+    True
+    >>> 'Generic Portal Plone4' in browser.contents
+    True
+    >>> 'Generic Portal Plone3' in browser.contents
+    True
+
+Following the test assembler link
+::
+
+    >>> browser.getLink('test Assembler').click()
+    >>> htmlS(browser.contents).xpath('//input[@name="project"]')[0]
+    <InputElement ... name='project' type='text'>
+
+I can submit a form and a valid it
+::
+
+    >>> browser.getControl(name='project').value = 'myproject'
+    >>> browser.getControl(name='author').value = 'tim burton'
+    >>> browser.getControl(name='author_email').value = 'tim burton@foo.com'
+    >>> browser.getControl(name='tp1option').value = False
+    >>> browser.getControl(name='tp1option2').value = 'Project Monster'
+    >>> browser.getControl(name='project_name').value = 'My Big Project'
+    >>> browser.getControl(name='submit_cgwbDownload').click()
+    >>> '.tar' in browser.contents
+    True
+
+The sucessful produced result is a tarball
+::
+
+    >>> pprint(browser.headers.headers)
+    ['Server:...
+     'Date:...
+     'Content-Disposition: attachment; filename="myproject....tar.gz"\r\n',
+     'Content-Transfer-Encoding: binary\r\n',
+     'Content-Length: ...\r\n']
+    >>> import tarfile
+    >>> tar = tarfile.open(fileobj=StringIO(browser.contents))
+
+In the produced tarball, output directories present in the zcml configuration are respected in the tarball::
+
+    >>> files = [a.name for a in tar];files.sort();pprint(files)
+    ['.',
+     '1',
+     '1/myproject',
+     '1/myproject/test',
+     '2',
+     '2/myproject',
+     '2/myproject/test1',
+     '3',
+     '3/myproject',
+     '3/myproject/test2']
+    >>> templates = dict([(a.name,a) for a in tar if 'test' in a.name])
+    >>> t2 = templates['2/myproject/test1']
+    >>> t3 = templates['3/myproject/test2']
+    >>> t1 = templates['1/myproject/test']
+
+Options filled in the interface are well interpreted in templates
+::
+
+    >>> pprint([a for a  in tar.extractfile(t1).read().split('\n') if a.strip()])
+    ['namespace                 =>            %(namespace)s',
+     'nested_namespace          =>            %(package)s',
+     'version                   =>            1.0',
+     'author                    =>            tim burton',
+     'author_email              =>            tim burton@foo.com',
+     'tp1option                 =>            False',
+     'tp1option2                =>            Project Monster',
+     'tp1option3                =>            True',
+     'keywords                  =>            ',
+     'license_name              =>            GPL',
+     'project_name              =>            My Big Project']
+
+The project_name entered for project1 is shared in project2
+::
+
+    >>> pprint([a for a  in tar.extractfile(t2).read().split('\n') if a.strip()])
+    ["'namespace'                =>         '%(namespace)s'",
+     "'nested_namespace'         =>         '%(package)s'",
+     "'version'                  =>         '1.0'",
+     "'author'                   =>         'tim burton'",
+     "'author_email'             =>         'tim burton@foo.com'",
+     "'keywords'                 =>         ''",
+     "'license_name'             =>         'GPL'",
+     "'project_name'             =>         'My Big Project'",
+     "'tp2option'                =>         'tp2option'",
+     "'tp2opton2'                =>         'tp2opton2'"]
+
+the aliased project_name (tma) takes efffect in the third template
+::
+
+    >>> pprint([a for a  in tar.extractfile(t3).read().split('\n') if a.strip()])
+    ["'namespace'                =>         '%(namespace)s'",
+     "'nested_namespace'         =>         '%(package)s'",
+     "'version'                  =>         '1.0'",
+     "'author'                   =>         'tim burton'",
+     "'author_email'             =>         'tim burton@foo.com'",
+     "'keywords'                 =>         ''",
+     "'license_name'             =>         'GPL'",
+     "'project_name'             =>         'tma'",
+     "'tp3option3'               =>         'Project %s'",
+     "'tp3option'                =>         'Project %s'"]
+

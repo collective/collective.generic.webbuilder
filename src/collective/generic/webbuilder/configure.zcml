@@ -1,0 +1,34 @@
+<configure
+    xmlns="http://namespaces.repoze.org/bfg"
+    xmlns:meta="http://namespaces.zope.org/meta"
+    >
+  <include package="repoze.bfg.includes" />
+  <include file="meta.zcml"/>
+
+
+  <route name="root" path="/" view=".views.webbuilder_view" />
+  <route name="collect" path="/collect/:configuration" view=".views.webbuilder_collectinformation" factory=".models.Data"/>
+  <route name="process" path="/process" view=".views.webbuilder_process" factory=".models.Data"/>
+  <route name="download" path="/download/:path" view=".views.download_static_view" factory=".models.Data"/>
+
+
+  <adapter
+      factory=".paster.PasterAssemblyReader"
+      provides=".interfaces.IPasterAssemblyReader"
+      for=".interfaces.IPasterAssembly"
+    />
+  <!--  scan eggs in src and add them to develop  -->
+  <adapter
+      name="egg_plugin"
+      provides=".interfaces.IPostGenerationPlugin"
+      factory=".plugins.EggPlugin"
+      for=".interfaces.IPasterAssembly"
+    />
+  <adapter
+      name="dummy_plugin"
+      provides=".interfaces.IPostGenerationPlugin"
+      factory=".plugins.DummyPlugin"
+      for=".interfaces.IPasterAssembly"
+    />
+
+</configure>
