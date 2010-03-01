@@ -54,10 +54,19 @@ sys
 
 "
 
+src="$ignore
+ src/collective.generic.webbuilder.egg-info
+"
+others="$ignore
+collective.generic.skel
+minitage.paste
+"
 
-#svn propset -R svn:ignore "$ignore" .
+
 svn propset  svn:ignore "$ignore" .
-svn ci -m "resetting svnignore"
+svn propset  svn:ignore "$src" src
+svn propset  svn:ignore "$others" src.others
+svn ci -m "resetting svnignore" 
 
 
 # vim:set et sts=4 ts=4 tw=80:
