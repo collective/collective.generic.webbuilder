@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5951 2009-05-18 18:03:10Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left{
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: left }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="installing-cgwb-in-a-minitage">
+<h1>Installing cgwb in a minitage</h1>
+<p>You are not obliged to run with <a class="reference external" href="http://www.minitage.org">minitage</a> even if it is the recommended mode for running at least the plones template.</p>
+<p>Assuming that your minitage lives in ~/minitage, issue the following:</p>
+<pre class="literal-block">
+export MT=~/minitage
+</pre>
+<div class="section" id="install-or-udpate-minitage-in-your-dedicated-virtualenv-if-any">
+<h2>Install or udpate minitage in your dedicated virtualenv if any</h2>
+<p>Just do that (you must refer to <a class="reference external" href="http://minitage.org/installation.html">minitage installation</a> for prerequisites)</p>
+<p>Install virtualenv</p>
+<pre class="literal-block">
+virtualenv --no-site-packages --distribute $MT
+</pre>
+<p>Update minitage packages</p>
+<pre class="literal-block">
+source $MT/bin/activate
+easy_install -U minitage.core
+easy_install -U minitage.paste
+minimerge -s
+</pre>
+</div>
+<div class="section" id="install-cgwb">
+<h2>Install cgwb</h2>
+<p>Download &amp; install via the minibuild</p>
+<pre class="literal-block">
+source $MT/bin/activate
+svn co http://svn.plone.org/svn/collective/collective.generic.webbuilder/cgwb-minilay/ $MT/minilays/cgwb
+minimerge -v cgwb-dev
+</pre>
+<p>Install pilwotk for python 2.4 if you want to use plone along with cgwb</p>
+<pre class="literal-block">
+minimerge -v python-2.4
+minimerge -uUNv pilwotk-1.1.6.4 python-2.4
+</pre>
+<p>Cgwb lives in <tt class="docutils literal"><span class="pre">$MT/bfg/cgwb-dev</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="generating-deploying-your-plone3-project-using-minitage">
+<h1>Generating &amp; deploying your plone3 project using minitage</h1>
+<div class="section" id="launching-the-cgwb-server">
+<h2>Launching the cgwb server</h2>
+<p>Launch via <tt class="docutils literal">bin/cgwb</tt>.
+This binary includes some options to let you override the default port (--port) and listenning address (--host)
+To see all the available options, just use:</p>
+<pre class="literal-block">
+bin/cgwb --help
+</pre>
+<p>If you use minitage, mandatory to use the minitage.instances.env profile:</p>
+<pre class="literal-block">
+$MT/bin/easy_install -U minitage.paste
+$MT/bin/paster create -t minitage.instances.env cgwb-dev
+</pre>
+</div>
+<div class="section" id="minitage-env">
+<h2>MINITAGE .ENV</h2>
+<dl class="docutils">
+<dt>Each time you use cgwb, you use the .ENV</dt>
+<dd>source $MT/bfg/cgwb-dev/sys/share/minitage/minitage.env</dd>
+</dl>
+</div>
+<div class="section" id="use-it">
+<h2>Use it</h2>
+<p>Launch it:</p>
+<pre class="literal-block">
+cd $INS
+./bin/cgwb --port=6253
+</pre>
+<ul>
+<li><p class="first">At the moment, cgwb do not have some session mecanism, so the only way to replay a generation is to use the selenium firefox plugin.</p>
+</li>
+<li><p class="first">If you want to store your choices to redo an updated tarball later, just install the SeleniumIDE firefox plugin and use it to record your session.</p>
+</li>
+<li><p class="first">Maybe, activate selenium and</p>
+<blockquote>
+<ul class="simple">
+<li>Go to the <a class="reference external" href="http://localhost:6253">cgwb</a></li>
+<li>Choose <cite>Generic Portal Plone3</cite>.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="filling-the-settings-some-notes">
+<h2>Filling the settings, some notes</h2>
+<ul class="simple">
+<li>project name is mandatory and must be in the form in <cite>project</cite> or <cite>subproject</cite>.</li>
+<li>You can choose in the <cite>Plone Products to auto checkout in development mode</cite> the products from the community from which we should check out &amp; use in development mode</li>
+</ul>
+</div>
+<div class="section" id="the-important-part-around-initiating-a-project">
+<h2>THE IMPORTANT PART AROUND INITIATING A PROJECT</h2>
+<ul>
+<li><p class="first">It would be good unless you have some minitage experience to version the code prior to build, because of minitage update mecanism.</p>
+</li>
+<li><p class="first">Before version/import the code in your SCM you must elude the following points:</p>
+<blockquote>
+<ul class="simple">
+<li>By default, the generated tarball contains the buildout layout and all the eggs in src, and the buildout use them as develop eggs and NOT WITH MR.DEVELOPER.
+Thus for running the buildout in standalone mode</li>
+<li>You may decide not to include them as-is but to separate the code and version the code elsewhere.</li>
+<li>I would advice you to checkout the packages with mr.developer.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<div class="section" id="an-example-of-using-svn-which-generic">
+<h3>An example of using svn which generic</h3>
+<p>What i would do from a generated tarball for using subversion as my SCM could be to produce this layout:</p>
+<pre class="literal-block">
+import
+|-- import/eggs
+|   |-- import/eggs/myproject.policy
+|   |   `-- import/eggs/myproject.policy/trunk
+|   |-- import/eggs/myproject.skin
+|   |   `-- import/eggs/myproject.skin/trunk
+|   |-- import/eggs/myproject.testing
+|   |   `-- import/eggs/myproject.testing/trunk
+|   `-- import/eggs/myproject.tma
+|       `-- import/eggs/myproject.tma/trunk
+`-- import/minitage
+    |-- import/minitage/buildouts
+    |   `-- import/minitage/buildouts/zope
+    |       `-- import/minitage/buildouts/zope/myproject
+    `-- import/minitage/minilays
+        `-- import/minitage/minilays/myproject
+</pre>
+<ul>
+<li><p class="first">Exporting base variables:</p>
+<pre class="literal-block">
+export TARBALL=&quot;~/myproject-2010-03-04_11-06-04.83.tar.gz&quot; # produced tarball
+export IMPORT_URL=&quot;http://svn.foo.com&quot; # base svn place to import
+export PROJECT=&quot;myproject&quot; # your project name as filled in the web interfacE
+</pre>
+</li>
+<li><p class="first">Create a temporary workspace:</p>
+<pre class="literal-block">
+mkdir -p  $PROJECT/tarball
+cd $PROJECT
+tar xzvf  -C $TARBALL tarball/
+</pre>
+</li>
+<li><p class="first">Create the base layout to be imported:</p>
+<pre class="literal-block">
+mkdir -p import/minitage/buildouts/zope import/minitage/minilays import/eggs
+</pre>
+</li>
+<li><p class="first">Move the generated plone extensions eggs to a separate place to be imported:</p>
+<pre class="literal-block">
+for i in tarball/src/**;do if [[ -d $i ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
+</pre>
+</li>
+<li><p class="first">Move the minilay in the import layout:</p>
+<pre class="literal-block">
+mv tarball/minilays/$PROJECT/ import/minitage/minilays/
+</pre>
+</li>
+<li><p class="first">Move the buildout structure in the import layout:</p>
+<pre class="literal-block">
+cp -rf tarball/ import/minitage/buildouts/zope/$PROJECT
+</pre>
+</li>
+<li><p class="first">Update buildout to use mr.developer instead of basic develop:</p>
+<pre class="literal-block">
+* move off the develop declaration::
+
+    sed -re &quot;s:(src/)?$PROJECT\.((skin)|(tma)|(policy)|(testing))::g&quot; -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
+
+* add to mr.developer sources::
+
+    sed -re &quot;/\[sources\]/{
+    a $PROJECT.policy = svn $IMPORT_URL/eggs/$PROJECT.policy/trunk
+    a $PROJECT.tma = svn $IMPORT_URL/eggs/$PROJECT.tma/trunk
+    a $PROJECT.skin = svn $IMPORT_URL/eggs/$PROJECT.skin/trunk
+    a $PROJECT.testing = svn $IMPORT_URL/eggs/$PROJECT.testing/trunk
+    }&quot; -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+
+* add to auto checkout packages::
+
+    sed -re &quot;/auto-checkout \+=/{
+    a \    $PROJECT.policy
+    a \    $PROJECT.tma
+    a \    $PROJECT.skin
+    a \    $PROJECT.testing
+    }&quot;  -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+    sed -re &quot;/eggs \+=.*buildout:eggs/{
+    a \    $PROJECT.policy
+    a \    $PROJECT.tma
+    a \    $PROJECT.skin
+    a \    $PROJECT.testing
+    }&quot;  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+    sed -re &quot;/zcml \+=/{
+    a \    $PROJECT.policy
+    a \    $PROJECT.tma
+    a \    $PROJECT.skin
+    }&quot;  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+</pre>
+</li>
+</ul>
+<ul>
+<li><p class="first">be sure to use the right svn url to checkout:</p>
+<pre class="literal-block">
+sed -re &quot;s|src_uri.*|src_uri=$IMPORT_URL/minitage/buildouts/zope/$PROJECT|g&quot;  -i import/minitage/minilays/$PROJECT/$PROJECT*
+</pre>
+</li>
+<li><p class="first">Be sure to use svn</p>
+<blockquote>
+<p>sed -re &quot;s|src_type.*|src_type=svn|g&quot;  -i import/minitage/minilays/$PROJECT/$PROJECT*</p>
+</blockquote>
+</li>
+<li><p class="first">Import:</p>
+<pre class="literal-block">
+svn import import/ $IMPORT_URL -m &quot;initial import&quot;
+</pre>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="deploy-the-project">
+<h2>Deploy the project</h2>
+<ul>
+<li><p class="first">install the minilay:</p>
+<pre class="literal-block">
+svn co $IMPORT_URL/minitage/minilays/$PROJECT $MT/minilays/$PROJECT
+</pre>
+</li>
+<li><p class="first">Install it:</p>
+<pre class="literal-block">
+minimerge -v $PROJECT
+</pre>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
