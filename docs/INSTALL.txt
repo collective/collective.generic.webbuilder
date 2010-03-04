@@ -1,0 +1,202 @@
+Installing cgwb in a minitage
+=================================
+You are not obliged to run with minitage even if it is the recommended mode for running at least the plones template.
+Assuming that your minitage lives in ~/minitage, issue the following::
+
+    export MT=~/minitage
+
+Install or udpate minitage in your dedicated virtualenv if any
+-------------------------------------------------------------------------
+Just do that (you must refer to `minitage installation`_ for prerequisites)
+
+Install virtualenv
+::
+
+    virtualenv --no-site-packages --distribute $MT
+
+Update minitage packages
+::
+
+    source $MT/bin/activate
+    easy_install -U minitage.core
+    easy_install -U minitage.paste
+    minimerge -s
+
+
+Install cgwb
+-------------------
+Download & install via the minibuild
+::
+
+    source $MT/bin/activate
+    svn co http://svn.plone.org/svn/collective/collective.generic.webbuilder/cgwb-minilay/ $MT/minilays/cgwb
+    minimerge -v cgwb-dev
+
+Install pilwotk for python 2.4 if you want to use plone
+::
+
+    minimerge -v python-2.4
+    minimerge -uUNv pilwotk-1.1.6.4 python-2.4
+
+Cgwb lives in ``$MT/bfg/cgwb-dev``.
+
+Generating & deploying your plone3 project using minitage
+===========================================================
+Launching the cgwb server
+---------------------------------
+Launch via ``bin/cgwb``.
+This binary includes some options to let you override the default port (--port) and listenning address (--host)
+To see all the available options, just use::
+
+    bin/cgwb --help
+
+If you use minitage, mandatory to use the minitage.instances.env profile::
+
+    $MT/bin/easy_install -U minitage.paste
+    $MT/bin/paster create -t minitage.instances.env cgwb-dev
+
+MINITAGE .ENV
+-------------------
+Each time you use cgwb, you use the .ENV
+    source $MT/bfg/cgwb-dev/sys/share/minitage/minitage.env
+
+Use it
+------------
+Launch it::
+
+    cd $INS
+    ./bin/cgwb --port=6253
+
+
+- At the moment, cgwb do not have some session mecanism, so the only way to replay a generation is to use the selenium firefox plugin.
+- If you want to store your choices to redo an updated tarball later, just install the SeleniumIDE firefox plugin and use it to record your session.
+- Maybe, activate selenium and
+
+    - Go to the `cgwb`_
+    - Choose `Generic Portal Plone3`.
+
+Filling the settings, some notes
+-----------------------------------
+- project name is mandatory and must be in the form in `project` or `subproject`.
+- You can choose in the `Plone Products to auto checkout in development mode` the products from the community from which we should check out & use in development mode
+
+THE IMPORTANT PART AROUND INITIATING A PROJECT
+--------------------------------------------------
+- It would be good unless you have some minitage experience to version the code prior to build, because of minitage update mecanism.
+- Before version/import the code in your SCM you must elude the following points:
+
+    * By default, the generated tarball contains the buildout layout and all the eggs in src, and the buildout use them as develop eggs and NOT WITH MR.DEVELOPER.
+      Thus for running the buildout in standalone mode
+    * You may decide not to include them as-is but to separate the code and version the code elsewhere.
+    * I would advice you to checkout the packages with mr.developer.
+
+An example of using svn which generic
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
+
+    import
+    |-- import/eggs
+    |   |-- import/eggs/myproject.policy
+    |   |   `-- import/eggs/myproject.policy/trunk
+    |   |-- import/eggs/myproject.skin
+    |   |   `-- import/eggs/myproject.skin/trunk
+    |   |-- import/eggs/myproject.testing
+    |   |   `-- import/eggs/myproject.testing/trunk
+    |   `-- import/eggs/myproject.tma
+    |       `-- import/eggs/myproject.tma/trunk
+    `-- import/minitage
+        |-- import/minitage/buildouts
+        |   `-- import/minitage/buildouts/zope
+        |       `-- import/minitage/buildouts/zope/myproject
+        `-- import/minitage/minilays
+            `-- import/minitage/minilays/myproject
+
+
+- Exporting base variables::
+
+    export TARBALL="~/myproject-2010-03-04_11-06-04.83.tar.gz" # produced tarball
+    export IMPORT_URL="http://svn.foo.com" # base svn place to import
+    export PROJECT="myproject" # your project name as filled in the web interfacE
+
+- Create a temporary workspace::
+
+    mkdir -p  $PROJECT/tarball
+    cd $PROJECT
+    tar xzvf  -C $TARBALL tarball/
+
+- Create the base layout to be imported::
+
+    mkdir -p import/minitage/buildouts/zope import/minitage/minilays import/eggs
+
+- Move the generated plone extensions eggs to a separate place to be imported::
+
+    for i in tarball/src/**;do if [[ -d $i ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
+
+- Move the minilay in the import layout::
+
+    mv tarball/minilays/$PROJECT/ import/minitage/minilays/
+
+- Move the buildout structure in the import layout::
+
+    cp -rf tarball/ import/minitage/buildouts/zope/$PROJECT
+
+- Update buildout to use mr.developer instead of basic develop::
+
+    * move off the develop declaration::
+
+        sed -re "s:(src/)?$PROJECT\.((skin)|(tma)|(policy)|(testing))::g" -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
+
+    * add to mr.developer sources::
+
+        sed -re "/\[sources\]/{
+        a $PROJECT.policy = svn $IMPORT_URL/eggs/$PROJECT.policy/trunk
+        a $PROJECT.tma = svn $IMPORT_URL/eggs/$PROJECT.tma/trunk
+        a $PROJECT.skin = svn $IMPORT_URL/eggs/$PROJECT.skin/trunk
+        a $PROJECT.testing = svn $IMPORT_URL/eggs/$PROJECT.testing/trunk
+        }" -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+
+    * add to auto checkout packages::
+
+        sed -re "/auto-checkout \+=/{
+        a \    $PROJECT.policy
+        a \    $PROJECT.tma
+        a \    $PROJECT.skin
+        a \    $PROJECT.testing
+        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+        sed -re "/eggs \+=.*buildout:eggs/{
+        a \    $PROJECT.policy
+        a \    $PROJECT.tma
+        a \    $PROJECT.skin
+        a \    $PROJECT.testing
+        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+        sed -re "/zcml \+=/{
+        a \    $PROJECT.policy
+        a \    $PROJECT.tma
+        a \    $PROJECT.skin
+        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+
+* be sure to use the right svn url to checkout::
+
+    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/minitage/buildouts/zope/$PROJECT|g"  -i import/minitage/minilays/$PROJECT/$PROJECT*
+
+* Be sure to use svn
+
+    sed -re "s|src_type.*|src_type=svn|g"  -i import/minitage/minilays/$PROJECT/$PROJECT*
+
+* Import::
+
+   svn import import/ $IMPORT_URL -m "initial import"
+
+Deploy the project
+-----------------------
+* install the minilay::
+
+    svn co $IMPORT_URL/minitage/minilays/$PROJECT $MT/minilays/$PROJECT
+
+* Install it::
+
+    minimerge -v $PROJECT
+
+.. _`minitage installation`: http://minitage.org/installation.html
+.. _`cgwb`: http://localhost:6253
+
