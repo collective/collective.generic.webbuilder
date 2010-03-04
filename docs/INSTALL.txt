@@ -1,6 +1,7 @@
 Installing cgwb in a minitage
 =================================
-You are not obliged to run with minitage even if it is the recommended mode for running at least the plones template.
+You are not obliged to run with `minitage`_ even if it is the recommended mode for running at least the plones template.
+
 Assuming that your minitage lives in ~/minitage, issue the following::
 
     export MT=~/minitage
@@ -32,7 +33,7 @@ Download & install via the minibuild
     svn co http://svn.plone.org/svn/collective/collective.generic.webbuilder/cgwb-minilay/ $MT/minilays/cgwb
     minimerge -v cgwb-dev
 
-Install pilwotk for python 2.4 if you want to use plone
+Install pilwotk for python 2.4 if you want to use plone along with cgwb
 ::
 
     minimerge -v python-2.4
@@ -199,4 +200,5 @@ Deploy the project
 
 .. _`minitage installation`: http://minitage.org/installation.html
 .. _`cgwb`: http://localhost:6253
+.. _`minitage`: http://www.minitage.org
 
