@@ -6,6 +6,8 @@
     <template name="minitage.plone4" order="1">
        <group name="Minitage" order="05">
         <option name="inside_minitage" type="boolean"/>
+        <option name="author_email" />
+        <option name="author" />
         <option name="scm_type" />
         <option name="static" />
         <option name="uri" />
@@ -17,9 +19,12 @@
         <option name="with_checked_versions" type="boolean" default="y"/>
         <option name="http_port" />
         <option name="address" />
+        <option name="devmode" />
         <option name="mode" />
         <option name="zope_user" />
         <option name="zeo_address" />
+        <option name="zeo_host" />
+        <option name="zeo_port" />
         <option name="zope_password" />
       </group>
       <group name="FileSystemStorage" order="15">
@@ -29,22 +34,38 @@
        <group name="Relstorage options if any" order="20">
         <options  prefix="^relstorage.*"/>
       </group>
+      <group name="Contineous integration settings (buildbot and hudson support)" order="29">
+        <options prefix="^buildbot.*" />
+        <options prefix="^hudson.*" />
+      </group>
       <group name="Database bindings" order="30">
         <options prefix="^with_database.*" type="boolean"/>
       </group>
       <group name="Misc  bindings" order="40">
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
-      <group name="Plone Products - PLOMINO" order="49">
-        <options prefix="^with_ploneproduct.*plomino0*" type="boolean"/>
-        <options prefix="^plomino.*" />
-      </group>
       <group name="Plone Products" order="50" >
+        <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
+      </group>
+      <group name="Plone Products to auto checkout in development mode" order="51" >
+        <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
       </group>
       <group name="Additionnal Tools" order="80">
         <options prefix="^with_tool.*" type="boolean" />
+      </group>
+      <group name="Monitoring Tools" order="81">
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+      </group>
+      <group name="Loadbalancing Tools" order="81">
+        <options prefix="^with_haproxy.*" type="boolean" />
+        <options prefix="^haproxy.*"  />
+      </group>
+      <group name="Solr support Tools" order="81">
+        <options prefix="^with_indexing_solr.*" type="boolean" />
+        <options prefix="^solr.*"  />
       </group>
       <group name="WSGI Support" order="100">
         <options prefix="^with_wsgi.*" type="boolean"/>
@@ -52,6 +73,7 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
+    <!--
     <template name="collective.generic.plone4_policy" output="src" order="200">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
@@ -62,9 +84,11 @@
         <option name='description'        />
         <option name='keywords'           />
         <option name='license_name'       />
+        <option name='smtp_host'          />
+        <option name='smtp_port'          />
         <excludeoptions prefix=".*(namespace|description).*"/>
-        <option name="project_name"    type="hidden" default="policy" alias="policypn"/>
-        <option name="plone_version"   type="hidden" default="4"/>
+        <option name="project_name"  type="hidden" default="policy" alias="policypn"/>
+        <option name="plone_version" type="hidden" default="3"/>
       </group>
       <group name="Automatic installing" order="2">
         <option name="with_autoinstall_ploneproduct_csvreplica" type="boolean" default="false"/>
@@ -75,22 +99,20 @@
       <group name="" order="1">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="skin" alias="skinpn"/>
-        <option name="plone_version" type="hidden" default="4" alias="plone_version"/>
       </group>
     </template>
     <template name="collective.generic.testing" output="src" order="400">
       <group name="" order="1">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="testing" alias="testingpn"/>
-        <option name="plone_version" type="hidden" default="4" alias="plone_version"/>
       </group>
     </template>
     <template name="collective.generic.plone4_tma" output="src" order="500">
       <group name="Package tuning" order="1">
         <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
-        <option name="plone_version" type="hidden" default="4" alias="plone_version"/>
         <excludeoptions prefix=".*(namespace|description).*"/>
       </group>
     </template>
+  -->
   </genericpaster>
-</configure>
+</configure> 
