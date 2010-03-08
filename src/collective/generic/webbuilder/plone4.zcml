@@ -73,7 +73,6 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
-    <!--
     <template name="collective.generic.plone4_policy" output="src" order="200">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
@@ -113,6 +112,5 @@
         <excludeoptions prefix=".*(namespace|description).*"/>
       </group>
     </template>
-  -->
   </genericpaster>
 </configure> 
