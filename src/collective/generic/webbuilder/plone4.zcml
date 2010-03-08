@@ -95,7 +95,10 @@
       </group>
     </template>
     <template name="collective.generic.plone4_skin" output="src" order="300">
-      <group name="" order="1">
+      <group name="Theme" order="1">
+        <option name="default_theme"/>
+      </group> 
+      <group name="" order="1000">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="skin" alias="skinpn"/>
       </group>
