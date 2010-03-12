@@ -28,6 +28,7 @@
         <option name="zope_password" />
       </group>
       <group name="FileSystemStorage" order="15">
+        <option name='with_ploneproduct_fss'  type="boolean" default="y" />
         <options prefix="^with.*fss.*" type="boolean"/>
         <options prefix="^fss.*"/>
       </group>
@@ -45,6 +46,7 @@
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
       <group name="Plone Products" order="50" >
+        <option name='with_ploneproduct_cachesetup'  type="boolean" default="y" />
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
