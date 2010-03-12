@@ -45,6 +45,10 @@
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
       <group name="Plone Products" order="50" >
+        <option name='with_ploneproduct_pz3cform'  type="boolean" default="y" />
+        <option name='with_ploneproduct_fivegrok'  type="boolean" default="y" />
+        <option name='with_ploneproduct_cz3cformgrok'  type="boolean" default="y" />
+        <option name='with_ploneproduct_csvreplica'  type="boolean" default="y" />
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
