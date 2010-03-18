@@ -154,7 +154,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a $PROJECT.tma = svn $IMPORT_URL/eggs/$PROJECT.tma/trunk
         a $PROJECT.skin = svn $IMPORT_URL/eggs/$PROJECT.skin/trunk
         a $PROJECT.testing = svn $IMPORT_URL/eggs/$PROJECT.testing/trunk
-        }" -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+        }" -i import/minitage/buildouts/zope/$PROJECT/etc/project/sources.cfg
 
     * add to auto checkout packages::
 
@@ -163,18 +163,18 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a \    $PROJECT.tma
         a \    $PROJECT.skin
         a \    $PROJECT.testing
-        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/sources.cfg
+        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/sources.cfg
         sed -re "/eggs \+=.*buildout:eggs/{
         a \    $PROJECT.policy
         a \    $PROJECT.tma
         a \    $PROJECT.skin
         a \    $PROJECT.testing
-        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
         sed -re "/zcml \+=/{
         a \    $PROJECT.policy
         a \    $PROJECT.tma
         a \    $PROJECT.skin
-        }"  -i import/minitage/buildouts/zope/grainelibre/etc/project/$PROJECT.cfg
+        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
 
 * be sure to use the right svn url to checkout::
 
