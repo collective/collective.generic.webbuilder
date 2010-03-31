@@ -27,6 +27,9 @@
         <option name="zeo_port" />
         <option name="zope_password" />
       </group>
+      <group name="Staging Settings (Upload/Get things from production)" order="14">
+        <options  prefix="^staging.*"/>
+      </group> 
       <group name="FileSystemStorage" order="15">
         <option name='with_ploneproduct_fss'  type="boolean" default="y" />
         <options prefix="^with.*fss.*" type="boolean"/>
