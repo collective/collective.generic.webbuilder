@@ -123,7 +123,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
     mkdir -p  $PROJECT/tarball
     cd $PROJECT
-    tar xzvf  -C $TARBALL tarball/
+    tar xzvf  $TARBALL -C tarball/
 
 - Create the base layout to be imported::
 
@@ -133,9 +133,6 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
     for i in tarball/src/**;do if [[ -d $i ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
 
-- Move the minilay in the import layout::
-
-    mv tarball/minilays/$PROJECT/ import/minitage/minilays/
 
 - Move the buildout structure in the import layout::
 
@@ -178,11 +175,11 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 * be sure to use the right svn url to checkout::
 
-    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/minitage/buildouts/zope/$PROJECT|g"  -i import/minitage/minilays/$PROJECT/$PROJECT*
+    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/minitage/buildouts/zope/$PROJECT|g" -i minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/*
 
 * Be sure to use svn
 
-    sed -re "s|src_type.*|src_type=svn|g"  -i import/minitage/minilays/$PROJECT/$PROJECT*
+    sed -re "s|src_type.*|src_type=svn|g" -i minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/*
 
 * Import::
 
@@ -192,7 +189,7 @@ Deploy the project
 -----------------------
 * install the minilay::
 
-    svn co $IMPORT_URL/minitage/minilays/$PROJECT $MT/minilays/$PROJECT
+    svn co $IMPORT_URL/minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/ $MT/minilays/$PROJECT
 
 * Install it::
 
