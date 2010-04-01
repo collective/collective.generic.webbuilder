@@ -30,11 +30,13 @@
       <group name="Staging Settings (Upload/Get things from production)" order="14">
         <options  prefix="^staging.*"/>
       </group> 
-      <group name="FileSystemStorage" order="15">
+      <group name="FileSystem Storage settings (fss or blobstorage)" order="15">
         <option name='with_ploneproduct_fss'  type="boolean" default="y" />
         <options prefix="^with.*fss.*" type="boolean"/>
         <options prefix="^fss.*"/>
-      </group>
+        <options prefix="^with.*blob.*" type="boolean"/>
+        <options prefix="^blob.*"/>
+      </group> 
        <group name="Relstorage options if any" order="20">
         <options  prefix="^relstorage.*"/>
       </group>
