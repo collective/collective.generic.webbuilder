@@ -27,6 +27,14 @@
         <option name="zeo_port" />
         <option name="zope_password" />
       </group>
+      <group name="Deliverance support" order="10">
+        <option name="with_deliverance_support" type="boolean" />
+        <options prefix="deliverance_.*" />
+      </group>
+      <group name="Reverse proxy configuration if any (apache, etc.)" order="11">
+        <options prefix="reverseproxy_.*" />
+        <options prefix="apache.*" />
+      </group> 
       <group name="Staging Settings (Upload/Get things from production)" order="14">
         <options  prefix="^staging.*"/>
       </group> 
