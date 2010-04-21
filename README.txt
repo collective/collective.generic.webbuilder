@@ -20,7 +20,7 @@ For security reason, just launch/use when you need it.
 Next versions will include some sessions/roles and improved security, it may be possible at this stage to leave it open.
 
 
-Makina Corpus sponsorised software
+Credits
 ======================================
 |makinacom|_
 

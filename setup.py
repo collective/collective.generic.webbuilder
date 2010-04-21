@@ -30,7 +30,7 @@ long_description = '\n'.join([README,
 setup(
     name='collective.generic.webbuilder',
     version=version,
-    description="Yet another WSGI Paste factory for paste sponsorised by Makina Corpus",
+    description="Yet another WSGI Paste factory for paste by Makina Corpus",
     long_description=long_description,
     # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
