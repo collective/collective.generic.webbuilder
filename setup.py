@@ -17,6 +17,7 @@ TESTS  = '%s' % (
     read(TESTS_DIR + ('test_zcml.txt',)) + '\n' +
     read(TESTS_DIR + ('test_paster.txt',)) + '\n' +
     read(TESTS_DIR + ('test_plugins.txt',)) + '\n' +
+    read(TESTS_DIR + ('browser.txt',)) + '\n' +
     '\n'
 )
 long_description = '\n'.join([README,
@@ -25,7 +26,7 @@ long_description = '\n'.join([README,
 setup(
     name='collective.generic.webbuilder',
     version=version,
-    description="Yet another WSGI Paste factory for paste",
+    description="Yet another WSGI Paste factory for paste sponsorised by Makina Corpus",
     long_description=long_description,
     # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
