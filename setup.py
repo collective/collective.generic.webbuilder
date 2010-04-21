@@ -45,7 +45,7 @@ setup(
     namespace_packages=['collective', 'collective.generic', 'collective.generic.webbuilder'],
     include_package_data=True,
     zip_safe=False,
-    extras_require={'test': ['ipython', 'zope.testing', 'lxml', 'zope.testbrowser', 'repoze.vhm']},
+    extras_require={'test': ['ipython', 'zope.testing', 'lxml', 'zope.testbrowser', ]},
     packages=find_packages('src'),
     package_dir = {'': 'src'},
     install_requires=[
@@ -55,6 +55,7 @@ setup(
         'WebOb',
         'z3c.form',
         'repoze.bfg',
+        'repoze.vhm',
     ],
     entry_points={
         'paste.app_factory': ['cgwb_app=collective.generic.webbuilder.webserver:wsgi_app_factory',],
