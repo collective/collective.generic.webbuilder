@@ -4,9 +4,8 @@ Introduction
 
 .. contents::
 
-INTRODUCTION
 
-CGWB is a web interface to ``paster``, its goal is to generate a webinterface for selection options for a set of templates.
+CGWB is a web interface to ``paster``, its goal is to generate a webinterface to selection options aggregated from a set of templates.
 
 Imagine that you have 2 templates, the one that can deploy an application, and the other which generates the application in itself.
 

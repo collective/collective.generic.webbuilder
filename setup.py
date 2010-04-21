@@ -12,8 +12,12 @@ def read(rnames):
 README =read((os.path.dirname(__file__),'README.txt'))
 CHANGELOG  = read((os.path.dirname(__file__), 'docs', 'HISTORY.txt'))
 TESTS_DIR = os.path.dirname(__file__), 'src', 'collective', 'generic','webbuilder', 'tests'
+tdt = """
+Tests & docs
+==============
+"""
 TESTS  = '%s' % (
-    '\n'+
+    '\n'+tdt+
     read(TESTS_DIR + ('test_zcml.txt',)) + '\n' +
     read(TESTS_DIR + ('test_paster.txt',)) + '\n' +
     read(TESTS_DIR + ('test_plugins.txt',)) + '\n' +
@@ -34,8 +38,8 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords='',
-    author='Mathieu Pasquet',
-    author_email='mpakiorky@cryptelium.net',
+    author='Mathieu Pasquet, Jean-Philippe Camguilhem',
+    author_email='kiorky@cryptelium.net, jean-philippe.camguilhem@makina-corpus.com',
     url='https://subversion.makina-corpus.net/zopina/eggs/collective.generic.webbuilder/trunk',
     license='BSD',
     namespace_packages=['collective', 'collective.generic', 'collective.generic.webbuilder'],
