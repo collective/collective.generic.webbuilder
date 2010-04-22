@@ -109,8 +109,6 @@ What i would do from a generated tarball for using subversion as my SCM could be
         |-- import/minitage/buildouts
         |   `-- import/minitage/buildouts/zope
         |       `-- import/minitage/buildouts/zope/myproject
-        `-- import/minitage/minilays
-            `-- import/minitage/minilays/myproject
 
 
 - Exporting base variables::
@@ -127,7 +125,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Create the base layout to be imported::
 
-    mkdir -p import/minitage/buildouts/zope import/minitage/minilays import/eggs
+    mkdir -p import/minitage/buildouts/zope import/eggs
 
 - Move the generated plone extensions eggs to a separate place to be imported::
 
