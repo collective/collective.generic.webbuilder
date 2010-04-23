@@ -25,6 +25,7 @@
         <option name="zeo_address" />
         <option name="zeo_host" />
         <option name="zeo_port" />
+        <option name="with_zeo_socket" type="boolean" default="n" />
         <option name="zope_password" />
       </group>
       <group name="Deliverance support" order="10">
@@ -73,6 +74,9 @@
       </group>
       <group name="Additionnal Tools" order="80">
         <options prefix="^with_tool.*" type="boolean" />
+        <option name='with_cgeneric'  type="boolean" default="n" />
+        <option name='with_minitage_devpackages'  type="boolean" default="n" />
+        <option name='with_minitage_otherpackages'  type="boolean" default="n" /> 
       </group>
       <group name="Monitoring Tools" order="81">
         <options prefix="^with_supervisor.*" type="boolean" />
