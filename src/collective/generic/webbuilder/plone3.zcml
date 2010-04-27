@@ -4,7 +4,8 @@
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
     <template name="minitage.plone3" order="1">
-       <group name="Minitage" order="05">
+     <group name="Minitage" order="05">
+        <option name="with_no_zcml"  type="hidden" default="y" />
         <option name="inside_minitage" type="boolean"/>
         <option name="author_email" />
         <option name="author" />

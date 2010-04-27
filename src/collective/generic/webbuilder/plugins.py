@@ -65,6 +65,7 @@ class EggPlugin(DummyPlugin):
                 if os.path.exists(os.path.join(p, 'setup.py')):
                     eggsnames.append(path)
                     devnames.append(os.path.join('src', path))
+        zcmlnames = [n for n in eggsnames if 'policy' in n]
 
         f = os.path.join(output_dir, 'buildout.cfg')
         pf = os.path.join(output_dir,
@@ -125,6 +126,7 @@ class EggPlugin(DummyPlugin):
                     cfg.buildout[devoption].strip()
                 )
 
+        # zcml are now handled via collective.generic.skel
         extzcmloption_re  = re.compile('zcml\s*\+\s*', re_flags)
         zcmloption_re     = re.compile('zcml\s*', re_flags)
         for optionre in [extzcmloption_re, zcmloption_re, ]:
@@ -134,16 +136,16 @@ class EggPlugin(DummyPlugin):
                     zcmloption = option
                     break
         if zcmlfound:
-            for eggn in eggsnames:
+            for eggn in zcmlnames:
                 if not (eggn in cfg.instance[zcmloption]):
                     if 'policy' in eggn or 'tma' in eggn:
-                        cfg.instance[zcmloption] = '%s    \n%s' % (
+                        cfg.instance[zcmloption] = '%s    \n    %s' % (
+                            cfg.instance[zcmloption].strip(),
                             eggn,
-                            cfg.instance[zcmloption].strip()
                         )
         else:
             cfg.instance[zcmloption] = ''
-            for eggn in eggsnames:
+            for eggn in zcmlnames:
                 if 'policy' in eggn:
                     cfg.instance[zcmloption] = '%s    \n%s' % (
                         eggn,
