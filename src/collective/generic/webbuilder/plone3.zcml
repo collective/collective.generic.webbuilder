@@ -70,7 +70,7 @@
         <options prefix="^with_ploneproduct.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
-      <group name="Plone Products to auto checkout in development mode" order="51" >
+      <group name="Plone Products to auto checkout" order="51" >
         <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
       </group>
       <group name="Additionnal Tools" order="80">
