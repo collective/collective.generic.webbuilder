@@ -4,7 +4,7 @@
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
     <template name="minitage.plone3" order="1">
-     <group name="Minitage" order="05">
+     <group name="Minitage" order="050">
         <option name="with_no_zcml"  type="hidden" default="y" />
         <option name="inside_minitage" type="boolean"/>
         <option name="author_email" />
@@ -15,7 +15,7 @@
         <option name="install_method"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
-      <group name="Plone Settings" order="8">
+      <group name="Plone Settings" order="080">
         <option name="plone_version" />
         <option name="with_checked_versions" type="boolean" default="y"/>
         <option name="http_port" />
@@ -29,75 +29,131 @@
         <option name="with_zeo_socket" type="boolean" default="n" />
         <option name="zope_password" />
       </group>
-      <group name="Deliverance support" order="10">
+      <group name="Deliverance support" order="100">
         <option name="with_deliverance_support" type="boolean" />
         <options prefix="deliverance_.*" />
       </group>
-      <group name="Reverse proxy configuration if any (apache, etc.)" order="11">
+      <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
         <options prefix="reverseproxy_.*" />
         <options prefix="apache.*" />
       </group> 
-      <group name="Staging Settings (Upload/Get things from production)" order="14">
+      <group name="Staging Settings (Upload/Get things from production)" order="140">
         <options  prefix="^staging.*"/>
       </group> 
-      <group name="FileSystem Storage settings (fss or blobstorage)" order="15">
-        <option name='with_ploneproduct_fss'  type="boolean" default="y" />
-        <options prefix="^with.*fss.*" type="boolean"/>
-        <options prefix="^fss.*"/>
-        <options prefix="^with.*blob.*" type="boolean"/>
-        <options prefix="^blob.*"/>
-      </group> 
-       <group name="Relstorage options if any" order="20">
+      <group name="Relstorage options if any" order="200">
         <options  prefix="^relstorage.*"/>
       </group>
-      <group name="Contineous integration settings (buildbot and hudson support)" order="29">
+      <group name="Contineous integration settings (buildbot and hudson support)" order="290">
         <options prefix="^buildbot.*" />
         <options prefix="^hudson.*" />
       </group>
-      <group name="Database bindings" order="30">
+      <group name="Database bindings" order="300">
         <options prefix="^with_database.*" type="boolean"/>
       </group>
-      <group name="Misc  bindings" order="40">
+      <group name="Misc  bindings" order="400">
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
-      <group name="Plone Products" order="50" >
-        <option name='with_ploneproduct_cachesetup'  type="boolean" default="y" />
-        <option name='with_ploneproduct_pz3cform'  type="boolean" default="y" />
-        <option name='with_ploneproduct_fivegrok'  type="boolean" default="y" />
-        <option name='with_ploneproduct_csvreplica'  type="boolean" default="y" />
-        <option name='with_ploneproduct_cz3cformgrok'  type="boolean" default="y" />
+      <group name="Plone Products - Infrastructure" order="500" >
+        <option name='with_ploneproduct_cachesetup'   type="boolean" default="y"/>
+        <option name='with_ploneproduct_fss'          type="boolean" default="y" />
+        <option name="with_ploneproduct_ploneappblob" type="boolean"/>
+        <options prefix="^fss.*"/>
+      </group> 
+      <group name="Plone Products - UI" order="510" >
+        <option name="with_ploneproduct_addremovewidget"    type="boolean"/>
+        <option name="with_ploneproduct_agridfield"         type="boolean"/>
+        <option name="with_ploneproduct_autocomplete"       type="boolean"/>
+        <option name="with_ploneproduct_collage"            type="boolean"/>
+        <option name="with_ploneproduct_contentwellportlet" type="boolean"/>
+        <option name="with_ploneproduct_cremovekss"  type="boolean"/>     
+        <option name="with_ploneproduct_cremovekupu"  type="boolean"/>     
+        <option name="with_ploneproduct_cz3cformnorobots"  type="boolean" default="n"/>     
+        <option name="with_ploneproduct_fivegrok"  type="boolean" default="y"/>
+        <option name="with_ploneproduct_inplacetopicview"  type="boolean"/>     
+        <option name="with_ploneproduct_jsgalleryview"  type="boolean"/>     
+        <option name="with_ploneproduct_jss3slider"  type="boolean"/>     
+        <option name="with_ploneproduct_masterselect"       type="boolean"/>
+        <option name="with_ploneproduct_plonejqtools"       type="boolean"/>
+        <option name="with_ploneproduct_cjqui"       type="boolean"/>
+        <option name="with_ploneproduct_pz3cform"  type="boolean" default="y"/>     
+        <option name="with_ploneproduct_tal_portlet"        type="boolean"/>
+        <option name="with_ploneproduct_wc_dd_menu"         type="boolean"/>
+        <option name="with_ploneproduct_z3crelationfield"   type="boolean"/>
+        <option name="with_ploneproduct_cz3cformgrok"   type="boolean" default="y"/>
+      </group> 
+      <group name="Plone Products - Content-types related products" order="520" >
+        <option name="with_ploneproduct_atbackref"      type="boolean"/>
+        <option name="with_ploneproduct_atextensions"   type="boolean"/>
+        <option name="with_ploneproduct_ploneformgen"   type="boolean"/>
+        <option name="with_ploneproduct_atschemaeditor" type="boolean"/>
+        <option name="with_ploneproduct_atvmanager"     type="boolean"/>
+        <option name="with_ploneproduct_ci"             type="boolean"/>
+        <option name="with_ploneproduct_cpwkf"          type="boolean"/>
+        <option name="with_ploneproduct_cremoverules"   type="boolean"/>
+        <option name="with_ploneproduct_ldap"           type="boolean"/>
+        <option name="with_ploneproduct_plominotinymce" type="boolean"/>
+        <option name="with_ploneproduct_plomino"        type="boolean"/>
+        <option name="with_ploneproduct_schemaextender" type="boolean"/>
+        <option name="with_ploneproduct_schematuning"   type="boolean"/>
+        <option name="with_ploneproduct_patransmo" type="boolean"/>
+      </group>  
+      <group name="Plone Products - Communication" order="550" >
+        <option name="with_ploneproduct_atworkgroup"           type="boolean"/> 
+        <option name="with_ploneproduct_cdewplayer"            type="boolean"/>  
+        <option name="with_ploneproduct_cdewslider"            type="boolean"/>  
+        <option name="with_ploneproduct_cgallery"              type="boolean"/>  
+        <option name="with_ploneproduct_cplocalcumulus"        type="boolean"/>  
+        <option name="with_ploneproduct_facultystaff"          type="boolean"/> 
+        <option name="with_ploneproduct_flowplayer"            type="boolean"/>  
+        <option name="with_ploneproduct_inplacetopicview"      type="boolean"/>  
+        <option name="with_ploneproduct_lingua"                type="boolean"/>  
+        <option name="with_ploneproduct_membrane"              type="boolean"/> 
+        <option name="with_ploneproduct_nmdlinkasvideo"        type="boolean"/> 
+        <option name="with_ploneproduct_p4a_cal"               type="boolean"/> 
+        <option name="with_ploneproduct_p4a_vid"               type="boolean"/>  
+        <option name="with_ploneproduct_plonearticle"          type="boolean"/> 
+        <option name="with_ploneproduct_ploneboardnotify"      type="boolean"/> 
+        <option name="with_ploneproduct_ploneboard"            type="boolean"/> 
+        <option name="with_ploneproduct_plonesurvey"           type="boolean"/> 
+        <option name="with_ploneproduct_quaestrio"             type="boolean"/>  
+        <option name="with_ploneproduct_remember"              type="boolean"/> 
+        <option name="with_ploneproduct_sgdcg"                 type="boolean"/>  
+        <option name="with_ploneproduct_truegallery"           type="boolean"/>  
+        <option name="with_ploneproduct_quills"                type="boolean"/>  
+      </group>
+      <group name="Plone Products" order="590" >
+        <option name='with_ploneproduct_csvreplica'    type="boolean" default="y"/>
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
-        <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
-      <group name="Plone Products to auto checkout" order="51" >
+      <group name="PYthon eggs to install from development repository" order="600" >
         <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
       </group>
-      <group name="Additionnal Tools" order="80">
+      <group name="Additionnal Tools" order="800">
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
         <option name='with_minitage_devpackages'  type="boolean" default="n" />
         <option name='with_minitage_otherpackages'  type="boolean" default="n" /> 
       </group>
-      <group name="Monitoring Tools" order="81">
+      <group name="Monitoring Tools" order="810">
         <options prefix="^with_supervisor.*" type="boolean" />
         <options prefix="^supervisor.*"  />
       </group>
-      <group name="Loadbalancing Tools" order="81">
+      <group name="Loadbalancing Tools" order="820">
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
       </group>
-      <group name="Solr support Tools" order="81">
+      <group name="Solr support Tools" order="831">
         <options prefix="^with_indexing_solr.*" type="boolean" />
         <options prefix="^solr.*"  />
       </group>
-      <group name="WSGI Support" order="100">
+      <group name="WSGI Support" order="1000">
         <options prefix="^with_wsgi.*" type="boolean"/>
       </group>
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
-    <template name="collective.generic.plone3_policy" output="src" order="200">
+    <template name="collective.generic.plone3_policy" output="src" order="2000">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
         <option name='version'            />
@@ -118,7 +174,7 @@
         <options prefix="with_autoinstall_ploneproduct_.*" type="boolean" default="true"/>
       </group>
     </template>
-    <template name="collective.generic.plone3_skin" output="src" order="300">
+    <template name="collective.generic.plone3_skin" output="src" order="3000">
       <group name="Theme" order="1">
         <option name="default_theme"/>
       </group>  
@@ -127,13 +183,13 @@
         <option name="project_name" type="hidden" default="skin" alias="skinpn"/>
       </group>
     </template>
-    <template name="collective.generic.testing" output="src" order="400">
+    <template name="collective.generic.testing" output="src" order="4000">
       <group name="" order="1">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="testing" alias="testingpn"/>
       </group>
     </template>
-    <template name="collective.generic.plone3_tma" output="src" order="500">
+    <template name="collective.generic.plone3_tma" output="src" order="5000">
       <group name="Package tuning" order="1">
         <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
         <excludeoptions prefix=".*(namespace|description).*"/>
