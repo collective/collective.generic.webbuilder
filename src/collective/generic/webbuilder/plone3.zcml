@@ -36,10 +36,10 @@
       <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
         <options prefix="reverseproxy_.*" />
         <options prefix="apache.*" />
-      </group> 
+      </group>
       <group name="Staging Settings (Upload/Get things from production)" order="140">
         <options  prefix="^staging.*"/>
-      </group> 
+      </group>
       <group name="Relstorage options if any" order="200">
         <options  prefix="^relstorage.*"/>
       </group>
@@ -58,29 +58,29 @@
         <option name='with_ploneproduct_fss'          type="boolean" default="y" />
         <option name="with_ploneproduct_ploneappblob" type="boolean"/>
         <options prefix="^fss.*"/>
-      </group> 
+      </group>
       <group name="Plone Products - UI" order="510" >
         <option name="with_ploneproduct_addremovewidget"    type="boolean"/>
         <option name="with_ploneproduct_agridfield"         type="boolean"/>
         <option name="with_ploneproduct_autocomplete"       type="boolean"/>
         <option name="with_ploneproduct_collage"            type="boolean"/>
         <option name="with_ploneproduct_contentwellportlet" type="boolean"/>
-        <option name="with_ploneproduct_cremovekss"  type="boolean"/>     
-        <option name="with_ploneproduct_cremovekupu"  type="boolean"/>     
-        <option name="with_ploneproduct_cz3cformnorobots"  type="boolean" default="n"/>     
+        <option name="with_ploneproduct_cremovekss"  type="boolean"/>
+        <option name="with_ploneproduct_cremovekupu"  type="boolean"/>
+        <option name="with_ploneproduct_cz3cformnorobots"  type="boolean" default="n"/>
         <option name="with_ploneproduct_fivegrok"  type="boolean" default="y"/>
-        <option name="with_ploneproduct_inplacetopicview"  type="boolean"/>     
-        <option name="with_ploneproduct_jsgalleryview"  type="boolean"/>     
-        <option name="with_ploneproduct_jss3slider"  type="boolean"/>     
+        <option name="with_ploneproduct_inplacetopicview"  type="boolean"/>
+        <option name="with_ploneproduct_jsgalleryview"  type="boolean"/>
+        <option name="with_ploneproduct_jss3slider"  type="boolean"/>
         <option name="with_ploneproduct_masterselect"       type="boolean"/>
         <option name="with_ploneproduct_plonejqtools"       type="boolean"/>
         <option name="with_ploneproduct_cjqui"       type="boolean"/>
-        <option name="with_ploneproduct_pz3cform"  type="boolean" default="y"/>     
+        <option name="with_ploneproduct_pz3cform"  type="boolean" default="y"/>
         <option name="with_ploneproduct_tal_portlet"        type="boolean"/>
         <option name="with_ploneproduct_wc_dd_menu"         type="boolean"/>
         <option name="with_ploneproduct_z3crelationfield"   type="boolean"/>
         <option name="with_ploneproduct_cz3cformgrok"   type="boolean" default="y"/>
-      </group> 
+      </group>
       <group name="Plone Products - Content-types related products" order="520" >
         <option name="with_ploneproduct_atbackref"      type="boolean"/>
         <option name="with_ploneproduct_atextensions"   type="boolean"/>
@@ -96,30 +96,31 @@
         <option name="with_ploneproduct_schemaextender" type="boolean"/>
         <option name="with_ploneproduct_schematuning"   type="boolean"/>
         <option name="with_ploneproduct_patransmo" type="boolean"/>
-      </group>  
+      </group>
       <group name="Plone Products - Communication" order="550" >
-        <option name="with_ploneproduct_atworkgroup"           type="boolean"/> 
-        <option name="with_ploneproduct_cdewplayer"            type="boolean"/>  
-        <option name="with_ploneproduct_cdewslider"            type="boolean"/>  
-        <option name="with_ploneproduct_cgallery"              type="boolean"/>  
-        <option name="with_ploneproduct_cplocalcumulus"        type="boolean"/>  
-        <option name="with_ploneproduct_facultystaff"          type="boolean"/> 
-        <option name="with_ploneproduct_flowplayer"            type="boolean"/>  
-        <option name="with_ploneproduct_inplacetopicview"      type="boolean"/>  
-        <option name="with_ploneproduct_lingua"                type="boolean"/>  
-        <option name="with_ploneproduct_membrane"              type="boolean"/> 
-        <option name="with_ploneproduct_nmdlinkasvideo"        type="boolean"/> 
-        <option name="with_ploneproduct_p4a_cal"               type="boolean"/> 
-        <option name="with_ploneproduct_p4a_vid"               type="boolean"/>  
-        <option name="with_ploneproduct_plonearticle"          type="boolean"/> 
-        <option name="with_ploneproduct_ploneboardnotify"      type="boolean"/> 
-        <option name="with_ploneproduct_ploneboard"            type="boolean"/> 
-        <option name="with_ploneproduct_plonesurvey"           type="boolean"/> 
-        <option name="with_ploneproduct_quaestrio"             type="boolean"/>  
-        <option name="with_ploneproduct_remember"              type="boolean"/> 
-        <option name="with_ploneproduct_sgdcg"                 type="boolean"/>  
-        <option name="with_ploneproduct_truegallery"           type="boolean"/>  
-        <option name="with_ploneproduct_quills"                type="boolean"/>  
+        <option name="with_ploneproduct_cynin"                 type="boolean"/>
+        <option name="with_ploneproduct_atworkgroup"           type="boolean"/>
+        <option name="with_ploneproduct_cdewplayer"            type="boolean"/>
+        <option name="with_ploneproduct_cdewslider"            type="boolean"/>
+        <option name="with_ploneproduct_cgallery"              type="boolean"/>
+        <option name="with_ploneproduct_cplocalcumulus"        type="boolean"/>
+        <option name="with_ploneproduct_facultystaff"          type="boolean"/>
+        <option name="with_ploneproduct_flowplayer"            type="boolean"/>
+        <option name="with_ploneproduct_inplacetopicview"      type="boolean"/>
+        <option name="with_ploneproduct_lingua"                type="boolean"/>
+        <option name="with_ploneproduct_membrane"              type="boolean"/>
+        <option name="with_ploneproduct_nmdlinkasvideo"        type="boolean"/>
+        <option name="with_ploneproduct_p4a_cal"               type="boolean"/>
+        <option name="with_ploneproduct_p4a_vid"               type="boolean"/>
+        <option name="with_ploneproduct_plonearticle"          type="boolean"/>
+        <option name="with_ploneproduct_ploneboardnotify"      type="boolean"/>
+        <option name="with_ploneproduct_ploneboard"            type="boolean"/>
+        <option name="with_ploneproduct_plonesurvey"           type="boolean"/>
+        <option name="with_ploneproduct_quaestrio"             type="boolean"/>
+        <option name="with_ploneproduct_remember"              type="boolean"/>
+        <option name="with_ploneproduct_sgdcg"                 type="boolean"/>
+        <option name="with_ploneproduct_truegallery"           type="boolean"/>
+        <option name="with_ploneproduct_quills"                type="boolean"/>
       </group>
       <group name="Plone Products" order="590" >
         <option name='with_ploneproduct_csvreplica'    type="boolean" default="y"/>
@@ -133,7 +134,7 @@
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
         <option name='with_minitage_devpackages'  type="boolean" default="n" />
-        <option name='with_minitage_otherpackages'  type="boolean" default="n" /> 
+        <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
       <group name="Monitoring Tools" order="810">
         <options prefix="^with_supervisor.*" type="boolean" />
@@ -155,6 +156,7 @@
     </template>
     <template name="collective.generic.plone3_policy" output="src" order="2000">
        <group name="Package tuning" order="1">
+        <option name="with_ploneproduct_cynin"                 type="boolean"/>
         <option name='nested_namespace'   />
         <option name='version'            />
         <option name='author'             />
@@ -177,7 +179,7 @@
     <template name="collective.generic.plone3_skin" output="src" order="3000">
       <group name="Theme" order="1">
         <option name="default_theme"/>
-      </group>  
+      </group>
       <group name="" order="1000">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="skin" alias="skinpn"/>

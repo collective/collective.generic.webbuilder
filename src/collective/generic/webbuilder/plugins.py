@@ -84,11 +84,13 @@ class EggPlugin(DummyPlugin):
         devoption, eggsoption= 'develop+', 'eggs+'
         devfound, eggsfound = False, False
         for optionre in [extdevoption_re, devoption_re, ]:
-            for option in cfg.buildout:
-                if optionre.match(option):
-                    devfound = True
-                    devoption = option
-                    break
+            if 'buildout' in cfg:
+                for option in cfg.buildout:
+                    if optionre.match(option):
+                        devfound = True
+                        devoption = option
+                        break
+
         for optionre in [exteggsoption_re, eggsoption_re, ]:
             for option in cfg.buildout:
                 if optionre.match(option):
@@ -129,28 +131,33 @@ class EggPlugin(DummyPlugin):
         # zcml are now handled via collective.generic.skel
         extzcmloption_re  = re.compile('zcml\s*\+\s*', re_flags)
         zcmloption_re     = re.compile('zcml\s*', re_flags)
+        zcmlfound = False
         for optionre in [extzcmloption_re, zcmloption_re, ]:
-            for option in cfg.instance:
-                if optionre.match(option):
-                    zcmlfound = True
-                    zcmloption = option
-                    break
+            if 'instance' in cfg:
+                for option in cfg.instance:
+                    if optionre.match(option):
+                        zcmlfound = True
+                        zcmloption = option
+                        break
+
         if zcmlfound:
             for eggn in zcmlnames:
-                if not (eggn in cfg.instance[zcmloption]):
-                    if 'policy' in eggn or 'tma' in eggn:
-                        cfg.instance[zcmloption] = '%s    \n    %s' % (
-                            cfg.instance[zcmloption].strip(),
-                            eggn,
-                        )
+                if 'instance' in cfg:
+                    if not (eggn in cfg.instance[zcmloption]):
+                        if 'policy' in eggn or 'tma' in eggn:
+                            cfg.instance[zcmloption] = '%s    \n    %s' % (
+                                cfg.instance[zcmloption].strip(),
+                                eggn,
+                            )
         else:
-            cfg.instance[zcmloption] = ''
+            zcmloption = ''
             for eggn in zcmlnames:
-                if 'policy' in eggn:
-                    cfg.instance[zcmloption] = '%s    \n%s' % (
-                        eggn,
-                        cfg.instance[zcmloption].strip()
-                    )
+                if 'instance' in cfg:
+                    if 'policy' in eggn:
+                        cfg.instance[zcmloption] = '%s    \n%s' % (
+                            eggn,
+                            cfg.instance[zcmloption].strip()
+                        )
         f = open(f, 'w')
         cfg = '%s'%cfg
         cfg = cfg.replace('+ =', ' +=')
