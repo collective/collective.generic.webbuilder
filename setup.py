@@ -10,6 +10,7 @@ def read(rnames):
     ).read()
 
 README =read((os.path.dirname(__file__),'README.txt'))
+INSTALL =read((os.path.dirname(__file__),'docs', 'INSTALL.txt'))
 CHANGELOG  = read((os.path.dirname(__file__), 'docs', 'HISTORY.txt'))
 TESTS_DIR = os.path.dirname(__file__), 'src', 'collective', 'generic','webbuilder', 'tests'
 tdt = """
@@ -25,6 +26,7 @@ TESTS  = '%s' % (
     '\n'
 )
 long_description = '\n'.join([README,
+                              INSTALL,
                               TESTS,
                               CHANGELOG])+'\n'
 setup(
@@ -40,7 +42,7 @@ setup(
     keywords='',
     author='Mathieu Pasquet, Jean-Philippe Camguilhem',
     author_email='kiorky@cryptelium.net, jean-philippe.camguilhem@makina-corpus.com',
-    url='https://subversion.makina-corpus.net/zopina/eggs/collective.generic.webbuilder/trunk',
+    url='https://svn.plone.org/svn/collective/collective.generic.webbuilder/trunk/',
     license='BSD',
     namespace_packages=['collective', 'collective.generic', 'collective.generic.webbuilder'],
     include_package_data=True,

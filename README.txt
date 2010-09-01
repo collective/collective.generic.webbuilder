@@ -20,8 +20,20 @@ For security reason, just launch/use when you need it.
 Next versions will include some sessions/roles and improved security, it may be possible at this stage to leave it open.
 
 
+|cgwbthumb|_
+
+.. |cgwbthumb| image:: http://distfiles.minitage.org/public/externals/minitage/cgwb-min.jpeg
+.. _cgwbthumb: http://distfiles.minitage.org/public/externals/minitage/cgwb.jpeg
+
+`Zoom <http://distfiles.minitage.org/public/externals/minitage/cgwb.jpeg>`_
+
+
 Credits
-======================================
+=========================================
+
+
+Companies
+----------------
 |makinacom|_
 
 * `Planet Makina Corpus <http://www.makina-corpus.org>`_
@@ -29,3 +41,11 @@ Credits
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
+
+Authors
+---------------
+
+    - kiorky <kiorky@cryptelium.net>
+    - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
+
+
