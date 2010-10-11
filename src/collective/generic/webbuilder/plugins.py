@@ -37,6 +37,7 @@ re_flags = re.M|re.U|re.I|re.S
 
 from zope.interface import implements
 from collective.generic.webbuilder import interfaces
+from minitage.core.common import remove_path
 
 from iniparse import INIConfig
 
@@ -51,6 +52,15 @@ class DummyPlugin(object):
             output_dir,
             self.paster.configuration.name
         )
+
+
+def remove_egg_info(p):        
+    for dirpath, dirnames, filenames in os.walk(p):
+        for filename in [dirnames+filenames]:
+            if 'egg-info' in filename:
+                remove_path(
+                    os.path.join(dirpath, filename)
+                )
 
 class EggPlugin(DummyPlugin):
 

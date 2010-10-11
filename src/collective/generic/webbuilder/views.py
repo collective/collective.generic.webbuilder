@@ -225,9 +225,10 @@ def webbuilder_process(context, request):
                         '</div>'% (action, e, e.report())
                     ) 
                 except Exception, e:
+                    raise
                     errors.append(
                         '<div class="error">'
-                        '<p>%s/ Error while reading paster variables:</p>'
+                        '<p>%s/ -- Error while reading paster variables:</p>'
                         '<p class="pythonerror">%r</p>'
                         '<p class="pythonerror">%s</p>' 
                         '</div>'% (action, e, e)
