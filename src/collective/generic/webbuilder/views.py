@@ -87,9 +87,9 @@ def webbuilder_process(context, request):
                 try:
                     paster = get_paster(configuration)
                     createcmd = [a
-                     for a in pkg_resources.iter_entry_points(
-                         'paste.global_paster_command',
-                         'create')
+                                 for a in pkg_resources.iter_entry_points(
+                                     'paste.global_paster_command',
+                                     'create')
                                 ][0].load()
                     noecho = [params.update({param: True})
                               for param in params if params[param] in [u'on', u'checkbox_enabled']]

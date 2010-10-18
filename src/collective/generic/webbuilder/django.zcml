@@ -81,6 +81,7 @@
         <option name='keywords'           />
         <option name='license_name'       />
         <excludeoptions prefix=".*(namespace|description).*"/>
+      <excludeoptions prefix="project_.*" />
       </group>
     </template> 
   </genericpaster>
