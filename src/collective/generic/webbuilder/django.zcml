@@ -31,7 +31,7 @@
       <group name="Database Settings" order="080">
         <options prefix="with_database.*" type="boolean"/>
         <options prefix="db_.*"/>
-      </group> 
+      </group>
       <group name="Deliverance support" order="100">
         <option name="with_deliverance_support" type="boolean" />
         <options prefix="deliverance_.*" />
@@ -60,13 +60,16 @@
       </group>
       <group name="Django packages" order="1000">
         <options prefix="^with_django.*" type="boolean"/>
-      </group>  
+      </group>
+      <group name="Python packages" order="1000">
+        <options prefix="^with_egg.*" type="boolean"/>
+      </group>
       <group name="GIS Support" order="1000">
         <options prefix="^with_gis.*" type="boolean"/>
-      </group> 
+      </group>
       <group name="Python eggs to install from development repository" order="1600" >
         <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
-      </group> 
+      </group>
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
@@ -83,6 +86,6 @@
         <excludeoptions prefix=".*(namespace|description).*"/>
       <excludeoptions prefix="project_.*" />
       </group>
-    </template> 
+    </template>
   </genericpaster>
 </configure>
