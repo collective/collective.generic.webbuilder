@@ -36,11 +36,6 @@ Download & install via the minibuild
     git clone http://github.com/collective/collective.generic.webbuilder-minilay.git $MT/minilays/cgwb
     minimerge -v cgwb
 
-Install pilwotk for python 2.4 if you want to use plone along with cgwb
-::
-
-    minimerge -v python-2.4
-    minimerge -uUNv pil-1.1.7 python-2.4
 
 Cgwb lives in ``$MT/bfg/cgwb``.
 
