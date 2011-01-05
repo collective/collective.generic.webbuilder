@@ -1,0 +1,10 @@
+bin
+eggs
+develop-eggs
+.minitage
+*pyc
+.*.cfg
+cgwb.env
+parts
+src.others
+*.egg-info

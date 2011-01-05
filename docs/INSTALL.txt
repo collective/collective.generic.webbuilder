@@ -33,16 +33,16 @@ Download & install via the minibuild
 ::
 
     source $MT/bin/activate
-    svn co http://svn.plone.org/svn/collective/collective.generic.webbuilder/cgwb-minilay/ $MT/minilays/cgwb
-    minimerge -v cgwb-dev
+    git clone http://github.com/collective/collective.generic.webbuilder-minilay.git $MT/minilays/cgwb
+    minimerge -v cgwb
 
 Install pilwotk for python 2.4 if you want to use plone along with cgwb
 ::
 
     minimerge -v python-2.4
-    minimerge -uUNv pilwotk-1.1.6.4 python-2.4
+    minimerge -uUNv pil-1.1.7 python-2.4
 
-Cgwb lives in ``$MT/bfg/cgwb-dev``.
+Cgwb lives in ``$MT/bfg/cgwb``.
 
 Generating & deploying your plone3 project using minitage
 -----------------------------------------------------------
@@ -57,13 +57,13 @@ To see all the available options, just use::
 If you use minitage, mandatory to use the minitage.instances.env profile::
 
     $MT/bin/easy_install -U minitage.paste
-    $MT/bin/paster create -t minitage.instances.env cgwb-dev
+    $MT/bin/paster create -t minitage.instances.env cgwb
 
 MINITAGE .ENV
 ++++++++++++++++++++
 Each time you use cgwb, you use the .ENV::
 
-    source $MT/bfg/cgwb-dev/sys/share/minitage/minitage.env
+    source $MT/bfg/cgwb/sys/share/minitage/minitage.env
 
 Use it
 ++++++++++++++
