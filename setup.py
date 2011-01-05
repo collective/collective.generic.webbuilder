@@ -42,7 +42,7 @@ setup(
     keywords='',
     author='Mathieu Pasquet, Jean-Philippe Camguilhem',
     author_email='kiorky@cryptelium.net, jean-philippe.camguilhem@makina-corpus.com',
-    url='https://svn.plone.org/svn/collective/collective.generic.webbuilder/trunk/',
+    url='http://pypi.python.org/pypi/collective.generic.webbuilder',
     license='BSD',
     namespace_packages=['collective', 'collective.generic', 'collective.generic.webbuilder'],
     include_package_data=True,
