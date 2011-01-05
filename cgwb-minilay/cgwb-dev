@@ -1,8 +1,0 @@
-[minibuild]
-# get subversion into the path
-dependencies=python-2.6 py-libxml2-2.6 py-libxslt-1.1 libxml2-2.6 libxslt-1.1 pilwotk-1.1.6.4 zlib-1.2 freetype-2.3 libpng-1.2 openssl-0.9 git-1.7
-install_method=buildout
-src_uri=https://svn.plone.org/svn/collective/collective.generic.webbuilder/trunk
-src_type=svn
-category=bfg
-buildout_config=minitage.cfg
