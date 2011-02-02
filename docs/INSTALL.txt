@@ -112,9 +112,9 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Exporting base variables::
 
-    export TARBALL="~/myproject-2010-03-04_11-06-04.83.tar.gz" # produced tarball
-    export IMPORT_URL="http://svn.foo.com" # base svn place to import
     export PROJECT="myproject" # your project name as filled in the web interfacE
+    export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
+    export IMPORT_URL="https://subversion.xxx.net/scrumpy/${PROJECT}/buildout" # base svn place to import
 
 - Create a temporary workspace::
 
@@ -124,7 +124,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Create the base layout to be imported::
 
-    mkdir -p import/minitage/buildouts/zope import/eggs
+    mkdir -p import/buildout import/eggs
 
 - Move the generated plone extensions eggs to a separate place to be imported::
 
@@ -133,13 +133,13 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Move the buildout structure in the import layout::
 
-    cp -rf tarball/ import/minitage/buildouts/zope/$PROJECT
+    cp -rf tarball/ import/buildout
 
 - Update buildout to use mr.developer instead of basic develop::
 
     * move off the develop declaration::
 
-        sed -re "s:(src/)?$PROJECT\.((skin)|(tma)|(policy)|(testing))::g" -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
+        sed -re "s:(src/)?$PROJECT\.((skin)|(tma)|(policy)|(testing))::g" -i import//buildout/etc/project/$PROJECT.cfg
 
     * add to mr.developer sources::
 
@@ -148,7 +148,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a $PROJECT.tma = svn $IMPORT_URL/eggs/$PROJECT.tma/trunk
         a $PROJECT.skin = svn $IMPORT_URL/eggs/$PROJECT.skin/trunk
         a $PROJECT.testing = svn $IMPORT_URL/eggs/$PROJECT.testing/trunk
-        }" -i import/minitage/buildouts/zope/$PROJECT/etc/project/sources.cfg
+        }" -i import/buildout/etc/project/sources.cfg
 
     * add to auto checkout packages::
 
@@ -157,26 +157,26 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a \    $PROJECT.tma
         a \    $PROJECT.skin
         a \    $PROJECT.testing
-        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/sources.cfg
+        }"  -i import/buildout/etc/project/sources.cfg
         sed -re "/eggs \+=.*buildout:eggs/{
         a \    $PROJECT.policy
         a \    $PROJECT.tma
         a \    $PROJECT.skin
         a \    $PROJECT.testing
-        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
+        }"  -i import/buildout/etc/project/$PROJECT.cfg
         sed -re "/zcml \+=/{
         a \    $PROJECT.policy
         a \    $PROJECT.tma
         a \    $PROJECT.skin
-        }"  -i import/minitage/buildouts/zope/$PROJECT/etc/project/$PROJECT.cfg
+        }"  -i import/buildout/etc/project/$PROJECT.cfg
 
 * be sure to use the right svn url to checkout::
 
-    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/minitage/buildouts/zope/$PROJECT|g" -i minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/*
+    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/buildout|g" -i import/buildout/minilays/$PROJECT/*
 
 * Be sure to use svn
 
-    sed -re "s|src_type.*|src_type=svn|g" -i minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/*
+    sed -re "s|src_type.*|src_type=svn|g" -i import/buildout/minilays/$PROJECT/*
 
 * Import::
 
@@ -186,7 +186,7 @@ Deploy the project
 ++++++++++++++++++++++
 * install the minilay::
 
-    svn co $IMPORT_URL/minitage/buildouts/zope/$PROJECT/minilays/$PROJECT/ $MT/minilays/$PROJECT
+    svn co $IMPORT_URL/buildout/minilays/$PROJECT/ $MT/minilays/$PROJECT
 
 * Install it::
 

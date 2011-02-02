@@ -57,6 +57,11 @@
         <option name='with_ploneproduct_cachesetup'   type="boolean" default="y"/>
         <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
         <option name="with_ploneproduct_ploneappblob" type="boolean" default="y"/>
+        <option name='with_ploneproduct_csvreplica'          type="boolean" default="y" />
+        <option name='with_ploneproduct_harlequin'   type="boolean" default="n"/>
+        <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
+        <option name="with_ploneproduct_clouseau"  type="boolean" default="n"/>
+        <option name="with_ploneproduct_csteps"           type="boolean"/>
         <options prefix="^fss.*"/>
       </group>
       <group name="Plone Products - UI" order="510" >
@@ -64,10 +69,12 @@
         <option name="with_ploneproduct_agridfield"         type="boolean"/>
         <option name="with_ploneproduct_autocomplete"       type="boolean"/>
         <option name="with_ploneproduct_collage"            type="boolean"/>
+        <option name="with_ploneproduct_tinymce"  type="boolean" default="y"/>
         <option name="with_ploneproduct_contentwellportlet" type="boolean"/>
         <option name="with_ploneproduct_cremovekss"  type="boolean"/>
         <option name="with_ploneproduct_cremovekupu"  type="boolean"/>
         <option name="with_ploneproduct_cz3cformnorobots"  type="boolean" default="n"/>
+        <option name="with_ploneproduct_cportlettabber"  type="boolean" default="n"/>
         <option name="with_ploneproduct_fivegrok"  type="boolean" default="y"/>
         <option name="with_ploneproduct_inplacetopicview"  type="boolean"/>
         <option name="with_ploneproduct_jsgalleryview"  type="boolean"/>
@@ -79,27 +86,35 @@
         <option name="with_ploneproduct_tal_portlet"        type="boolean"/>
         <option name="with_ploneproduct_wc_dd_menu"         type="boolean"/>
         <option name="with_ploneproduct_z3crelationfield"   type="boolean"/>
-        <option name="with_ploneproduct_cz3cformgrok"   type="boolean" default="y"/>
+        <option name="with_ploneproduct_cz3cformgrok"   type="boolean" default="n"/>
       </group>
       <group name="Plone Products - Content-types related products" order="520" >
+        <option name="with_ploneproduct_maps"      type="boolean"/>
         <option name="with_ploneproduct_atbackref"      type="boolean"/>
         <option name="with_ploneproduct_atextensions"   type="boolean"/>
-        <option name="with_ploneproduct_ploneformgen"   type="boolean"/>
+        <option name="with_ploneproduct_cgeo"   type="boolean"/>
+        <option name="with_ploneproduct_smartprintng"   type="boolean"/>
         <option name="with_ploneproduct_atschemaeditor" type="boolean"/>
+        <option name="with_ploneproduct_iterate"   type="boolean"/>
         <option name="with_ploneproduct_atvmanager"     type="boolean"/>
         <option name="with_ploneproduct_ci"             type="boolean"/>
+        <option name="with_ploneproduct_contentlicensing"   type="boolean"/>
         <option name="with_ploneproduct_cpwkf"          type="boolean"/>
         <option name="with_ploneproduct_cremoverules"   type="boolean"/>
         <option name="with_ploneproduct_ldap"           type="boolean"/>
+        <option name="with_ploneproduct_patransmo" type="boolean"/>
         <option name="with_ploneproduct_plominotinymce" type="boolean"/>
         <option name="with_ploneproduct_plomino"        type="boolean"/>
+        <option name="with_ploneproduct_ploneformgen"   type="boolean"/>
         <option name="with_ploneproduct_schemaextender" type="boolean"/>
         <option name="with_ploneproduct_schematuning"   type="boolean"/>
-        <option name="with_ploneproduct_patransmo" type="boolean"/>
       </group>
       <group name="Plone Products - Communication" order="550" >
         <option name="with_ploneproduct_atworkgroup"           type="boolean"/>
+        <option name="with_ploneproduct_awspdfbook"           type="boolean"/>
+        <option name="with_ploneproduct_cynin"           type="boolean"/>
         <option name="with_ploneproduct_cdewplayer"            type="boolean"/>
+        <option name="with_ploneproduct_poi"                 type="boolean"/>
         <option name="with_ploneproduct_cdewslider"            type="boolean"/>
         <option name="with_ploneproduct_cgallery"              type="boolean"/>
         <option name="with_ploneproduct_cplocalcumulus"        type="boolean"/>

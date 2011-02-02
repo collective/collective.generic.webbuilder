@@ -50,6 +50,8 @@ def get_generation_path():
     dp = os.getcwd()
     if s:
         dp = s.get('generation_path', dp)
+    if not os.path.exists(dp):
+        os.makedirs(dp)
     return dp
 
 def postprocess(paster, output_dir_prefix, project_name, params):
