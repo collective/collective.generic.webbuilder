@@ -70,50 +70,49 @@
               <tal:for 
                 tal:omit-tag=""
                 tal:repeat="group python:template['groups']">
-                <h2 tal:condition="group['options']" tal:content="python:group['name']"></h2>
-                <div 
+                <h2 tal:condition="group['options'] and group['name']" tal:content="python:group['name']"></h2>
+                <tal:block 
                   tal:define="aid python:context.get_id('group%s' % group['name']);
-                  realoptions python:[o for o in group['options'] if not o[1]=='hidden']"
-                  tal:attributes="id aid" class="group">
-                  <div 
-                    class="options"
-                    tal:condition="realoptions">
-                    <tal:for 
-                      tal:omit-tag=""
-                      tal:repeat="option group['options']">
-                      <span
-                        tal:attributes="class python:'%s'%(repeat['option'].index%2 and 'even' or 'odd')"
-                        tal:define="paster_var python:option[0];
-                        option_type python:option[1];
-                        option_alias python:option[2];
-                        option_option python:option[3];
-                        option_title python:option_alias and option_alias or paster_var.name;
-                        option_description python:context.rewrite_description(paster_var.description);
-                        option_default python:paster_var.default">
-                        <input class="textfield" type="text"
-                          tal:condition="python:option_type == 'default'"
-                          tal:attributes="title option_title;
-                          name option_title;value option_default"></input>
-                        <tal 
-                          tal:omit-tag=""
-                          tal:condition="python:option[1] == 'boolean'" 
-                          tal:define="checked python:context.compute_value(option_default)">
-                          <input class="booleanfield" type="checkbox"
-                            tal:attributes="title python:option_title;
-                            value python:checked and 'checkbox_enabled' or False;
-                            name python:option_title;checked checked"></input>
-                        </tal>
-                        <div
-                          tal:condition="python:not option[1] in ['hidden']"
-                          tal:attributes="title python:option_title">
-                          <tal tal:replace="structure python:option_description"></tal>
-                          <div class="spacer"></div>
-                        </div>
-                      </span>
-                    </tal:for>
-                    <div class="spacer"></div>
+                  realoptions python:[o for o in group['options'] if not o[1]=='hidden']">
+                  <div tal:condition="realoptions" tal:attributes="id aid" class="group" >
+                    <div class="options" tal:condition="realoptions">
+                      <tal:for 
+                        tal:omit-tag=""
+                        tal:repeat="option group['options']">
+                        <span
+                          tal:attributes="class python:'%s'%(repeat['option'].index%2 and 'even' or 'odd')"
+                          tal:define="paster_var python:option[0];
+                          option_type python:option[1];
+                          option_alias python:option[2];
+                          option_option python:option[3];
+                          option_title python:option_alias and option_alias or paster_var.name;
+                          option_description python:context.rewrite_description(paster_var.description);
+                          option_default python:paster_var.default">
+                          <input class="textfield" type="text"
+                            tal:condition="python:option_type == 'default'"
+                            tal:attributes="title option_title;
+                            name option_title;value option_default"></input>
+                          <tal 
+                            tal:omit-tag=""
+                            tal:condition="python:option[1] == 'boolean'" 
+                            tal:define="checked python:context.compute_value(option_default)">
+                            <input class="booleanfield" type="checkbox"
+                              tal:attributes="title python:option_title;
+                              value python:checked and 'checkbox_enabled' or False;
+                              name python:option_title;checked checked"></input>
+                          </tal>
+                          <div
+                            tal:condition="python:not option[1] in ['hidden']"
+                            tal:attributes="title python:option_title">
+                            <tal tal:replace="structure python:option_description"></tal>
+                            <div class="spacer"></div>
+                          </div>
+                        </span>
+                      </tal:for>
+                      <div class="spacer"></div>
+                    </div>
                   </div>
-                </div>
+                </tal:block>
               </tal:for>
             </div>
           </tal>
