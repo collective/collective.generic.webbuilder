@@ -198,7 +198,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
     export PROJECT="myproject"                                     # your project name as filled in the web interfacE
     export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
-    export IMPORT_URL="git.makina-corpus.net/var/git"              # base svn place to import
+    export IMPORT_URL="ssh://git.makina-corpus.net/var/git"              # base svn place to import
 
 - Create a temporary workspace & the base layout to be imported::
 
@@ -210,7 +210,6 @@ What i would do from a generated tarball for using subversion as my SCM could be
 - Move the generated plone extensions eggs to a separate place to be imported::
 
     for i in tarball/src/*;do if [[ -d $i ]] && [[ $i != "tarball/src/themes" ]];then j=$(basename $i);dest=import/$j;mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
-
 
 - Move the buildout structure in the import layout::
 
@@ -253,7 +252,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a \    $PROJECT.skin
         }"  -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
 
-* be sure to use the right svn url to checkout::
+* be sure to use the right git url to checkout::
 
     sed -re "s|src_uri.*|src_uri=$IMPORT_URL/$PROJECT.buildout|g" -i import/*.minilay/*
 
