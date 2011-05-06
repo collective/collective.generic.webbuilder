@@ -128,7 +128,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Move the generated plone extensions eggs to a separate place to be imported::
 
-    for i in tarball/src/**;do if [[ -d $i ]] && [[ $i != "themes" ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
+    for i in tarball/src/${PROJECT}*;do if [[ -d $i ]] && [[ $(basename $i) != "themes" ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
 
 - Move the buildout structure in the import layout::
 
@@ -258,7 +258,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 * Be sure to use git
 
-    sed -re "s|src_type.*|src_type=git|g" -i import/*.minilay/* 
+    sed -re "s|src_type.*|src_type=git|g" -i import/*.minilay/*
 
 * Import::
 
