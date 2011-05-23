@@ -114,7 +114,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
     export PROJECT="myproject" # your project name as filled in the web interfacE
     export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
-    export IMPORT_URL="https://subversion.xxx.net/scrumpy/${PROJECT}/buildout" # base svn place to import
+    export IMPORT_URL="https://subversion.xxx.net/scrumpy/${PROJECT}/ # base svn place to import
 
 - Create a temporary workspace::
 
