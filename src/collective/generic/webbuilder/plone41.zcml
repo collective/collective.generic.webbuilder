@@ -57,7 +57,7 @@
         <option name='with_ploneproduct_cachesetup'   type="boolean" default="y"/>
         <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
         <option name="with_ploneproduct_ploneappblob" type="boolean" default="y"/>
-        <option name='with_ploneproduct_csvreplica'          type="boolean" default="y" />
+        <option name='with_ploneproduct_csvreplica'          type="boolean" default="n" />
         <option name='with_ploneproduct_harlequin'   type="boolean" default="n"/>
         <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
         <option name="with_ploneproduct_clouseau"  type="boolean" default="n"/>
