@@ -46,14 +46,14 @@ Running the plugin
     >>> plugin.process(d, 'foo', {})
     >>> print open('buildout.cfg').read()
     [buildout]
-    develop+=src/bar
-       src/policy
+    develop+=src/policy
+       src/bar
        foo
-    eggs += bar
-            policy
+    eggs += policy
+            bar
     [instance]
-    zcml=  policy
-            too
+    zcml=  too  
+                policy
     <BLANKLINE>
 
 Cleanup
