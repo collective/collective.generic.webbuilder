@@ -15,8 +15,8 @@ from zope.component import getGlobalSiteManager
 from zope.component import getSiteManager
 from zope.configuration.xmlconfig import xmlconfig
 
-from repoze.bfg.router import make_app
-from repoze.bfg.threadlocal import get_current_registry
+from pyramid_zcml import make_app
+from pyramid.threadlocal import get_current_registry
 
 from collective.generic.webbuilder.models import get_root
 from collective.generic.webbuilder import utils

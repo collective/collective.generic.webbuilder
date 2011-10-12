@@ -57,7 +57,8 @@ setup(
         'minitage.core',
         'WebOb',
         'z3c.form',
-        'repoze.bfg',
+        'pyramid',
+        'pyramid_zcml',
         'repoze.vhm',
     ],
     entry_points={

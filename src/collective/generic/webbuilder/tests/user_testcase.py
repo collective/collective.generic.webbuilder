@@ -1,6 +1,6 @@
 import unittest
 
-from repoze.bfg import testing, includes
+from pyramid import testing, includes
 from collective.generic import webbuilder
 from globals import _callFUT
 

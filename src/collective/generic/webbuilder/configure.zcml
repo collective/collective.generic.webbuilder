@@ -1,8 +1,8 @@
 <configure
-    xmlns="http://namespaces.repoze.org/bfg"
+    xmlns="http://pylonshq.com/pyramid"
     xmlns:meta="http://namespaces.zope.org/meta"
     >
-  <include package="repoze.bfg.includes" />
+  <include package="pyramid_zcml" />
   <include file="meta.zcml"/>
 
 

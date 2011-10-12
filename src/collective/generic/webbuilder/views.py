@@ -10,10 +10,13 @@ from Cheetah import Parser
 
 
 
-from repoze.bfg.chameleon_zpt import render_template_to_response
-from repoze.bfg.chameleon_zpt import get_template
-from repoze.bfg.view import static
-from repoze.bfg.settings import get_settings
+from pyramid.renderers import render_to_response
+from pyramid import renderers
+get_template = renderers.get_renderer
+from pyramid.static import static_view
+
+
+from pyramid.threadlocal import get_current_registry
 
 from collective.generic.webbuilder.interfaces import *
 from collective.generic.webbuilder.models import root
@@ -33,20 +36,18 @@ gsm = component.getGlobalSiteManager()
 
 def download_static_view(context, request):
     request.subpath = tuple(context.path.split('/'))
-    return static(get_generation_path())(context, request)
+    return static_view(get_generation_path(), use_subpath=True)#(context, request)
 
 def webbuilder_view(context, request):
-    main = get_template('templates/main_template.pt')
+    main = get_template('templates/main_template.pt').implementation()
 
-    return render_template_to_response(
+    return render_to_response(
         'templates/index.pt',
-        request = request,
-        root=root,
-        main=main,
-        errors=[],)
+        {'root':root, 'main':main, 'errors': {}},
+        request = request,)
 
 def get_generation_path():
-    s = get_settings()
+    s = get_current_registry().settings
     dp = os.getcwd()
     if s:
         dp = s.get('generation_path', dp)
@@ -235,16 +236,18 @@ def webbuilder_process(context, request):
                         '<p class="pythonerror">%s</p>' 
                         '</div>'% (action, e, e)
                     )
-    main = get_template('templates/main_template.pt')
+    main = get_template('templates/main_template.pt').implementation()
 
-    return render_template_to_response(
+    return render_to_response(
         'templates/process.pt',
-        request = request,
-        errors = errors,
+        dict(errors = errors,
         context=context,
         output=output_dir_prefix,
         download_path=download_path,
-        main=main)
+        main=main),
+        request = request,
+        )
+
 
 
 
@@ -260,16 +263,17 @@ def webbuilder_collectinformation(context, request):
     except Exception, e:
         raise
         errors.append('Error while reading paster variables: <pre>%r</pre>'%e)
-    main = get_template('templates/main_template.pt')
+    main = get_template('templates/main_template.pt').implementation()
 
-    return render_template_to_response(
+    return render_to_response(
         'templates/collect.pt',
+        dict(errors = errors,
+             context=context,
+             main=main,
+             templates = templates_data,
+             get_value=get_value),
         request = request,
-        errors = errors,
-        context=context,
-        main=main,
-        templates = templates_data,
-        get_value=get_value)
+    )
 
 def get_value(template, aliasname, default=None):
     res = default

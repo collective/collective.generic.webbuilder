@@ -12,8 +12,8 @@ class WebBuilder(object):
     configurations = {}
 
 class Data(object):
-    def __init__(self, environ):
-        self.__dict__.update(environ['bfg.routes.matchdict'])
+    def __init__(self, request):
+        self.__dict__.update(request.environ['bfg.routes.matchdict'])
     def compute_value(self, value):
         if not value:
             return False
