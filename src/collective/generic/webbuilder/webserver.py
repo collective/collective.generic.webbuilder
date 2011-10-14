@@ -30,7 +30,7 @@ def wsgi_app_factory(global_config, **local_config):
     if not wconf['zcmls']:
         wconf['zcmls'] = []
     wconf['zcmls'].insert(0, 'configure.zcml')
-    for i, zcml in enumerate(wconf['zcmls']):
+    for zcml in wconf['zcmls']:
         if os.path.sep in zcml:
             zcml = os.path.abspath(zcml)
         else:
