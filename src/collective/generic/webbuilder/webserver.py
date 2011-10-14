@@ -1,7 +1,5 @@
 import sys
 import os
-import threading
-from StringIO import StringIO
 
 import pkg_resources
 
@@ -10,46 +8,10 @@ from paste.deploy.loadwsgi import loadobj, _Server
 
 from webob import Request, exc
 
-import zope.component
-from zope.component import getGlobalSiteManager
-from zope.component import getSiteManager
-from zope.configuration.xmlconfig import xmlconfig
-
-from pyramid_zcml import make_app
 from pyramid.config import Configurator
-from pyramid.threadlocal import get_current_registry
 
-from collective.generic.webbuilder.models import get_root
 from collective.generic.webbuilder import utils
-import collective.generic.webbuilder
 
-_loaded_zcmls = {}
-def load_zcml(app, zcml, force=False, lock=threading.Lock()):
-    import pdb;pdb.set_trace()  ## Breakpoint ##
-    if force or (not zcml in _loaded_zcmls):
-        fd = open(zcml)
-        lock.acquire()
-        app.threadlocal_manager.push(
-            {'registry': app.registry,
-             'request': None}
-        )
-        try:
-            getSiteManager.sethook(get_current_registry)
-            zope.component.getGlobalSiteManager = get_current_registry
-            xmlconfig(fd)
-            fd.close()
-            _loaded_zcmls[zcml] = zcml
-        finally:
-            # intentional: do not call getSiteManager.reset(); executing
-            # this function means we're taking over getSiteManager for the
-            # lifetime of this process
-            zope.component.getGlobalSiteManager = getGlobalSiteManager
-            lock.release()
-            app.threadlocal_manager.pop()
-
-def load_zcmls(app, zcmls, force=False, lock=threading.Lock()):
-    for zcml in zcmls:
-        load_zcml(app, zcml, force, lock)
 
 def wsgi_app_factory(global_config, **local_config):
     """
