@@ -2,6 +2,7 @@ import sys
 import os
 
 import pkg_resources
+from zope.component import getGlobalSiteManager
 
 from paste.script.serve import ServeCommand
 from paste.deploy.loadwsgi import loadobj, _Server
@@ -30,14 +31,18 @@ def wsgi_app_factory(global_config, **local_config):
     if not wconf['zcmls']:
         wconf['zcmls'] = []
     wconf['zcmls'].insert(0, 'configure.zcml')
-    for zcml in wconf['zcmls']:
+    for i, zcml in enumerate(wconf['zcmls']):
         if os.path.sep in zcml:
             zcml = os.path.abspath(zcml)
         else:
             zcml = pkg_resources.resource_filename(dn, zcml)
         wconf['zcmls'][i] = zcml 
-    config = Configurator(settings=wconf)
+
+    globalreg = getGlobalSiteManager() 
+    config = Configurator(registry=globalreg)
+    config.setup_registry(settings=wconf)
     config.include('pyramid_zcml')
+    config.hook_zca()
     for z in wconf['zcmls']:
         config.load_zcml(z)  
     app = config.make_wsgi_app()
