@@ -16,6 +16,7 @@ from zope.component import getSiteManager
 from zope.configuration.xmlconfig import xmlconfig
 
 from pyramid_zcml import make_app
+from pyramid.config import Configurator
 from pyramid.threadlocal import get_current_registry
 
 from collective.generic.webbuilder.models import get_root
@@ -24,6 +25,7 @@ import collective.generic.webbuilder
 
 _loaded_zcmls = {}
 def load_zcml(app, zcml, force=False, lock=threading.Lock()):
+    import pdb;pdb.set_trace()  ## Breakpoint ##
     if force or (not zcml in _loaded_zcmls):
         fd = open(zcml)
         lock.acquire()
@@ -53,29 +55,30 @@ def wsgi_app_factory(global_config, **local_config):
     """
     A paste.httpfactory to wrap a django WSGI based application.
     """
+    dn = 'collective.generic.webbuilder'
     wconf = global_config.copy()
     wconf.update(**local_config)
     debug = False
     if global_config.get('debug', 'False').lower() == 'true':
         debug = True
-        wconf['debug_authorization'] = 'true'
-        wconf['debug_notfound'] = 'true'
-        wconf['reload_templates'] = 'true'
+        wconf['pyramid.debug_authorization'] = 'true'
+        wconf['pyramid.debug_notfound'] = 'true'
+        wconf['pyramid.reload_templates'] = 'true'
     wconf['zcmls' ] = utils.splitstrip(wconf['zcmls'])
-    if wconf['zcmls']:
-        for i, zcml in enumerate(wconf['zcmls']):
-            if os.path.sep in zcml:
-                zcml = os.path.abspath(zcml)
-            else:
-                zcml = pkg_resources.resource_filename(
-                    'collective.generic.webbuilder',
-                    zcml
-                )
-            wconf['zcmls'][i] = zcml
-    app = make_app(None, collective.generic.webbuilder, options=wconf)
-    # load extra zcmls if any
-    if wconf['zcmls']:
-        load_zcmls(app, wconf['zcmls'])
+    if not wconf['zcmls']:
+        wconf['zcmls'] = []
+    wconf['zcmls'].insert(0, 'configure.zcml')
+    for i, zcml in enumerate(wconf['zcmls']):
+        if os.path.sep in zcml:
+            zcml = os.path.abspath(zcml)
+        else:
+            zcml = pkg_resources.resource_filename(dn, zcml)
+        wconf['zcmls'][i] = zcml 
+    config = Configurator(settings=wconf)
+    config.include('pyramid_zcml')
+    for z in wconf['zcmls']:
+        config.load_zcml(z)  
+    app = config.make_wsgi_app()
     def webbuilder_app(environ, start_response):
         req = Request(environ)
         try:
@@ -118,8 +121,6 @@ class WBServeCommand(ServeCommand):
         if self.options.debug:
             self.args.append('debug=true')
         self.args.append('generation_path=%s'%self.options.generation_path)
-
-
 
     def loadserver(self, server_spec, name, relative_to, **kw):
          class _HServer(_Server):

@@ -174,10 +174,6 @@ class EggPlugin(DummyPlugin):
         f.write(cfg)
         f.close()
 
-
-
 # plugin.process('/tmp/tmpRKqUZh')
-
 # print open ( '%s/buildout.cfg' %'/tmp/tmpRKqUZh'  ).read()
-
 # vim:set et sts=4 ts=4 tw=80:

@@ -61,7 +61,10 @@ except:pass
 def collective_generic_webbuilder_setUp(test):pass
 def collective_generic_webbuilder_tearDown(test):pass
 try:from collective.generic.webbuilder.tests.user_testcase import collective_generic_webbuilder_setUp
-except:pass
+except Exception, e:
+    import pdb;pdb.set_trace()  ## Breakpoint ##
+    
+    pass
 try:from collective.generic.webbuilder.tests.user_testcase import collective_generic_webbuilder_tearDown
 except:pass
 

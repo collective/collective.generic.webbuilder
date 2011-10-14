@@ -1,12 +1,8 @@
-import unittest
-
-from pyramid import testing, includes
+from pyramid import testing
 from collective.generic import webbuilder
 from globals import _callFUT
 
 from collective.generic.webbuilder.tests.utils import _LAUNCHED_SERVERS
-
-import pkg_resources
 
 CGWG_ZCMLS = ['configure.zcml', 
               'plone3.zcml', 
@@ -18,10 +14,12 @@ def collective_generic_webbuilder_setUp(self):
     between tests (done in setUp for good measure too)
     """
     testing.cleanUp()
-    testing.registerRoutesMapper()
+    config = testing.setUp()
+    config.include('pyramid_zcml')
+    #testing.registerRoutesMapper()
     context = None 
     for zcml in CGWG_ZCMLS:
-        context = _callFUT(zcml, webbuilder)
+        config.load_zcml('collective.generic.webbuilder:%s'%zcml)
 
 def collective_generic_webbuilder_tearDown(self):
     """ cleanUp() is required to clear out the application registry
