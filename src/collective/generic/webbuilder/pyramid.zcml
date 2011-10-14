@@ -1,0 +1,74 @@
+<configure xmlns="http://webbuilder.org/webbuilder">
+  <include package="collective.generic.webbuilder" file="meta.zcml"/>
+  <genericpaster name="Generic Portal Pyramid">
+    <!--<plugin name="dummy_plugin" order="1"/>-->
+    <plugin name="egg_plugin" order="2"/>
+    <template name="minitage.pyramid" order="4">
+     <group name="Minitage" order="050">
+       <!--
+         <option name="with_no_zcml"  type="hidden" default="y" />
+         -->
+        <option name="inside_minitage" type="boolean"/>
+        <option name="author_email" />
+        <option name="author" />
+        <option name="scm_type" />
+        <option name="static" />
+        <option name="uri" />
+        <option name="install_method"/>
+        <option name="license"/>
+        <option name="effective_user"/>
+        <option name="homepage" default="http://www.generic.com"/>
+      </group>
+      <group name="Python packages" order="078">
+        <options prefix="^with_egg.*" type="boolean"/>
+      </group> 
+      <group name="pyramid Settings" order="080">
+        <option name="pyramid_version" />
+        <option name="with_checked_versions" type="boolean" default="y"/>
+        <option name="http_port" />
+        <option name="address" />
+        <option name="mode" />
+        <option name="admin_user" />
+        <option name="admin_password" />
+      </group>
+      <group name="Database Settings" order="080">
+        <options prefix="with_database.*" type="boolean"/>
+        <options prefix="db_.*"/>
+      </group>
+      <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
+        <options prefix="reverseproxy_.*" />
+        <options prefix="apache.*" />
+      </group>
+      <group name="Misc bindings" order="400">
+        <options  prefix="^with_binding.*" type="boolean"/>
+        <options  prefix="^with_wsgi_cas" type="boolean"/>
+      </group>
+      <group name="Additionnal Tools" order="800">
+        <options prefix="^with_tool.*" type="boolean" />
+        <option name='with_cgeneric'  type="boolean" default="n" />
+        <option name='with_minitage_devpackages'  type="boolean" default="n" />
+        <option name='with_minitage_otherpackages'  type="boolean" default="n" />
+      </group>
+      <group name="Monitoring Tools" order="810">
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+      </group>
+      <group name="Loadbalancing Tools" order="820">
+        <options prefix="^with_haproxy.*" type="boolean" />
+        <options prefix="^haproxy.*"  />
+      </group>
+      <group name="Pyramid packages" order="1000">
+        <options prefix="^with_pyramid.*" type="boolean"/>
+      </group> 
+
+      <group name="GIS Support" order="1000">
+        <options prefix="^with_gis.*" type="boolean"/>
+      </group>
+      <group name="Python eggs to install from development repository" order="1600" >
+        <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
+      </group>
+      <excludeoptions prefix="project_.*" />
+      <excludeoption  name="python" />
+    </template>
+  </genericpaster>
+</configure>
