@@ -19,6 +19,9 @@
         <option name="effective_user"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
+      <group name="Pyramid packages" order="1000">
+        <options prefix="^with_pyramid.*" type="boolean"/>
+      </group> 
       <group name="Python packages" order="078">
         <options prefix="^with_egg.*" type="boolean"/>
       </group> 
@@ -57,9 +60,6 @@
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
       </group>
-      <group name="Pyramid packages" order="1000">
-        <options prefix="^with_pyramid.*" type="boolean"/>
-      </group> 
 
       <group name="GIS Support" order="1000">
         <options prefix="^with_gis.*" type="boolean"/>
@@ -70,5 +70,19 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
+    <template name="collective.generic.pyramid" output="src" order="2000">
+       <group name="Package tuning" order="1">
+        <option name='nested_namespace'   />
+        <option name='version'            />
+        <option name='author'             />
+        <option name='author_email'       />
+        <option name='url'                />
+        <option name='description'        />
+        <option name='keywords'           />
+        <option name='license_name'       />
+        <excludeoptions prefix=".*(namespace|description).*"/>
+      <excludeoptions prefix="project_.*" />
+      </group>
+    </template> 
   </genericpaster>
 </configure>

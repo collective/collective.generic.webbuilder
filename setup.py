@@ -56,6 +56,7 @@ setup(
         'minitage.paste',
         'minitage.core',
         'WebOb',
+        'zope.component',
         'z3c.form',
         'pyramid',
         'pyramid_zcml',
