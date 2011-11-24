@@ -1,0 +1,12 @@
+Changelog
+=========
+
+1.1
+----------
+
+* documentation, because webbuilder needs to be installed in dev mode, anyhow.
+
+1.0 
+----------------
+* Initial release
+

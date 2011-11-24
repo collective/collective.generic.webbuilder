@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.1'
 
 def read(rnames):
     setupdir =  os.path.dirname( os.path.abspath(__file__))
@@ -11,7 +11,7 @@ def read(rnames):
 
 README =read((os.path.dirname(__file__),'README.rst'))
 INSTALL =read((os.path.dirname(__file__),'docs', 'INSTALL.rst'))
-CHANGELOG  = read((os.path.dirname(__file__), 'docs', 'HISTORY.txt'))
+CHANGELOG  = read((os.path.dirname(__file__), 'docs', 'CHANGES.txt'))
 TESTS_DIR = os.path.dirname(__file__), 'src', 'collective', 'generic','webbuilder', 'tests'
 tdt = """
 Tests & docs
