@@ -70,5 +70,19 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
+    <template name="collective.generic.pyramid" output="src" order="2000">
+       <group name="Package tuning" order="1">
+        <option name='nested_namespace'   />
+        <option name='version'            />
+        <option name='author'             />
+        <option name='author_email'       />
+        <option name='url'                />
+        <option name='description'        />
+        <option name='keywords'           />
+        <option name='license_name'       />
+        <excludeoptions prefix=".*(namespace|description).*"/>
+      <excludeoptions prefix="project_.*" />
+      </group>
+    </template> 
   </genericpaster>
 </configure>

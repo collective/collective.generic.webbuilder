@@ -90,8 +90,79 @@ THE IMPORTANT PART AROUND INITIATING A PROJECT
     * You may decide not to include them as-is but to separate the code and version the code elsewhere.
     * I would advice you to checkout the packages with mr.developer.
 
-An example of using svn which generic
-++++++++++++++++++++++++++++++++++++++++
+An example of using svn which generic/pyramid
++++++++++++++++++++++++++++++++++++++++++++++
+What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
+
+    import
+    |-- import/eggs
+    |   |-- import/eggs/myproject.core
+    |   |   `-- import/eggs/myproject.core/trunk
+    `-- import/buildout
+
+
+- Exporting base variables::
+
+    export PROJECT="myproject" # your project name as filled in the web interfacE
+    export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
+    export IMPORT_URL="https://subversion.xxx.net/scrumpy/${PROJECT}/" # base svn place to import
+
+- Create a temporary workspace::
+
+    mkdir -p  $PROJECT/tarball
+    cd $PROJECT
+    tar xzvf  $TARBALL -C tarball/
+
+- Create the base layout to be imported::
+
+    mkdir -p import/buildout import/eggs
+
+- Move the generated plone extensions eggs to a separate place to be imported::
+
+    for i in tarball/src/${PROJECT}*;do if [[ -d $i ]] && [[ $(basename $i) != "themes" ]];then j=$(basename $i);dest=import/eggs/$j/trunk; mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
+
+- Move the buildout structure in the import layout::
+
+    cp -rf tarball/* import/buildout
+
+- Update buildout to use mr.developer instead of basic develop::
+
+    * move off the develop declaration::
+
+        sed -re "s:(src/)?$PROJECT\.((skin)|(tma)|(core)|(testing))::g" -i import//buildout/etc/project/$PROJECT.cfg
+
+    * add to mr.developer sources::
+
+        sed -re "/\[sources\]/{
+        a $PROJECT.core = svn $IMPORT_URL/eggs/$PROJECT.core/trunk
+        }" -i import/buildout/etc/project/sources.cfg
+
+    * add to auto checkout packages::
+
+        sed -re "/auto-checkout \+=/{
+        a \    $PROJECT.core
+        }"  -i import/buildout/etc/project/sources.cfg
+        sed -re "/eggs \+=.*buildout:eggs/{
+        a \    $PROJECT.core
+        }"  -i import/buildout/etc/project/$PROJECT.cfg
+        sed -re "/zcml \+=/{
+        a \    $PROJECT.core
+        }"  -i import/buildout/etc/project/$PROJECT.cfg
+
+* be sure to use the right svn url to checkout::
+
+    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/buildout/|g" -i import/buildout/minilays/$PROJECT/*
+
+* Be sure to use svn
+
+    sed -re "s|src_type.*|src_type=svn|g" -i import/buildout/minilays/$PROJECT/*
+
+* Import::
+
+   svn import import/ $IMPORT_URL -m "initial import" 
+
+An example of using svn which generic/plone
++++++++++++++++++++++++++++++++++++++++++++++
 What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
 
     import

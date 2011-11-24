@@ -10,7 +10,7 @@ def read(rnames):
     ).read()
 
 README =read((os.path.dirname(__file__),'README.rst'))
-INSTALL =read((os.path.dirname(__file__),'docs', 'INSTALL.txt'))
+INSTALL =read((os.path.dirname(__file__),'docs', 'INSTALL.rst'))
 CHANGELOG  = read((os.path.dirname(__file__), 'docs', 'HISTORY.txt'))
 TESTS_DIR = os.path.dirname(__file__), 'src', 'collective', 'generic','webbuilder', 'tests'
 tdt = """
