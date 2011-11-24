@@ -39,7 +39,7 @@ Download & install via the minibuild
 
 Cgwb lives in ``$MT/bfg/cgwb``.
 
-Generating & deploying your plone3 project using minitage
+Generating & deploying your project using minitage
 -----------------------------------------------------------
 Launching the cgwb server
 ++++++++++++++++++++++++++++++++
