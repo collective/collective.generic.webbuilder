@@ -19,6 +19,9 @@
         <option name="effective_user"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
+      <group name="Pyramid packages" order="1000">
+        <options prefix="^with_pyramid.*" type="boolean"/>
+      </group> 
       <group name="Python packages" order="078">
         <options prefix="^with_egg.*" type="boolean"/>
       </group> 
@@ -57,9 +60,6 @@
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
       </group>
-      <group name="Pyramid packages" order="1000">
-        <options prefix="^with_pyramid.*" type="boolean"/>
-      </group> 
 
       <group name="GIS Support" order="1000">
         <options prefix="^with_gis.*" type="boolean"/>
