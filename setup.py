@@ -61,6 +61,8 @@ setup(
         'pyramid',
         'pyramid_zcml',
         'repoze.vhm',
+        'Paste',
+        'Pastescript',
     ],
     entry_points={
         'paste.app_factory': ['cgwb_app=collective.generic.webbuilder.webserver:wsgi_app_factory',],
