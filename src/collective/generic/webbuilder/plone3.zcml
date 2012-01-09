@@ -137,7 +137,6 @@
         <option name="with_ploneproduct_quills"                type="boolean"/>
       </group>
       <group name="Plone Products" order="590" >
-        <option name='with_ploneproduct_csvreplica'    type="boolean" default="y"/>
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
