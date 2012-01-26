@@ -25,6 +25,12 @@
       for=".interfaces.IPasterAssembly"
     />
   <adapter
+      name="egginfo_plugin"
+      provides=".interfaces.IPostGenerationPlugin"
+      factory=".plugins.EggInfoPlugin"
+      for=".interfaces.IPasterAssembly"
+    />
+  <adapter
       name="dummy_plugin"
       provides=".interfaces.IPostGenerationPlugin"
       factory=".plugins.DummyPlugin"

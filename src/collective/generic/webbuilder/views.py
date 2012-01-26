@@ -200,7 +200,7 @@ def webbuilder_process(context, request):
                     errors.append(
                         '<div class="error">'
                         '<p>%s/ Error while reading paster variables:</p>'
-                        '<p class="pythonerror">%r</p>' 
+                        '<p class="pythonerror">%r</p>'
                         '<br/><p>Are you inside a minitage ? </p>'
                         '<br/><ul><li> If no, please untick minitage support in the minitage '
                         'section (press your browser\'s back button)</p>'
@@ -217,23 +217,23 @@ def webbuilder_process(context, request):
                         '\tsource $minitage/bfg/cgwb(-dev)/sys/share/minitage/minitage.env'
                         '</pre>'
                         '</li></ul><br/>'
-                        '' % (action, e) 
-                    ) 
+                        '' % (action, e)
+                    )
                 except Parser.ParseError, e:
                     errors.append(
                         '<div class="error">'
                         '<p>%s/ Error while reading paster variables:</p>'
                         '<p class="pythonerror">%r</p>'
-                        '<p class="pythonerror"><pre>%s</pre></p>' 
+                        '<p class="pythonerror"><pre>%s</pre></p>'
                         '</div>'% (action, e, e.report())
-                    ) 
+                    )
                 except Exception, e:
                     raise
                     errors.append(
                         '<div class="error">'
                         '<p>%s/ -- Error while reading paster variables:</p>'
                         '<p class="pythonerror">%r</p>'
-                        '<p class="pythonerror">%s</p>' 
+                        '<p class="pythonerror">%s</p>'
                         '</div>'% (action, e, e)
                     )
     main = get_template('templates/main_template.pt').implementation()
@@ -283,4 +283,4 @@ def get_value(template, aliasname, default=None):
             if aliasname == alias:
                 res = default
     return res
-     
+

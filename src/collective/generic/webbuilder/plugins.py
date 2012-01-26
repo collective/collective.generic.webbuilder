@@ -54,13 +54,21 @@ class DummyPlugin(object):
         )
 
 
-def remove_egg_info(p):        
+def remove_egg_info(p):
     for dirpath, dirnames, filenames in os.walk(p):
-        for filename in [dirnames+filenames]:
+        for filename in dirnames+filenames:
             if 'egg-info' in filename:
                 remove_path(
                     os.path.join(dirpath, filename)
                 )
+        for directory in dirnames:
+            subdir = os.path.join(dirpath, directory)
+            remove_egg_info(subdir)
+
+class EggInfoPlugin(DummyPlugin):
+
+    def process(self, output_dir, project_name, params):
+        remove_egg_info(output_dir)
 
 class EggPlugin(DummyPlugin):
 
@@ -90,6 +98,7 @@ class EggPlugin(DummyPlugin):
         extdevoption_re  = re.compile('develop\s*\+\s*', re_flags)
         devoption_re     = re.compile('develop\s*', re_flags)
         exteggsoption_re = re.compile('eggs\s*\+\s*', re_flags)
+        eggsoption_re    = re.compile('eggs\s*', re_flags)
         eggsoption_re    = re.compile('eggs\s*', re_flags)
         devoption, eggsoption= 'develop+', 'eggs+'
         devfound, eggsfound = False, False

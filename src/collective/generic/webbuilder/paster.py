@@ -95,7 +95,7 @@ class PasterAssemblyReader(object):
                                 if option.default:
                                     var.default = option.default
                                     for b in ['true', 'y', 'on']:
-                                        if option.default.startswith(b):
+                                        if option.default.startswith(b) and not type == "hidden":
                                             type = 'boolean'
                                 if alias:
                                     template_data['aliases'].append((var, alias, var.default))
