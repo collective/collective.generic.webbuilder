@@ -1,6 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Portal Plone4">
+  <genericpaster name="Generic Portal Plone40 NG">
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
     <template name="minitage.plone4" order="1">
@@ -69,7 +69,7 @@
         <option name="with_ploneproduct_agridfield"         type="boolean"/>
         <option name="with_ploneproduct_autocomplete"       type="boolean"/>
         <option name="with_ploneproduct_collage"            type="boolean"/>
-        <option name="with_ploneproduct_tinymce"  type="boolean"/>
+        <option name="with_ploneproduct_tinymce"  type="boolean" />
         <option name="with_ploneproduct_contentwellportlet" type="boolean"/>
         <option name="with_ploneproduct_cremovekss"  type="boolean"/>
         <option name="with_ploneproduct_cremovekupu"  type="boolean"/>
@@ -167,7 +167,7 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
-    <template name="collective.generic.plone4_policy" output="src" order="2000">
+    <template name="collective.generic.plone_addon" output="src" order="2000">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
         <option name='version'            />
@@ -177,37 +177,17 @@
         <option name='description'        />
         <option name='keywords'           />
         <option name='license_name'       />
+        <option name='default_theme'       />
         <option name='smtp_host'          />
         <option name='smtp_port'          />
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name"  type="hidden" default="policy" alias="policypn"/>
-        <option name="plone_version" type="hidden" default="3"/>
+        <options prefix="with_zope2_skins" type="hidden" default="y"/>
+        <options prefix="with_policy_support" type="hidden" default="y"/>
       </group>
       <group name="Automatic installing" order="2">
-        <option name="with_autoinstall_ploneproduct_csvreplica" type="boolean" default="false"/>
         <options prefix="with_autoinstall_ploneproduct_.*" type="boolean" default="true"/>
       </group>
     </template>
-    <template name="collective.generic.plone4_skin" output="src" order="3000">
-      <group name="Theme" order="1">
-        <option name="default_theme"/>
-      </group>
-      <group name="" order="1000">
-        <excludeoptions prefix=".*(namespace|description).*"/>
-        <option name="project_name" type="hidden" default="skin" alias="skinpn"/>
-      </group>
-    </template>
-    <template name="collective.generic.testing" output="src" order="4000">
-      <group name="" order="1">
-        <excludeoptions prefix=".*(namespace|description).*"/>
-        <option name="project_name" type="hidden" default="testing" alias="testingpn"/>
-      </group>
-    </template>
-    <template name="collective.generic.plone4_tma" output="src" order="5000">
-      <group name="Package tuning" order="1">
-        <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
-        <excludeoptions prefix=".*(namespace|description).*"/>
-      </group>
-    </template>
   </genericpaster>
-</configure>
+</configure> 

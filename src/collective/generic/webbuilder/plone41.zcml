@@ -54,9 +54,9 @@
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
       <group name="Plone Products - Infrastructure" order="500" >
-        <option name='with_ploneproduct_cachesetup'   type="boolean" default="y"/>
+        <option name='with_ploneproduct_cachesetup'   type="boolean" default="n"/>
         <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
-        <option name="with_ploneproduct_ploneappblob" type="boolean" default="y"/>
+        <option name="with_ploneproduct_ploneappblob" type="boolean"/>
         <option name='with_ploneproduct_csvreplica'          type="boolean" default="n" />
         <option name='with_ploneproduct_harlequin'   type="boolean" default="n"/>
         <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
@@ -69,20 +69,20 @@
         <option name="with_ploneproduct_agridfield"         type="boolean"/>
         <option name="with_ploneproduct_autocomplete"       type="boolean"/>
         <option name="with_ploneproduct_collage"            type="boolean"/>
-        <option name="with_ploneproduct_tinymce"  type="boolean" default="y"/>
+        <option name="with_ploneproduct_tinymce"  type="boolean" />
         <option name="with_ploneproduct_contentwellportlet" type="boolean"/>
         <option name="with_ploneproduct_cremovekss"  type="boolean"/>
         <option name="with_ploneproduct_cremovekupu"  type="boolean"/>
         <option name="with_ploneproduct_cz3cformnorobots"  type="boolean" default="n"/>
         <option name="with_ploneproduct_cportlettabber"  type="boolean" default="n"/>
-        <option name="with_ploneproduct_fivegrok"  type="boolean" default="y"/>
+        <option name="with_ploneproduct_fivegrok"  type="boolean"/>
         <option name="with_ploneproduct_inplacetopicview"  type="boolean"/>
         <option name="with_ploneproduct_jsgalleryview"  type="boolean"/>
         <option name="with_ploneproduct_jss3slider"  type="boolean"/>
         <option name="with_ploneproduct_masterselect"       type="boolean"/>
         <option name="with_ploneproduct_plonejqtools"       type="boolean"/>
         <option name="with_ploneproduct_cjqui"       type="boolean"/>
-        <option name="with_ploneproduct_pz3cform"  type="boolean" default="y"/>
+        <option name="with_ploneproduct_pz3cform"  type="boolean" />
         <option name="with_ploneproduct_tal_portlet"        type="boolean"/>
         <option name="with_ploneproduct_wc_dd_menu"         type="boolean"/>
         <option name="with_ploneproduct_z3crelationfield"   type="boolean"/>

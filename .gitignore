@@ -1,4 +1,7 @@
 bin
+seleniums
+tags.python
+sys
 eggs
 develop-eggs
 .minitage
