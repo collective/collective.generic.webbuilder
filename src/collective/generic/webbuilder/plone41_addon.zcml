@@ -5,7 +5,9 @@
     <plugin name="egg_plugin" order="2"/>
     <template name="minitage.plone41" order="1">
        <group name="Minitage" order="05">
-        <option name="with_no_zcml"  type="hidden" default="y" />
+        <option name="with_no_zcml"  type="hidden" default="y"/>
+        <option name="with_generic"  type="hidden" default="y"/>
+        <option name="with_generic_addon"  type="hidden" default="y"/>
         <option name="inside_minitage" type="boolean"/>
         <option name="author_email" />
         <option name="author" />
@@ -26,6 +28,8 @@
         <option name="zeo_address" />
         <option name="zeo_host" />
         <option name="zeo_port" />
+        <option name="with_policy_support"           type="boolean" default="y"/>
+        <option name="with_zope2_skins"           type="boolean" default="y"/>
         <option name="with_zeo_socket" type="boolean" default="n" />
         <option name="zope_password" />
       </group>
@@ -173,15 +177,13 @@
         <option name='version'            />
         <option name='author'             />
         <option name='author_email'       />
-        <option name='url'                />
-        <option name='description'        />
+        <option name='description'     alias="descriptionpn"   />
         <option name='keywords'           />
         <option name='license_name'       />
         <option name='default_theme'       />
         <option name='smtp_host'          />
+        <excludeoptions prefix=".*(namespace|project_name).*"/> 
         <option name='smtp_port'          />
-        <excludeoptions prefix=".*(namespace|description).*"/>
-        <option name="project_name"  type="hidden" default="policy" alias="policypn"/>
         <options prefix="with_zope2_skins" type="hidden" default="y"/>
         <options prefix="with_policy_support" type="hidden" default="y"/>
       </group>

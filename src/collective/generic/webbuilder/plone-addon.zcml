@@ -15,11 +15,11 @@
         <option name='keywords'           />
         <option name='license_name'       />
         <option name="inside_minitage" type="hidden" default="true" />
-        <option name="with_policy_support"           type="boolean"/>
         <option name="plone_version"   type="hidden" default="3"    />
       </group>
       <group name="Plone Settings" order="080">
         <option name="http_port" />
+        <option name="with_policy_support"           type="boolean"/>
         <option name="with_zope2_skins"           type="boolean"/>
         <option name="default_theme" />
         <option name="address" />

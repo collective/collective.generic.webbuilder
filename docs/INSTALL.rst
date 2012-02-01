@@ -252,6 +252,75 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
    svn import import/ $IMPORT_URL -m "initial import"
 
+An example of using git which generic/PLONE41NG
+++++++++++++++++++++++++++++++++++++++++++++++++
+What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
+
+    import
+        |-- myproject
+        |-- myproject.buildout
+        `-- myproject.minilay
+
+
+- Exporting base variables::
+
+    export PROJECT="myproject"                                     # your project name as filled in the web interfacE
+    export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
+    export IMPORT_URL="ssh://git.makina-corpus.net/var/git/plone"              # base svn place to import
+
+- Create a temporary workspace & the base layout to be imported::
+
+    mkdir -p  $PROJECT/
+    cd $PROJECT
+    mkdir tarball import
+    tar xzvf  $TARBALL -C tarball/
+
+- Move the generated plone extensions eggs to a separate place to be imported::
+
+    for i in tarball/src/*;do if [[ -d $i ]] && [[ $i != "tarball/src/themes" ]];then j=$(basename $i);dest=import/$j;mkdir -pv  $(dirname $dest); mv -v $i $dest; fi; done
+
+- Move the buildout structure in the import layout::
+
+    cp -rf tarball/minilays/$PROJECT   import/$PROJECT.minilay
+    rm -rf tarball/minilays
+    cp -rf tarball/ import/$PROJECT.buildout
+
+- Update buildout to use mr.developer instead of basic develop::
+
+    * move off the develop declaration::
+
+        sed -re "s:(src/)?$PROJECT::g" -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
+
+    * add to mr.developer sources::
+
+        sed -re "/\[sources\]/{
+        a $PROJECT =  git $IMPORT_URL/$PROJECT
+        }" -i import/$PROJECT.buildout/etc/project/sources.cfg
+
+    * add to auto checkout packages::
+
+        sed -re "/auto-checkout \+=/{
+        a \    $PROJECT
+        }"  -i import/$PROJECT.buildout/etc/project/sources.cfg
+        sed -re "/eggs \+=.*buildout:eggs/{
+        a \    $PROJECT
+        }"  -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
+        sed -re "/zcml \+=/{
+        a \    $PROJECT
+        }"  -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
+
+* be sure to use the right git url to checkout::
+
+    sed -re "s|src_uri.*|src_uri=$IMPORT_URL/$PROJECT.buildout.git|g" -i import/*.minilay/*
+
+* Be sure to use git
+
+    sed -re "s|src_type.*|src_type=git|g" -i import/*.minilay/*
+
+* Import::
+
+   pushd import;for i in *;do echo "Importing $i";pushd $i;git init;git add .;git commit -am "initial revision";git remote add origin "$IMPORT_URL/$i.git";git push --force --all origin;popd;done;popd 
+
 An example of using git which generic
 ++++++++++++++++++++++++++++++++++++++++
 What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
