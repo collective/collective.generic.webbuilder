@@ -252,10 +252,10 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
    svn import import/ $IMPORT_URL -m "initial import"
 
-An example of using git which generic/PLONE41NG
+An example of using git which generic/PLONE4X NG
 ++++++++++++++++++++++++++++++++++++++++++++++++
 What i would do from a generated tarball for using subversion as my SCM could be to produce this layout::
-
+                                             
     import
         |-- myproject
         |-- myproject.buildout
