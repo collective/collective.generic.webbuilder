@@ -179,11 +179,13 @@ def webbuilder_process(context, request):
                         resp = Response(
                             body = open(file_path).read(),
                             content_type = 'application/x-tar-gz',
+
                             headerlist = [
                                 ('Content-Disposition',
-                                 'attachment; filename="%s"' % os.path.basename(file_path)
+                                 'attachment; filename="%s"' % os.path.basename(file_path),
                                 ),
-                                ('Content-Transfer-Encoding', 'binary')
+                                ('Content-Transfer-Encoding', 'binary'),
+                                ("Content-Length", os.path.getsize(file_path)),
                             ],
                             request = request,
                         )
