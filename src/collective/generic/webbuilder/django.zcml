@@ -3,6 +3,7 @@
   <genericpaster name="Generic Portal Django">
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
+    <plugin name="egginfo_plugin" order="1"/>
     <template name="minitage.django" order="4">
      <group name="Minitage" order="050">
        <!--

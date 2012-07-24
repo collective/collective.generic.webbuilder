@@ -1,0 +1,32 @@
+<configure xmlns="http://webbuilder.org/webbuilder">
+  <include package="collective.generic.webbuilder" file="meta.zcml"/>
+  <genericpaster name="Generic python package">
+    <plugin name="egginfo_plugin" order="1"/>
+    <template name="collective.generic.egg" order="4000">
+      <group name="Package description" order="2">
+        <option name='nested_namespace'   />
+        <option name='version'            />
+        <option name='author'             />
+        <option name='author_email'       />
+        <option name='url'                />
+        <option name='scm_type'           />
+        <option name='uri'                />
+        <option name='description'        />
+        <option name='keywords'           />
+        <option name='license_name'       />
+        <option name="inside_minitage" type="hidden" default="true" />
+      </group>
+      <group name="Bindings" order="40">
+        <options  prefix="^with_binding.*" type="boolean"/>
+        <options prefix="^with_database.*" type="boolean"/>
+        <options prefix="^with_egg.*" type="boolean"/>
+      </group>
+      <group name="" order="1">
+        <excludeoption  name="python" />
+        <excludeoption  name="project_name" />
+        <excludeoption  name="nested_namespace" />
+        <excludeoption  name="namespace" />
+      </group>
+    </template>
+  </genericpaster>
+</configure>
