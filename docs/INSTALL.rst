@@ -270,7 +270,15 @@ What i would do from a generated tarball for using git as my SCM could be to pro
     export PROJECT="myproject"                                     # your project name as filled in the web interfacE
     export GPROJECT="${PROJECT//\./-}"
     export TARBALL="$(ls -1t ~/cgwb/${PROJECT}-*.tar.gz|head -n1)" # produced tarball
-    export IMPORT_URL="ssh://git.makina-corpus.net/var/git/plone"  # base svn place to import
+    export IMPORT_URL="ssh://gitorious-git@gitorious.makina-corpus.net/makinacorpus"  # base svn place to import
+
+- Create 3 repos in gitorious:
+
+    - $GPROJECT
+    - $GPROJECT-buildout
+    - $GPROJECT-minilay
+
+
 
 - Create a temporary workspace & the base layout to be imported::
 

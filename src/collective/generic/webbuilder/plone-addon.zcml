@@ -16,6 +16,7 @@
         <option name='license_name'       />
         <option name="inside_minitage" type="hidden" default="true" />
         <option name="plone_version"   type="hidden" default="3"    />
+        <option name="with_generic"    type="hidden" default="false"    />
       </group>
       <group name="Plone Settings" order="080">
         <option name="http_port" />
