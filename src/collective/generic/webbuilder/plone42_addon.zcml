@@ -69,6 +69,7 @@
         <options prefix="^fss.*"/>
       </group>
       <group name="Plone Products" order="590" >
+        <option name="with_ploneproduct_patheming"  type="boolean" default="y"/>
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
