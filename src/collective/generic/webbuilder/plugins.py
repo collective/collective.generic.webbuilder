@@ -83,7 +83,12 @@ class EggPlugin(DummyPlugin):
                 if os.path.exists(os.path.join(p, 'setup.py')):
                     eggsnames.append(path)
                     devnames.append(os.path.join('src', path))
-        zcmlnames = [n for n in eggsnames if 'policy' in n]
+        zcmlnames = [n 
+                     for n in eggsnames 
+                     if (('policy' in n)
+                         or (project_name==n)
+                         or (n=='%s.core' % project_name)
+                        )]
 
         f = os.path.join(output_dir, 'buildout.cfg')
         pf = os.path.join(output_dir,
@@ -152,8 +157,8 @@ class EggPlugin(DummyPlugin):
         zcmloption_re     = re.compile('zcml\s*', re_flags)
         zcmlfound = False
         for optionre in [extzcmloption_re, zcmloption_re, ]:
-            if 'instance' in cfg:
-                for option in cfg.instance:
+            if 'buildout' in cfg:
+                for option in cfg.buildout:
                     if optionre.match(option):
                         zcmlfound = True
                         zcmloption = option
@@ -161,11 +166,15 @@ class EggPlugin(DummyPlugin):
 
         if zcmlfound:
             for eggn in zcmlnames:
-                if 'instance' in cfg:
-                    if not (eggn in cfg.instance[zcmloption]):
-                        if 'policy' in eggn or 'tma' in eggn:
-                            cfg.instance[zcmloption] = '%s    \n    %s' % (
-                                cfg.instance[zcmloption].strip(),
+                if 'buildout' in cfg:
+                    if not (eggn in cfg.buildout[zcmloption]):
+                        if (('policy' in eggn )
+                            or ('tma' in eggn)
+                            or ('.core' in eggn)
+                            or (project_name == eggn)
+                           ):
+                            cfg.buildout[zcmloption] = '%s    \n    %s' % (
+                                cfg.buildout[zcmloption].strip(),
                                 eggn,
                             )
         else:
@@ -173,9 +182,9 @@ class EggPlugin(DummyPlugin):
             for eggn in zcmlnames:
                 if 'instance' in cfg:
                     if 'policy' in eggn:
-                        cfg.instance[zcmloption] = '%s    \n%s' % (
+                        cfg.buildout[zcmloption] = '%s    \n%s' % (
                             eggn,
-                            cfg.instance[zcmloption].strip()
+                            cfg.buildout[zcmloption].strip()
                         )
         f = open(f, 'w')
         cfg = '%s'%cfg
