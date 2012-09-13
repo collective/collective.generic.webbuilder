@@ -9,11 +9,12 @@
   </tal>
   <div metal:fill-slot="content"
     tal:define="accordions python:[]">
-    <form action="../process" method="post" tal:condition="python:not errors">
+    <form action="../process" method="get" tal:condition="python:not errors">
       <div id='projectaccordion'>
         <h2>Project name</h2>
         <div class="options">
-          <input type="text" title="project name" name="project"></input>
+          <input type="text" title="project name" name="project" 
+          tal:attributes="value  python:request.GET.get('project', '')"></input>
           <p>Its form is 'namespace.nested_namespace'. If the templates assembly includes egg generations,
             the resulted namespace and nested namespace are extracted from your entry.
             For example, for 'foo.bar', we may generate those following eggs:
@@ -95,7 +96,8 @@
                           <tal 
                             tal:omit-tag=""
                             tal:condition="python:option[1] == 'boolean'" 
-                            tal:define="checked python:context.compute_value(option_default)">
+                            tal:define="checked python:context.compute_value(option_default) 
+                            or request.GET.get(option_title, False)">
                             <input class="booleanfield" type="checkbox"
                               tal:attributes="title python:option_title;
                               value python:checked and 'checkbox_enabled' or False;

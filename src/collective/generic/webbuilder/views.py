@@ -111,6 +111,11 @@ def webbuilder_process(context, request):
                             raise Exception('Directory %s exists and is not empty' % output_dir_prefix)
                     # keep track of boolean options for descendant templates
                     boolean_consumed_options = []
+                    ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.txt')
+                    rurl = request.url.replace('/process?', '/collect/%s?' % request.GET.get('configuration'))
+                    fic = open(ficp, 'w')
+                    fic.write('%s\n' % rurl)
+                    fic.close()
                     for template in paster.templates_data:
                         cparams = params.copy()
                         output_dir = output_dir_prefix
