@@ -92,7 +92,7 @@
                           <input class="textfield" type="text"
                             tal:condition="python:option_type == 'default'"
                             tal:attributes="title option_title;
-                            name option_title;value option_default"></input>
+                            name option_title;value python:request.GET.get(option_title,option_default)"></input>
                           <tal 
                             tal:omit-tag=""
                             tal:condition="python:option[1] == 'boolean'" 
