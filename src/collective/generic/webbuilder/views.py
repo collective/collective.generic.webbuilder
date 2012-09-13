@@ -3,7 +3,10 @@ import re
 import pkg_resources
 import tempfile
 import tarfile
+import urllib 
+import zlib 
 import datetime
+from pyramid.httpexceptions import HTTPFound
 
 from zope import component
 from Cheetah import Parser
@@ -111,10 +114,17 @@ def webbuilder_process(context, request):
                             raise Exception('Directory %s exists and is not empty' % output_dir_prefix)
                     # keep track of boolean options for descendant templates
                     boolean_consumed_options = []
-                    ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.txt')
-                    rurl = request.url.replace('/process?', '/collect/%s?' % request.GET.get('configuration'))
+                    ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.html')
+                    burl = request.route_url('collect', configuration=request.GET.get('configuration'))
+                    qs = request.path_qs.replace('/process?', '').replace('checkbox_enabled', 'y')
+                    genurl = burl+'?%s' % urllib.urlencode(
+                        dict(oldparams=zlib.compress(qs, 9).encode('base64')))
+                    url = '/collect/%s?' % request.GET.get('configuration')
                     fic = open(ficp, 'w')
-                    fic.write('%s\n' % rurl)
+                    fic.write(
+                        '<html><body>'
+                        '<a href="%s">Click here to go to the generation service</a>'
+                        '</body></html>' % genurl)
                     fic.close()
                     for template in paster.templates_data:
                         cparams = params.copy()
@@ -255,13 +265,15 @@ def webbuilder_process(context, request):
         request = request,
         )
 
-
-
-
 def webbuilder_collectinformation(context, request):
     errors, added_options = [], []
     paster, default_group_data, templates_data = None, None, None
     try:
+        if 'oldparams' in request.GET:
+            original_qs = zlib.decompress(
+                request.GET.get('oldparams').decode('base64'))
+            redir = request.route_url('collect', configuration=context.configuration)+'?%s' % original_qs
+            return HTTPFound(location=redir)
         paster = get_paster(context.configuration)
         templates_data = paster.templates_data
         added_options = paster.added_options
