@@ -113,19 +113,8 @@ def webbuilder_process(context, request):
                         if not get_settings().get('debug', '').lower() == 'true' :
                             raise Exception('Directory %s exists and is not empty' % output_dir_prefix)
                     # keep track of boolean options for descendant templates
-                    boolean_consumed_options = []
-                    ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.html')
-                    burl = request.route_url('collect', configuration=request.GET.get('configuration'))
-                    qs = request.path_qs.replace('/process?', '').replace('checkbox_enabled', 'y')
-                    genurl = burl+'?%s' % urllib.urlencode(
-                        dict(oldparams=zlib.compress(qs, 9).encode('base64')))
-                    url = '/collect/%s?' % request.GET.get('configuration')
-                    fic = open(ficp, 'w')
-                    fic.write(
-                        '<html><body>'
-                        '<a href="%s">Click here to go to the generation service</a>'
-                        '</body></html>' % genurl)
-                    fic.close()
+                    boolean_consumed_options = {}
+
                     for template in paster.templates_data:
                         cparams = params.copy()
                         output_dir = output_dir_prefix
@@ -151,7 +140,7 @@ def webbuilder_process(context, request):
                         for g in template['groups']:
                             for myo in g['options']:
                                 if myo[1] == 'boolean':
-                                    boolean_consumed_options.append(myo[0].name)
+                                    boolean_consumed_options[myo[0].name] = cparams.get(myo[0].name, False)
                         for option in boolean_consumed_options:
                             if not option in cparams:
                                     cparams[option] = False
@@ -183,6 +172,20 @@ def webbuilder_process(context, request):
                     postprocess(paster, output_dir_prefix, project, params)
 
                     if action == 'submit_cgwbDownload':
+                        qsparams = dict(request.GET)
+                        qsparams.update(params)
+                        qsparams.update(boolean_consumed_options)
+                        qs = urllib.urlencode(qsparams)
+                        ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.html')
+                        burl = request.route_url('collect', configuration=request.GET.get('configuration'))
+                        genurl = burl+'?%s' % urllib.urlencode(
+                            dict(oldparams=zlib.compress(qs, 9).encode('base64')))
+                        fic = open(ficp, 'w')
+                        fic.write(
+                            '<html><body>'
+                            '<a href="%s">Click here to go to the generation service</a>'
+                            '</body></html>' % genurl)
+                        fic.close()
                         ts = '%s'%datetime.datetime.now()
                         ts = ts.replace(':', '-').replace(' ', '_')[:-4]
                         filename = '%s-%s.tar.gz' % (project, ts)
@@ -205,6 +208,7 @@ def webbuilder_process(context, request):
                             request = request,
                         )
                         os.remove(file_path)
+
                         return resp
                 except NoSuchConfigurationError:
                     errors.append(
@@ -293,6 +297,7 @@ def webbuilder_collectinformation(context, request):
              get_value=get_value),
         request = request,
     )
+
 
 def get_value(template, aliasname, default=None):
     res = default

@@ -18,6 +18,10 @@ class Data(object):
         if not value:
             return False
         value = value.strip().lower()
+        if value in ['y', 'yes', 'o', 'on', 't', 'enable', 'true']:
+            return True
+        if 'checkbox_enabled' in value:
+            value = True 
         if value == 'n':
             return False
         for b in 'off', 'false':

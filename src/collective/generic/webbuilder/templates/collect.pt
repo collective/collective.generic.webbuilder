@@ -88,16 +88,15 @@
                           option_option python:option[3];
                           option_title python:option_alias and option_alias or paster_var.name;
                           option_description python:context.rewrite_description(paster_var.description);
-                          option_default python:paster_var.default">
+                          option_default python:request.GET.get(option_title, paster_var.default)">
                           <input class="textfield" type="text"
                             tal:condition="python:option_type == 'default'"
                             tal:attributes="title option_title;
-                            name option_title;value python:request.GET.get(option_title,option_default)"></input>
+                            name option_title;value python:option_default"></input>
                           <tal 
                             tal:omit-tag=""
                             tal:condition="python:option[1] == 'boolean'" 
-                            tal:define="checked python:context.compute_value(option_default) 
-                            or request.GET.get(option_title, False)">
+                            tal:define="checked python:context.compute_value(option_default)">
                             <input class="booleanfield" type="checkbox"
                               tal:attributes="title python:option_title;
                               value python:checked and 'checkbox_enabled' or False;
