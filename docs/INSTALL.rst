@@ -311,13 +311,13 @@ What i would do from a generated tarball for using git as my SCM could be to pro
 
     * add to auto checkout packages::
 
-        sed -re "/auto-checkout \+=/{
+        sed -re "/auto-checkout \+?=/{
         a \    $PROJECT
         }"  -i import/$GPROJECT-buildout/etc/project/sources.cfg
-        sed -re "/eggs \+=.*buildout:eggs/{
+        sed -re "/eggs ?\+?=.*buildout:eggs/{
         a \    $PROJECT
         }"  -i import/$GPROJECT-buildout/etc/project/$PROJECT.cfg
-        sed -re "/zcml \+=/{
+        sed -re "/zcml\+?=/{
         a \    $PROJECT
         }"  -i import/$GPROJECT-buildout/etc/project/$PROJECT.cfg
 
@@ -352,10 +352,10 @@ What i would do from a generated tarball for using git as my SCM could be to pro
 
 - Create a temporary workspace & the base layout to be imported::
 
-    mkdir -p  $PROJECT/
-    cd $PROJECT
-    mkdir tarball import
-    tar xzvf  $TARBALL -C tarball/
+    mkdir -p  $PROJECT/;
+    cd $PROJECT;
+    mkdir tarball import;
+    tar xzvf  $TARBALL -C tarball/;
 
 - Move the generated plone extensions eggs to a separate place to be imported::
 
@@ -363,9 +363,9 @@ What i would do from a generated tarball for using git as my SCM could be to pro
 
 - Move the buildout structure in the import layout::
 
-    cp -rf tarball/minilays/$PROJECT   import/$PROJECT.minilay
-    rm -rf tarball/minilays
-    cp -rf tarball/ import/$PROJECT.buildout
+    cp -rf tarball/minilays/$PROJECT   import/$PROJECT.minilay;
+    rm -rf tarball/minilays;
+    cp -rf tarball/ import/$PROJECT.buildout;
 
 - Update buildout to use mr.developer instead of basic develop::
 
@@ -381,13 +381,13 @@ What i would do from a generated tarball for using git as my SCM could be to pro
 
     * add to auto checkout packages::
 
-        sed -re "/auto-checkout \+=/{
+        sed -re "/auto-checkout ?\+?=/{
         a \    $PROJECT
         }"  -i import/$PROJECT.buildout/etc/project/sources.cfg
-        sed -re "/eggs \+=.*buildout:eggs/{
+        sed -re "/    Pillow/{
         a \    $PROJECT
         }"  -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
-        sed -re "/zcml \+=/{
+        sed -re "/zcml\+?=/{
         a \    $PROJECT
         }"  -i import/$PROJECT.buildout/etc/project/$PROJECT.cfg
 
