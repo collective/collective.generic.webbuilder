@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# RedHat startup script for a supervisor instance
+# chkconfig: - 90 15
+# description: supervisor init script
+
+### BEGIN INIT INFO
+# Provides:          makina.fixmystreet
+# Required-Start:    $syslog $network $time
+# Required-Stop:     $syslog $network
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: makina.fixmystreet
+# Description:       makina.fixmystreet
+### END INIT INFO
+
+
+EFFECTIVE_USER="${users:pyramid}"
+INSTANCE_PATH="${buildout:directory}"
+INSTANCE_NAME="$(basename ${buildout:directory})"
+supervisorctl="${buildout:directory}/bin/supervisorctl"
+supervisord="${buildout:directory}/bin/supervisord"
+name="supervisord_$INSTANCE_NAME"
+lock="${buildout:directory}/var/$name "
+
+[ -f $supervisord ] || exit 1
+[ -f $supervisorctl ] || exit 1
+envf="${buildout:directory}/sys/share/minitage/minitage.env"
+
+
+RETVAL=0
+start() {
+    echo -n "Starting $name: "
+    if [[ `whoami` == root ]];then
+        su $EFFECTIVE_USER -c "if [ -f "$envf" ];then source $envf;fi;$supervisord"
+    else
+      if [ -f "$envf" ];then source $envf;fi;"$supervisord"
+    fi
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && touch $lock
+    chown $EFFECTIVE_USER $lock
+    echo
+    return $RETVAL
+}
+stop() {
+    echo -n "Stopping $name: "
+    if [[ `whoami` == root ]];then
+        su $EFFECTIVE_USER -c "$supervisorctl shutdown"
+    else
+        $supervisorctl shutdown
+    fi
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && rm -f $lock
+    echo
+    return $RETVAL
+}
+case "$1" in
+         start)
+             start
+             ;;
+
+         stop)
+             stop
+             ;;
+
+         restart)
+             stop
+             sleep 2
+             start
+             ;;
+esac
+exit $REVAL
+# vim:set ft=sh:
+
