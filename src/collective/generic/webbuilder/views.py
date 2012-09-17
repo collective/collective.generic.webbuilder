@@ -4,6 +4,7 @@ import pkg_resources
 import tempfile
 import tarfile
 import urllib 
+import urllib2
 import zlib 
 import datetime
 from pyramid.httpexceptions import HTTPFound
@@ -277,7 +278,9 @@ def webbuilder_collectinformation(context, request):
             original_qs = zlib.decompress(
                 request.GET.get('oldparams').decode('base64'))
             redir = request.route_url('collect', configuration=context.configuration)+'?%s' % original_qs
-            return HTTPFound(location=redir)
+            pms = urllib2.urlparse.parse_qs(original_qs);
+            params = dict([(a,pms[a][0]) for a in pms])
+            request.GET.update(params)
         paster = get_paster(context.configuration)
         templates_data = paster.templates_data
         added_options = paster.added_options
