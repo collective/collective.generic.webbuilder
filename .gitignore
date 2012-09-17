@@ -1,4 +1,8 @@
 bin
+sys.cfg
+var
+etc/init.d
+etc/cwgb.ini
 seleniums
 tags.python
 sys
