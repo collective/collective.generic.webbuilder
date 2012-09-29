@@ -86,7 +86,7 @@ class EggPlugin(DummyPlugin):
         zcmlnames = [n 
                      for n in eggsnames 
                      if (('policy' in n)
-                         or (project_name==n)
+                         or (n==project_name)
                          or (n=='%s.core' % project_name)
                         )]
 

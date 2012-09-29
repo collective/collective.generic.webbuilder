@@ -173,12 +173,12 @@ def webbuilder_process(context, request):
                     postprocess(paster, output_dir_prefix, project, params)
 
                     if action == 'submit_cgwbDownload':
-                        qsparams = dict(request.GET)
+                        qsparams = dict(request.POST)
                         qsparams.update(params)
                         qsparams.update(boolean_consumed_options)
                         qs = urllib.urlencode(qsparams)
                         ficp = os.path.join(output_dir_prefix, 'LINK_TO_REGENERATE.html')
-                        burl = request.route_url('collect', configuration=request.GET.get('configuration'))
+                        burl = request.route_url('collect', configuration=request.POST.get('configuration'))
                         genurl = burl+'?%s' % urllib.urlencode(
                             dict(oldparams=zlib.compress(qs, 9).encode('base64')))
                         fic = open(ficp, 'w')

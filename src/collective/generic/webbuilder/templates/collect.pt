@@ -9,7 +9,7 @@
   </tal>
   <div metal:fill-slot="content"
     tal:define="accordions python:[]">
-    <form action="../process" method="get" tal:condition="python:not errors">
+    <form action="../process" method="POST" tal:condition="python:not errors">
       <div id='projectaccordion'>
         <h2>Project name</h2>
         <div class="options">
