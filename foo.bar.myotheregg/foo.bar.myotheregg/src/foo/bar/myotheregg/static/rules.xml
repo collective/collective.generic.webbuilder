@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <!-- Prevent theme usage in zmi-->
+    <rules css:if-content="#visual-portal-wrapper">
+        <theme href="index.html" />
+    </rules>
+    <notheme if-path="presentation_view"/>
+    <notheme if-path="source_editor.htm"/>
+    <notheme if-path="ploneimage.htm"/>
+    <notheme if-path="anchor.htm"/>
+    <notheme if-path="table.htm"/>
+</rules>

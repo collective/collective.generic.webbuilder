@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="foo.bar.myotheregg-theme" interface="foo.bar.myotheregg.interfaces.IThemeSpecific"/>
+  <layer name="foo.bar.myotheregg" interface="foo.bar.myotheregg.interfaces.ILayer"/>
+</layers>

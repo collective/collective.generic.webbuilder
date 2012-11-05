@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="plonetest">
+
+  <!-- ' plonetest' Zope 3 browser layer -->
+  <interface name="plonetest-theme"
+      interface="plonetest.interfaces.IThemeSpecific"
+      type="zope.publisher.interfaces.browser.IBrowserSkinType"
+    />
+  <interface  name="plonetest" interface="plonetest.interfaces.ILayer" />
+
+  <!-- Viewlets registration -->
+
+  <!-- Zope 3 browser views -->
+  <!--
+    <browser:page
+        layer="plonetest.interfaces.ILayer"
+        for="plonetest.interface.mycontent"
+        name="MyView"
+        class=".view.MyView"
+        allowed_interface=".view.IMyView"
+        permission="zope2.View"
+      />
+  -->
+
+  <!-- Zope 3 browser resources -->
+
+  <!-- Resource directory -->
+  <browser:resourceDirectory
+      name="plonetest"
+      directory="resources"
+      layer="plonetest.interfaces.ILayer"
+    />
+
+
+  <!-- vim:set ft=xml: -->
+</configure>

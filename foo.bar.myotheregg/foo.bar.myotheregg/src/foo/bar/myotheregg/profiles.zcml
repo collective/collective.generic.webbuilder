@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="foo.bar.myotheregg">
+  <!-- Include direct package dependencies -->
+  <genericsetup:registerProfile
+      name="qi"
+      title="foo.bar Policy QI"
+      directory="profiles/qi"
+      description="Turn a Plone site into the foo.bar QIINFO site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      name="default"
+      title="foo.bar.myotheregg"
+      directory="profiles/default"
+      description="Install the foo.bar.myotheregg addon on this plone site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      title="foo.bar.myotheregg uninstall" 
+      name="uninstall"
+      description="Uninstall the foo.bar.myotheregg addon on tbis plone site."
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+  <genericsetup:importStep
+      name="foo_bar_myotheregg setupVarious"
+      title="various setup for foo.bar.myotheregg "
+      description="description"
+      handler="foo.bar.myotheregg.setuphandlers.setupVarious">
+    <depends name="content"/>
+  </genericsetup:importStep>
+  <!-- migration steps -->
+  <genericsetup:importStep
+      name="foo_bar_myotheregg setupQi"
+      title="Quick Installer products dependencies setup for foo.bar.myotheregg"
+      description="description"
+      handler="foo.bar.myotheregg.setuphandlers.setupQi">
+    <depends name="plone-content"/>
+  </genericsetup:importStep> 
+  <!-- -->
+  <utility factory=".app_config.HiddenProducts" name="foo_bar_myotheregg.hiddenproducts"/>
+  <utility factory=".app_config.HiddenProfiles" name="foo_bar_myotheregg.hiddenprofiles"/> 
+  <include package=".upgrades"/>
+</configure> 

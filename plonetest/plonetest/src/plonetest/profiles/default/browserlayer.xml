@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="plonetest-theme" interface="plonetest.interfaces.IThemeSpecific"/>
+  <layer name="plonetest" interface="plonetest.interfaces.ILayer"/>
+</layers>

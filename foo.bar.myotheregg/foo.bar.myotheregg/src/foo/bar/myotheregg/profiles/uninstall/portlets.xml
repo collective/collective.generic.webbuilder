@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlets
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="foo.bar.myotheregg">
+<!--
+  <portlet
+      addview="foo.bar.myotheregg.browser.portlet.Portlet"
+      title = "foo.bar.myotheregg portlet"
+      title = "Add a foo.bar.myotheregg portlet"
+      remove="True"
+    />
+-->
+</portlets>

@@ -1,0 +1,8 @@
+
+    >>> app, portal = layer['app'], layer['portal']
+    >>> browser = Browser(app)
+    >>> browser.open(portal.absolute_url())
+    >>> 'Plone' in browser.contents
+    True
+
+

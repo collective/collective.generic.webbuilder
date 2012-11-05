@@ -321,7 +321,9 @@ What i would do from a generated tarball for using git as my SCM could be to pro
         a \    $PROJECT
         }"  -i import/$GPROJECT-buildout/etc/project/$PROJECT.cfg
 
-- be sure to use the right git url to checkout::
+- be sure to use the right git url to checkout
+
+::
 
     sed -re "s|src_uri.*|src_uri=$IMPORT_URL/$GPROJECT-buildout.git|g" -i import/*-minilay/*
 

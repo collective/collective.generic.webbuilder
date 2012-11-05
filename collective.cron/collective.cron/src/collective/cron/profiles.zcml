@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.cron">
+  <!-- Include direct package dependencies -->
+  <genericsetup:registerProfile
+      name="qi"
+      title="collective Policy QI"
+      directory="profiles/qi"
+      description="Turn a Plone site into the collective QIINFO site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.cron"
+      directory="profiles/default"
+      description="Install the collective.cron addon on this plone site."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+  <genericsetup:registerProfile
+      title="collective.cron uninstall" 
+      name="uninstall"
+      description="Uninstall the collective.cron addon on tbis plone site."
+      directory="profiles/uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+  <genericsetup:importStep
+      name="collective_cron setupVarious"
+      title="various setup for collective.cron "
+      description="description"
+      handler="collective.cron.setuphandlers.setupVarious">
+    <depends name="plone-content"/>
+  </genericsetup:importStep>
+  <!-- migration steps -->
+  <genericsetup:importStep
+      name="collective_cron setupQi"
+      title="Quick Installer products dependencies setup for collective.cron"
+      description="description"
+      handler="collective.cron.setuphandlers.setupQi">
+    <depends name="plone-content"/>
+  </genericsetup:importStep> 
+  <!-- -->
+  <utility factory=".app_config.HiddenProducts" name="collective_cron.hiddenproducts"/>
+  <utility factory=".app_config.HiddenProfiles" name="collective_cron.hiddenprofiles"/> 
+  <include package=".upgrades"/>
+</configure> 

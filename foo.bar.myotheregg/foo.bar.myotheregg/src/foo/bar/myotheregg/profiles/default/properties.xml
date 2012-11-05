@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<site>
+
+  <property name="title">foo.bar</property>
+  <property name="description">Welcome to the foo.bar website</property> 
+  <property name="email_from_address"
+      type="string">testeur@makina-corpus.com</property>
+  <property name="email_from_name"
+      type="string">Portal Administrator</property>
+  <property name="validate_email" type="boolean">True</property>
+  <property name="email_charset" type="string">utf-8</property>
+
+</site>

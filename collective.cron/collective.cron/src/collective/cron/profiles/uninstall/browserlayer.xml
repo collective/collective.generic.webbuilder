@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer remove="true" name="collective.cron-theme" interface="collective.cron.interfaces.IThemeSpecific"/>
+  <layer remove="true" name="collective.cron" interface="collective.cron.interfaces.ILayer"/>
+</layers>
