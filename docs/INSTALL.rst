@@ -297,19 +297,19 @@ What i would do from a generated tarball for using git as my SCM could be to pro
     rm -rf tarball/minilays
     cp -rf tarball/ import/$GPROJECT-buildout
 
-- Update buildout to use mr.developer instead of basic develop::
+- Update buildout to use mr.developer instead of basic develop
 
-    * move off the develop declaration::
+    - move off the develop declaration::
 
         sed -re "s:(src/)?$PROJECT::g" -i import/$GPROJECT-buildout/etc/project/$PROJECT.cfg
 
-    * add to mr.developer sources::
+    - add to mr.developer sources::
 
         sed -re "/\[sources\]/{
         a $PROJECT =  git $IMPORT_URL/$GPROJECT.git
         }" -i import/$GPROJECT-buildout/etc/project/sources.cfg
 
-    * add to auto checkout packages::
+    - add to auto checkout packages::
 
         sed -re "/auto-checkout \+?=/{
         a \    $PROJECT
@@ -321,15 +321,15 @@ What i would do from a generated tarball for using git as my SCM could be to pro
         a \    $PROJECT
         }"  -i import/$GPROJECT-buildout/etc/project/$PROJECT.cfg
 
-* be sure to use the right git url to checkout::
+- be sure to use the right git url to checkout::
 
     sed -re "s|src_uri.*|src_uri=$IMPORT_URL/$GPROJECT-buildout.git|g" -i import/*-minilay/*
 
-* Be sure to use git
+- Be sure to use git
 
     sed -re "s|src_type.*|src_type=git|g" -i import/*-minilay/*
 
-* Import::
+- Import::
 
    pushd import;for i in *;do echo "Importing $i";pushd $i;git init;git add .;git commit -am "initial revision";git remote add origin "$IMPORT_URL/$i.git";git push --force --all origin;popd;done;popd
 
