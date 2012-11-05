@@ -127,17 +127,17 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
 - Update buildout to use mr.developer instead of basic develop::
 
-    * move off the develop declaration::
+    - move off the develop declaration::
 
         sed -re "s:(src/)?$PROJECT\.((skin)|(tma)|(core)|(testing))::g" -i import//buildout/etc/project/$PROJECT.cfg
 
-    * add to mr.developer sources::
+    - add to mr.developer sources::
 
         sed -re "/\[sources\]/{
         a $PROJECT.core = svn $IMPORT_URL/eggs/$PROJECT.core/trunk
         }" -i import/buildout/etc/project/sources.cfg
 
-    * add to auto checkout packages::
+    - add to auto checkout packages::
 
         sed -re "/auto-checkout \+=/{
         a \    $PROJECT.core
@@ -149,11 +149,11 @@ What i would do from a generated tarball for using subversion as my SCM could be
         a \    $PROJECT.core
         }"  -i import/buildout/etc/project/$PROJECT.cfg
 
-* be sure to use the right svn url to checkout::
+- be sure to use the right svn url to checkout::
 
     sed -re "s|src_uri.*|src_uri=$IMPORT_URL/buildout/|g" -i import/buildout/minilays/$PROJECT/*
 
-* Be sure to use svn
+- Be sure to use svn
 
     sed -re "s|src_type.*|src_type=svn|g" -i import/buildout/minilays/$PROJECT/*
 
