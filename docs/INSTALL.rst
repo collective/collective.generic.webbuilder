@@ -125,7 +125,7 @@ What i would do from a generated tarball for using subversion as my SCM could be
 
     cp -rf tarball/* import/buildout
 
-- Update buildout to use mr.developer instead of basic develop::
+- Update buildout to use mr.developer instead of basic develop
 
     - move off the develop declaration::
 
