@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<registry>
-  <!--
-    <record name="foo.bar.myotheregg.interfaces.ISomeInterface.something" delete="true" />
-  -->
-</registry>
