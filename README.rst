@@ -27,8 +27,8 @@ it may be possible at this stage to leave it open.
 
 |cgwbthumb|_
 
-.. |cgwbthumb| image:: http://distfiles.minitage.org/public/externals/minitage/cgwb-min.jpeg
-.. _cgwbthumb: http://distfiles.minitage.org/public/externals/minitage/cgwb.jpeg
+.. |cgwbthumb| image:: https://raw.github.com/collective/collective.generic.webbuilder/master/cgwb-min.jpeg
+.. _cgwbthumb: https://raw.github.com/collective/collective.generic.webbuilder/master/cgwb.jpeg
 
 `Zoom <http://distfiles.minitage.org/public/externals/minitage/cgwb.jpeg>`_
 
