@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 cd $(dirname $0)
 envf=sys/share/minitage/minitage.env 
+if [ ! -f $envf ];then
+    ../../bin/minimerge -NE cgwb
+fi 
 if [ -f $envf ];then
     . $envf
 fi
