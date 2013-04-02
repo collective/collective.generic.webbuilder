@@ -77,6 +77,7 @@ def get_paster(configuration):
 
 def webbuilder_process(context, request):
     valid_actions = ['submit_cgwbDownload', 'submit_cgwbGenerate']
+    valid_actions = ['submit_cgwbDownload',]
     errors = []
     output_dir_prefix = None
     params = dict(request.params)
@@ -231,8 +232,7 @@ def webbuilder_process(context, request):
                         'and source the resulting environment file before launching cgwb<br/>'
                         '<p>You can generate one with:</p><br/>'
                         '<pre>\n'
-                        '\t$minitage/bin/easy_install -U minitage.paste\n'
-                        '\t$minitage/bin/paster create -t minitage.instances.env cgwb-dev (or cgwb)'
+                        '\t$minitage/bin/paster create -t minitage.instances.env cgwb'
                         '</pre>'
                         '<br/><p>And before launching cgwb, if you do not have done that previously in your running shell:</p><br/>'
                         '<pre>\n'

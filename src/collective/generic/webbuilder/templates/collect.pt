@@ -122,8 +122,9 @@
       </div>
       <input type="hidden" name="configuration" tal:attributes="value python:context.configuration"> </input>
       <div class="actions">
+        <!--
         <input type="submit" title="Generate on server"
-          id="submit_cgwbGenerate" name="submit_cgwbGenerate" value="" onclick="$('#submit_cgwbGenerate').form.submit();" class="generate"></input>
+          id="submit_cgwbGenerate" name="submit_cgwbGenerate" value="" onclick="$('#submit_cgwbGenerate').form.submit();" class="generate"></input>-->
         <input type="submit" title="Download"
           id="submit_cgwbDownload" name="submit_cgwbDownload" value="" onclick="$('#submit_cgwbDownload').form.submit();" class="download"></input>
       </div>
