@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-
-
 cd $(dirname $0)
 envf=sys/share/minitage/minitage.env 
+if [ ! -f $envf ];then
+    ../../bin/minimerge -NE cgwb
+fi 
 if [ -f $envf ];then
     . $envf
 fi
-reset;./bin/cgwb --port=8081 --reload
+reset;./bin/paster serve --reload etc/cgwb.ini 
 # vim:set et sts=4 ts=4 tw=80:
