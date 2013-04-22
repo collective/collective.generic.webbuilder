@@ -35,6 +35,7 @@
         <option name="zope_password" />
         <options prefix="^with_supervisor.*" type="boolean" />
         <options prefix="^supervisor.*"  />
+        <options prefix="^with_cache.*" type="boolean" />
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
       </group>
