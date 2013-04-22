@@ -83,8 +83,8 @@ class EggPlugin(DummyPlugin):
                 if os.path.exists(os.path.join(p, 'setup.py')):
                     eggsnames.append(path)
                     devnames.append(os.path.join('src', path))
-        zcmlnames = [n 
-                     for n in eggsnames 
+        zcmlnames = [n
+                     for n in eggsnames
                      if (('policy' in n)
                          or (n==project_name)
                          or (n=='%s.core' % project_name)

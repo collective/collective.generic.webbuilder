@@ -1,9 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
   <genericpaster name="Generic Portal Django">
-    <!--<plugin name="dummy_plugin" order="1"/>-->
-    <plugin name="egg_plugin" order="2"/>
-    <plugin name="egginfo_plugin" order="1"/>
     <template name="minitage.django" order="4">
      <group name="Minitage" order="050">
        <!--
@@ -28,6 +25,9 @@
         <option name="mode" />
         <option name="admin_user" />
         <option name="admin_password" />
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+        <options prefix="^django.*"  />
       </group>
       <group name="Database Settings" order="080">
         <options prefix="with_database.*" type="boolean"/>
@@ -51,10 +51,7 @@
         <option name='with_minitage_devpackages'  type="boolean" default="n" />
         <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
-      <group name="Monitoring Tools" order="810">
-        <options prefix="^with_supervisor.*" type="boolean" />
-        <options prefix="^supervisor.*"  />
-      </group>
+
       <group name="Loadbalancing Tools" order="820">
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
@@ -74,6 +71,7 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
+    <!--
     <template name="collective.generic.django" output="src" order="2000">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
@@ -87,6 +85,6 @@
         <excludeoptions prefix=".*(namespace|description).*"/>
       <excludeoptions prefix="project_.*" />
       </group>
-    </template>
+    </template>-->
   </genericpaster>
 </configure>
