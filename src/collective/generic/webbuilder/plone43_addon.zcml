@@ -18,7 +18,7 @@
         <option name="install_method"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
-      <group name="Plone Settings" order="080">
+      <group name="Plone Settings" order="6">
         <option name="plone_version" />
         <option name="with_checked_versions" type="boolean" default="y"/>
         <option name="http_port" />
@@ -33,12 +33,16 @@
         <option name="with_zope2_skins"           type="boolean" default="y"/>
         <option name="with_zeo_socket" type="boolean" default="n" />
         <option name="zope_password" />
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+        <options prefix="^with_haproxy.*" type="boolean" />
+        <options prefix="^haproxy.*"  />
       </group>
       <group name="Deliverance support" order="100">
         <option name="with_deliverance_support" type="boolean" />
         <options prefix="deliverance_.*" />
       </group>
-      <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
+      <group name="Reverse proxy configuration if any (apache, nginx, etc.)" order="10">
         <options prefix="reverseproxy_.*" />
         <options prefix="apache.*" />
       </group>
@@ -47,10 +51,6 @@
       </group>
       <group name="Relstorage options if any" order="200">
         <options  prefix="^relstorage.*"/>
-      </group>
-      <group name="Contineous integration settings (buildbot and hudson support)" order="290">
-        <options prefix="^buildbot.*" />
-        <options prefix="^hudson.*" />
       </group>
       <group name="Database bindings" order="30">
         <options prefix="^with_database.*" type="boolean"/>
@@ -74,7 +74,7 @@
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
-      <group name="PYthon eggs to install from development repository" order="600" >
+      <group name="python eggs to install from development repository" order="600" >
         <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
       </group>
       <group name="Additionnal Tools" order="800">
@@ -83,14 +83,7 @@
         <option name='with_minitage_devpackages'  type="boolean" default="n" />
         <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
-      <group name="Monitoring Tools" order="810">
-        <options prefix="^with_supervisor.*" type="boolean" />
-        <options prefix="^supervisor.*"  />
-      </group>
-      <group name="Loadbalancing Tools" order="820">
-        <options prefix="^with_haproxy.*" type="boolean" />
-        <options prefix="^haproxy.*"  />
-      </group>
+
       <group name="Solr support Tools" order="831">
         <options prefix="^with_indexing_solr.*" type="boolean" />
         <options prefix="^solr.*"  />
@@ -112,7 +105,7 @@
         <option name='license_name'       />
         <option name='default_theme'       />
         <option name='smtp_host'          />
-        <excludeoptions prefix=".*(namespace|project_name).*"/> 
+        <excludeoptions prefix=".*(namespace|project_name).*"/>
         <option name='smtp_port'          />
         <option name="with_generic"    type="hidden" default="true"    />
         <options prefix="with_zope2_skins" type="hidden" default="y"/>

@@ -97,9 +97,15 @@ class EggPlugin(DummyPlugin):
                         )
         if os.path.exists(pf):
             f = pf
-
+        else:
+            for i in ['django', 'plone', 'pyramid']:
+                pf = os.path.join(output_dir,
+                                  'etc', 'project',
+                                  '%s.cfg' % i
+                                 )
+                if os.path.exists(pf):
+                    f = pf
         cfg = INIConfig(open(f))
-
         extdevoption_re  = re.compile('develop\s*\+\s*', re_flags)
         devoption_re     = re.compile('develop\s*', re_flags)
         exteggsoption_re = re.compile('eggs\s*\+\s*', re_flags)
