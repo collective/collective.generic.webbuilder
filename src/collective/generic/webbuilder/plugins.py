@@ -91,6 +91,8 @@ class EggPlugin(DummyPlugin):
                         )]
 
         f = os.path.join(output_dir, 'buildout.cfg')
+        sf = os.path.join(
+            output_dir, 'etc', 'project', 'sources.cfg')
         pf = os.path.join(output_dir,
                          'etc', 'project',
                          '%s.cfg' % project_name
@@ -106,13 +108,32 @@ class EggPlugin(DummyPlugin):
                 if os.path.exists(pf):
                     f = pf
         cfg = INIConfig(open(f))
+        srccfg = None
+        if os.path.exists(sf):
+            srccfg = INIConfig(open(sf))
+        else:
+            srccfg = cfg
+
         extdevoption_re  = re.compile('develop\s*\+\s*', re_flags)
         devoption_re     = re.compile('develop\s*', re_flags)
+        autocheckout_option_re     = re.compile(
+            'auto-checkout\s*', re_flags)
+        ext_autocheckout_option_re     = re.compile(
+            'auto-checkout\s*\+\s*', re_flags)
         exteggsoption_re = re.compile('eggs\s*\+\s*', re_flags)
         eggsoption_re    = re.compile('eggs\s*', re_flags)
         eggsoption_re    = re.compile('eggs\s*', re_flags)
         devoption, eggsoption= 'develop+', 'eggs+'
-        devfound, eggsfound = False, False
+        autocheckout_option = 'autocheckout+'
+        devfound, eggsfound, acfound = False, False, False
+        for optionre in [ext_autocheckout_option_re,
+                         autocheckout_option_re, ]:
+            if 'buildout' in cfg:
+                for option in cfg.buildout:
+                    if optionre.match(option):
+                        acfound = True
+                        autocheckout = option
+                        break
         for optionre in [extdevoption_re, devoption_re, ]:
             if 'buildout' in cfg:
                 for option in cfg.buildout:
@@ -131,32 +152,49 @@ class EggPlugin(DummyPlugin):
         if eggsfound:
             for eggn in eggsnames:
                 if not (eggn in cfg.buildout[eggsoption]):
-                    cfg.buildout[eggsoption] = '%s    \n%s' % (
-                        eggn,
-                        cfg.buildout[eggsoption].strip()
-                    )
+                    cfg.buildout[eggsoption] = '\n    '.join(
+                        [a for a in eggn,
+                         cfg.buildout[eggsoption].strip()
+                         if a.strip()])
         else:
             cfg.buildout[eggsoption] = ''
             for eggn in eggsnames:
-                cfg.buildout[eggsoption] = '%s    \n%s' % (
-                    eggn,
-                    cfg.buildout[eggsoption].strip()
-                )
-
-        if devfound:
-            for eggn in devnames:
-                if not (eggn in cfg.buildout[devoption]):
-                    cfg.buildout[devoption] = '%s    \n%s' % (
-                        eggn,
-                        cfg.buildout[devoption].strip()
-                    )
+                cfg.buildout[eggsoption] = '\n    '.join(
+                    [a for a in
+                     eggn,
+                     cfg.buildout[eggsoption].strip()
+                     if a.strip()])
+        if srccfg:
+            if acfound:
+                for eggn in eggsnames:
+                    if 'sources-dir' in cfg.buildout:
+                        del cfg.buildout['sources-dir']
+                    if not (eggn in cfg.buildout[autocheckout]):
+                        cfg.buildout[autocheckout] = '\n    '.join(
+                            [a for a in
+                             eggn,
+                             cfg.buildout[autocheckout].strip()
+                             if a.strip()])
+                    if not (eggn in cfg.sources):
+                        cfg.sources[eggn] = 'fs %s' % (eggn,)
+                        cfg.sources._lines[0].contents.insert(
+                            1, cfg.sources._lines[0].contents.pop(-1))
         else:
-            cfg.buildout[devoption] = ''
-            for eggn in devnames:
-                cfg.buildout[devoption] = '%s    \n%s' % (
-                    eggn,
-                    cfg.buildout[devoption].strip()
-                )
+            if devfound:
+                for eggn in devnames:
+                    if not (eggn in cfg.buildout[devoption]):
+                        cfg.buildout[devoption] = '\n    '.join(
+                            [a for a in
+                             eggn,
+                             cfg.buildout[devoption].strip()
+                             if a.strip()])
+            else:
+                cfg.buildout[devoption] = ''
+                for eggn in devnames:
+                    cfg.buildout[devoption] = '\n    '.join(
+                        [a for a in eggn,
+                         cfg.buildout[devoption].strip()
+                         if a.strip()])
 
         # zcml are now handled via collective.generic.skel
         extzcmloption_re  = re.compile('zcml\s*\+\s*', re_flags)
@@ -179,19 +217,19 @@ class EggPlugin(DummyPlugin):
                             or ('.core' in eggn)
                             or (project_name == eggn)
                            ):
-                            cfg.buildout[zcmloption] = '%s    \n    %s' % (
+                            cfg.buildout[zcmloption] = '\n    '.join([
+                                a for a in
                                 cfg.buildout[zcmloption].strip(),
-                                eggn,
-                            )
+                                eggn if a.strip()])
         else:
             zcmloption = ''
             for eggn in zcmlnames:
                 if 'instance' in cfg:
                     if 'policy' in eggn:
-                        cfg.buildout[zcmloption] = '%s    \n%s' % (
-                            eggn,
+                        cfg.buildout[zcmloption] = '\n    ' % (
+                            [a for a in eggn,
                             cfg.buildout[zcmloption].strip()
-                        )
+                            if a.strip()])
         f = open(f, 'w')
         cfg = '%s'%cfg
         cfg = cfg.replace('+ =', ' +=')
