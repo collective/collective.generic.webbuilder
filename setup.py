@@ -54,7 +54,6 @@ setup(
         'setuptools',
         'collective.generic.skel',
         'minitage.paste',
-        'minitage.core',
         'WebOb',
         'zope.component',
         'z3c.form',

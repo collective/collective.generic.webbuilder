@@ -1,4 +1,6 @@
 bin
+kgs.cfg
+etc/cgwb.ini
 sys.cfg
 var
 etc/init.d
@@ -15,3 +17,8 @@ cgwb.env
 parts
 src.others
 *.egg-info
+src/collective.generic.devmode/
+src/collective.generic.skel/
+src/minitage.paste
+src/minitage.paste.old/
+

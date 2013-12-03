@@ -29,10 +29,28 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 __docformat__ = 'restructuredtext en'
+import os
+import shutil
 
 def splitstrip(l):
     return [a.strip()
             for a in l.split()
             if a.strip()]
+
+def remove_path(path):
+    """Remove a path."""
+    if os.path.exists(path):
+        if os.path.islink(path):
+            os.unlink(path)
+        elif os.path.isfile(path):
+            os.unlink(path)
+        elif os.path.isdir(path):
+            shutil.rmtree(path)
+        else:
+            os.remove(path)
+    else:
+        print
+        print "'%s' was asked to be deleted but does not exists." % path
+        print
 
 # vim:set et sts=4 ts=4 tw=80:

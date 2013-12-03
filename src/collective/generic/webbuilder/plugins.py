@@ -37,9 +37,9 @@ re_flags = re.M|re.U|re.I|re.S
 
 from zope.interface import implements
 from collective.generic.webbuilder import interfaces
-from minitage.core.common import remove_path
-
 from iniparse import INIConfig
+
+from collective.generic.webbuilder.utils import remove_path
 
 class DummyPlugin(object):
     implements(interfaces.IPostGenerationPlugin)

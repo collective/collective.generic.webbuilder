@@ -2,6 +2,7 @@ import os
 import re
 import pkg_resources
 import tempfile
+import shutil
 import tarfile
 import urllib 
 import urllib2
@@ -29,11 +30,9 @@ from collective.generic.webbuilder.paster import (
     NoSuchConfigurationError,
 )
 
-try:
-    from minitage.core.common import remove_path, MinibuildNotFoundException
-except:
-    print "Upgrade minitage.core please! (maybe delete it to get it reinstalled in your buildout egg cache if any)"
 from webob import Response
+
+from collective.generic.webbuilder.utils import remove_path
 
 sm = component.getSiteManager()
 gsm = component.getGlobalSiteManager()
@@ -217,29 +216,6 @@ def webbuilder_process(context, request):
                         '%s/ The required configuration '
                         'does not exists : %s' % (
                             action, configuration)
-                    )
-                except MinibuildNotFoundException, e:
-                    #raise
-                    errors.append(
-                        '<div class="error">'
-                        '<p>%s/ Error while reading paster variables:</p>'
-                        '<p class="pythonerror">%r</p>'
-                        '<br/><p>Are you inside a minitage ? </p>'
-                        '<br/><ul><li> If no, please untick minitage support in the minitage '
-                        'section (press your browser\'s back button)</p>'
-                        '<br/><li> If yes, you must set the "MT" environment variable to '
-                        'the root installation of minitage or use the minitage.instance.env template '
-                        'and source the resulting environment file before launching cgwb<br/>'
-                        '<p>You can generate one with:</p><br/>'
-                        '<pre>\n'
-                        '\t$minitage/bin/paster create -t minitage.instances.env cgwb'
-                        '</pre>'
-                        '<br/><p>And before launching cgwb, if you do not have done that previously in your running shell:</p><br/>'
-                        '<pre>\n'
-                        '\tsource $minitage/bfg/cgwb(-dev)/sys/share/minitage/minitage.env'
-                        '</pre>'
-                        '</li></ul><br/>'
-                        '' % (action, e)
                     )
                 except Parser.ParseError, e:
                     errors.append(

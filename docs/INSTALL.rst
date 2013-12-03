@@ -1,31 +1,14 @@
 Installation
 ==============
 
-Installing cgwb in a minitage
+Installing cgwb
 -----------------------------------
-You are not obliged to run with `minitage`_ even if it is the recommended mode for running at least the plones template.
-
-Assuming that your minitage lives in ~/minitage, issue the following::
-
-    export MT=~/minitage
 
 Install or udpate minitage in your dedicated virtualenv if any
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Just do that (you must refer to `minitage installation`_ for prerequisites)
-
-Install virtualenv
 ::
 
-    virtualenv --no-site-packages --distribute $MT
-
-Update minitage packages
-::
-
-    source $MT/bin/activate
-    easy_install -U minitage.core
-    easy_install -U minitage.paste
-    minimerge -s
-
+    sudo apt-get install -y build-essential m4 libtool pkg-config autoconf gettext bzip2 groff man-db automake libsigc++-2.0-dev tcl8.5 git libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-dev python-imaging wv poppler-utils libsqlite0-dev libgdbm-dev libdb-dev tcl8.5-dev tcl8.5-dev tcl8.4 tcl8.4-dev tk8.5-dev libsqlite3-dev
 
 Install cgwb
 ++++++++++++++++++++++
@@ -33,8 +16,10 @@ Download & install via the minibuild
 ::
 
     source $MT/bin/activate
-    git clone http://github.com/collective/collective.generic.webbuilder-minilay.git $MT/minilays/cgwb
-    minimerge -v cgwb
+    git clone http://github.com/collective/collective.generic.webbuilder.git
+    cd cgwb 
+    python bootstrap.py
+    bin/buildout
 
 
 Cgwb lives in ``$MT/bfg/cgwb``.
@@ -49,16 +34,6 @@ To see all the available options, just use::
 
     bin/cgwb --help
 
-If you use minitage, mandatory to use the minitage.instances.env profile::
-
-    $MT/bin/easy_install -U minitage.paste
-    $MT/bin/paster create -t minitage.instances.env cgwb
-
-MINITAGE .ENV
-++++++++++++++++++++
-Each time you use cgwb, you use the .ENV::
-
-    source $MT/bfg/cgwb/sys/share/minitage/minitage.env
 
 Use it
 ++++++++++++++
@@ -82,7 +57,6 @@ Filling the settings, some notes
 
 THE IMPORTANT PART AROUND INITIATING A PROJECT
 +++++++++++++++++++++++++++++++++++++++++++++++++
-- It would be good unless you have some minitage experience to version the code prior to build, because of minitage update mecanism.
 - Before version/import the code in your SCM you must elude the following points:
 
     * By default, the generated tarball contains the buildout layout and all the eggs in src, and the buildout use them as develop eggs and NOT WITH MR.DEVELOPER.
