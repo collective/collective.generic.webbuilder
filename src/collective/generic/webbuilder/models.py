@@ -2,18 +2,22 @@ import re
 
 from zope.interface import Interface, implements
 
-re_flags = re.M|re.U|re.I|re.S
+re_flags = re.M | re.U | re.I | re.S
+
 
 class IWebBuilder(Interface):
     """."""
+
 
 class WebBuilder(object):
     implements(IWebBuilder)
     configurations = {}
 
+
 class Data(object):
     def __init__(self, request):
-        self.__dict__.update(request.environ['bfg.routes.matchdict'])
+        self.__dict__.update(request.matchdict)
+
     def compute_value(self, value):
         if not value:
             return False
@@ -21,13 +25,14 @@ class Data(object):
         if value in ['y', 'yes', 'o', 'on', 't', 'enable', 'true']:
             return True
         if 'checkbox_enabled' in value:
-            value = True 
+            value = True
         if value == 'n':
             return False
         for b in 'off', 'false':
             if value.startswith(b):
                 return False
         return True
+
     def get_id(self, value):
         special_chars = ['.', '_', '-', ' ']
         for c in special_chars:
@@ -35,9 +40,10 @@ class Data(object):
         return value
 
     def rewrite_description(self, value):
-        url = re.compile('(?P<url>(?<!>)(?<!href=[\'"])https?\:\//[^$\s"]*)',re_flags)
-        yn = re.compile('y/n\s*[?]?$',re_flags)
-        see = re.compile(',\s*see\s*(ht.*)$',re_flags)
+        url = re.compile(
+            '(?P<url>(?<!>)(?<!href=[\'"])https?\:\//[^$\s"]*)', re_flags)
+        yn = re.compile('y/n\s*[?]?$', re_flags)
+        see = re.compile(',\s*see\s*(ht.*)$', re_flags)
         if yn.search(value):
             value = yn.sub('', value)
         if see.search(value):
@@ -45,8 +51,8 @@ class Data(object):
         match_obj = url.search(value)
         while match_obj:
             durl = match_obj.groupdict()
-            value = value.replace( durl['url'], '')
-            value =  "%s%s" % (
+            value = value.replace(durl['url'], '')
+            value = "%s%s" % (
                 value,
                 '<a class="option-desc-url" target="_blank" '
                 'href="%(url)s"     '
@@ -56,6 +62,7 @@ class Data(object):
         return value.strip()
 
 root = WebBuilder()
+
+
 def get_root(environ):
     return root
-

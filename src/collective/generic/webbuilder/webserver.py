@@ -36,15 +36,15 @@ def wsgi_app_factory(global_config, **local_config):
             zcml = os.path.abspath(zcml)
         else:
             zcml = pkg_resources.resource_filename(dn, zcml)
-        wconf['zcmls'][i] = zcml 
-
-    globalreg = getGlobalSiteManager() 
+        wconf['zcmls'][i] = zcml
+    globalreg = getGlobalSiteManager()
     config = Configurator(registry=globalreg)
     config.setup_registry(settings=wconf)
+    config.include('pyramid_chameleon')
     config.include('pyramid_zcml')
     config.hook_zca()
     for z in wconf['zcmls']:
-        config.load_zcml(z)  
+        config.load_zcml(z)
     app = config.make_wsgi_app()
     def webbuilder_app(environ, start_response):
         req = Request(environ)
