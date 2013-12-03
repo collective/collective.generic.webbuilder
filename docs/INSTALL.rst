@@ -15,9 +15,8 @@ Install cgwb
 Download & install via the minibuild
 ::
 
-    source $MT/bin/activate
-    git clone http://github.com/collective/collective.generic.webbuilder.git
-    cd cgwb 
+    git clone http://github.com/collective/collective.generic.webbuilder.git cgwb
+    cd cgwb
     python bootstrap.py
     bin/buildout
 
@@ -32,23 +31,14 @@ Launch via ``bin/cgwb``.
 This binary includes some options to let you override the default port (--port) and listenning address (--host)
 To see all the available options, just use::
 
-    bin/cgwb --help
-
-
-Use it
-++++++++++++++
-Launch it::
-
-    cd $INS
-    ./bin/cgwb --port=6253
-
+    ./l.sh
 
 - At the moment, cgwb do not have some session mecanism, so the only way to replay a generation is to use the selenium firefox plugin.
 - If you want to store your choices to redo an updated tarball later, just install the SeleniumIDE firefox plugin and use it to record your session.
 - Maybe, activate selenium and
 
     - Go to the `cgwb`_
-    - Choose `Generic Portal Plone3`.
+    - Choose `Generic Portal Plone43 NG`.
 
 Filling the settings, some notes
 +++++++++++++++++++++++++++++++++++++++++++

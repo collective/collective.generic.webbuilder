@@ -1,4 +1,5 @@
 bin
+etc/generated-kgs.cfg
 kgs.cfg
 etc/cgwb.ini
 sys.cfg
@@ -21,4 +22,3 @@ src/collective.generic.devmode/
 src/collective.generic.skel/
 src/minitage.paste
 src/minitage.paste.old/
-
