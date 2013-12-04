@@ -2,7 +2,7 @@
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
   <genericpaster name="Generic Plone addon">
     <plugin name="egginfo_plugin" order="1"/>
-    <template name="collective.generic.plone_addon" order="4000">
+    <template name="genericskel.plone_addon" order="4000">
       <group name="Package description" order="2">
         <option name='nested_namespace'   />
         <option name='version'            />
@@ -14,7 +14,6 @@
         <option name='description'        />
         <option name='keywords'           />
         <option name='license_name'       />
-        <option name="inside_minitage" type="hidden" default="true" />
         <option name="plone_version"   type="hidden" default="3"    />
         <option name="with_generic"    type="hidden" default="false"    />
       </group>
@@ -53,8 +52,6 @@
       <group name="Additionnal Tools" order="800">
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
-        <option name='with_minitage_devpackages'  type="boolean" default="n" />
-        <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
       <group name="Automatic installing in the plone site" order="2000">
         <option name="with_autoinstall_ploneproduct_csvreplica" type="boolean" default="false"/>

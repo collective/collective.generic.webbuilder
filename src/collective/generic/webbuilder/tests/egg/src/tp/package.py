@@ -5,7 +5,7 @@ import re
 from paste.script.templates import var
 from paste.script.templates import Template
 
-from minitage.paste.common import boolify
+from collective.generic.skel.buildout.common import boolify
 
 
 class Package(Template):

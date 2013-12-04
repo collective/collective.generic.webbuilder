@@ -45,7 +45,7 @@ A sample zcml needed to assemble the packages we declared before is as follow:
     ...   <configure xmlns="http://webbuilder.org/webbuilder">
     ...     <genericpaster name="test Assembler">
     ...         <template name="cgwb.testpackage1" output="1" order="1000">
-    ...           <group name="Minitage" order="05">
+    ...           <group name="Metadata" order="05">
     ...             <option name="tp1option" type="boolean"/>
     ...             <option name="tp1option3" default="y"/>
     ...           </group>

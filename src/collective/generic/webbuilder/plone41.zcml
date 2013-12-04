@@ -3,10 +3,9 @@
   <genericpaster name="Generic Portal Plone41">
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
-    <template name="minitage.plone41" order="1">
-       <group name="Minitage" order="05">
+    <template name="genericskel.buildout.plone41" order="1">
+       <group name="Metadata" order="05">
         <option name="with_no_zcml"  type="hidden" default="y" />
-        <option name="inside_minitage" type="boolean"/>
         <option name="author_email" />
         <option name="author" />
         <option name="scm_type" />
@@ -146,8 +145,6 @@
       <group name="Additionnal Tools" order="800">
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
-        <option name='with_minitage_devpackages'  type="boolean" default="n" />
-        <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
       <group name="Monitoring Tools" order="810">
         <options prefix="^with_supervisor.*" type="boolean" />

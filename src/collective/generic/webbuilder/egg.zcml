@@ -2,7 +2,7 @@
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
   <genericpaster name="Generic python package">
     <plugin name="egginfo_plugin" order="1"/>
-    <template name="collective.generic.egg" order="4000">
+    <template name="genericskel.egg" order="4000">
       <group name="Package description" order="2">
         <option name='nested_namespace'   />
         <option name='version'            />
@@ -14,7 +14,6 @@
         <option name='description'        />
         <option name='keywords'           />
         <option name='license_name'       />
-        <option name="inside_minitage" type="hidden" default="true" />
       </group>
       <group name="Bindings" order="40">
         <options  prefix="^with_binding.*" type="boolean"/>

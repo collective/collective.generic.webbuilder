@@ -1,12 +1,11 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
   <genericpaster name="Generic Portal Django">
-    <template name="minitage.django" order="4">
-     <group name="Minitage" order="050">
+    <template name="genericskel.buildout.django" order="4">
+     <group name="Medadata" order="050">
        <!--
          <option name="with_no_zcml"  type="hidden" default="y" />
          -->
-        <option name="inside_minitage" type="boolean"/>
         <option name="author_email" />
         <option name="author" />
         <option name="scm_type" />
@@ -48,8 +47,6 @@
       <group name="Additionnal Tools" order="800">
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
-        <option name='with_minitage_devpackages'  type="boolean" default="n" />
-        <option name='with_minitage_otherpackages'  type="boolean" default="n" />
       </group>
 
       <group name="Loadbalancing Tools" order="820">
