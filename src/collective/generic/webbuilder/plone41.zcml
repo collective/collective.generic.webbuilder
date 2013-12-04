@@ -164,7 +164,7 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
-    <template name="collective.generic.plone41_policy" output="src" order="2000">
+    <template name="genericskel.plone41_policy" output="src" order="2000">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
         <option name='version'            />
@@ -185,7 +185,7 @@
         <options prefix="with_autoinstall_ploneproduct_.*" type="boolean" default="true"/>
       </group>
     </template>
-    <template name="collective.generic.plone41_skin" output="src" order="3000">
+    <template name="genericskel.plone41_skin" output="src" order="3000">
       <group name="Theme" order="1">
         <option name="default_theme"/>
       </group>
@@ -194,13 +194,13 @@
         <option name="project_name" type="hidden" default="skin" alias="skinpn"/>
       </group>
     </template>
-    <template name="collective.generic.testing" output="src" order="4000">
+    <template name="genericskel.testing" output="src" order="4000">
       <group name="" order="1">
         <excludeoptions prefix=".*(namespace|description).*"/>
         <option name="project_name" type="hidden" default="testing" alias="testingpn"/>
       </group>
     </template>
-    <template name="collective.generic.plone41_tma" output="src" order="5000">
+    <template name="genericskel.plone41_tma" output="src" order="5000">
       <group name="Package tuning" order="1">
         <option name="project_name" type="hidden" default="tma" alias="tmapn"/>
         <excludeoptions prefix=".*(namespace|description).*"/>

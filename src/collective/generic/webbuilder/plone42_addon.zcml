@@ -98,7 +98,7 @@
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
     </template>
-    <template name="collective.generic.plone_addon" output="src" order="2000">
+    <template name="genericskel.plone_addon" output="src" order="2000">
        <group name="Package tuning" order="1">
         <option name='nested_namespace'   />
         <option name='version'            />
