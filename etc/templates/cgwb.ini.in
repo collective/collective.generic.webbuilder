@@ -41,11 +41,11 @@ zcmls=
       plone42_addon.zcml
       plone43_addon.zcml
       plone44_addon.zcml
-      plone41.zcml
-      plone4.zcml
-      plone3.zcml
-      django.zcml
-      pyramid.zcml
+#      plone41.zcml
+#      plone4.zcml
+#      plone3.zcml
+#      django.zcml
+#      pyramid.zcml
       plone-addon.zcml
       egg.zcml
 [app:static]
