@@ -11,6 +11,7 @@
         <option name='url'                />
         <option name='scm_type'           />
         <option name='uri'                />
+        <option name='homepage'                />
         <option name='description'        />
         <option name='keywords'           />
         <option name='license_name'       />
@@ -18,6 +19,7 @@
         <option name="with_generic"    type="hidden" default="false"    />
       </group>
       <group name="Plone Settings" order="080">
+        <option name="pthemename" />
         <option name="http_port" />
         <option name="with_policy_support"           type="boolean"/>
         <option name="with_zope2_skins"           type="boolean"/>
@@ -30,17 +32,6 @@
         <options  prefix="^with_binding.*" type="boolean"/>
         <options prefix="^with_database.*" type="boolean"/>
         <options prefix="^with_egg.*" type="boolean"/>
-      </group>
-      <group name="Plone Products - Infrastructure" order="500" >
-        <option name='with_ploneproduct_cachesetup'   type="boolean" default="n"/>
-        <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
-        <option name="with_ploneproduct_ploneappblob" type="boolean"/>
-        <option name='with_ploneproduct_csvreplica'          type="boolean" default="n" />
-        <option name='with_ploneproduct_harlequin'   type="boolean" default="n"/>
-        <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
-        <option name="with_ploneproduct_clouseau"  type="boolean" default="n"/>
-        <option name="with_ploneproduct_csteps"           type="boolean"/>
-        <options prefix="^fss.*"/>
       </group>
       <group name="Plone Products" order="590" >
         <options prefix="^with_experimental.*" type="boolean" />

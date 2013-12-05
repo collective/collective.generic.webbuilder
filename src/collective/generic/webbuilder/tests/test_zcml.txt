@@ -27,7 +27,7 @@ First of all, we need to define a template
     >>> from zope.configuration.config import ConfigurationMachine
     >>> from collective.generic.webbuilder.zcml import PasterConfiguration, Template, Group, ExcludeOption, Option
     >>> from collective.generic.webbuilder.models import root
-    >>> from collective.generic.skel.buildout import plone3
+    >>> from collective.generic.skel.buildout import plone
     >>> import collective.generic.webbuilder
     >>> context = ConfigurationMachine()
     >>> xmlconfig.registerCommonDirectives(context)
@@ -41,7 +41,7 @@ First of all, we need to define a template
     ...       <excludeoptions prefix="project_.*" />
     ...       <excludeoption  name="python" />
     ...    </template>
-    ...    <template name="genericskel.buildout.plone3" order="1">
+    ...    <template name="genericskel.buildout.plone" order="1">
     ...       <group name="Metadata" order="05">
     ...         <option name="install_method" alias="ai"/>
     ...         <options prefix=".*with.*" default="true" type="boolean"/>
@@ -76,7 +76,7 @@ The configurations objects contain a list of templates and plugins
 
     >>> templates = root.configurations['Test Generic Portal Plone'].templates
     >>> sorted(templates.keys())
-    ['collective.generic.policy', 'genericskel.buildout.plone3']
+    ['collective.generic.policy', 'genericskel.buildout.plone']
 
 
 The *template* directive
@@ -91,11 +91,11 @@ The *template* directive
 
 ::
 
-    >>> t = templates['genericskel.buildout.plone3']
+    >>> t = templates['genericskel.buildout.plone']
     >>> t.order
     1
     >>> t.name
-    'genericskel.buildout.plone3'
+    'genericskel.buildout.plone'
 
 
 A template can also say that it must be generated under a 'subdirectory' with the ``output`` attribute.
@@ -190,7 +190,7 @@ The *excludeoptions* & *excludeoption* directives
 
 ::
 
-    >>> [[getattr(templates[template].groups['default'], attr).keys() for attr in 'exclude_options', 'excludes_options'] for template in 'genericskel.buildout.plone3', 'collective.generic.policy']
+    >>> [[getattr(templates[template].groups['default'], attr).keys() for attr in 'exclude_options', 'excludes_options'] for template in 'genericskel.buildout.plone', 'collective.generic.policy']
     [[['python'], ['project_.*']], [['python'], ['project_.*']]]
 
 

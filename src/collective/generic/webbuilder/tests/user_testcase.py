@@ -4,9 +4,8 @@ from globals import _callFUT
 
 from collective.generic.webbuilder.tests.utils import _LAUNCHED_SERVERS
 
-CGWG_ZCMLS = ['configure.zcml', 
-              'plone3.zcml', 
-              'plone4.zcml',
+CGWG_ZCMLS = ['configure.zcml',
+              'plone.zcml',
              ]
 
 def collective_generic_webbuilder_setUp(self):
@@ -17,7 +16,7 @@ def collective_generic_webbuilder_setUp(self):
     config = testing.setUp()
     config.include('pyramid_zcml')
     #testing.registerRoutesMapper()
-    context = None 
+    context = None
     for zcml in CGWG_ZCMLS:
         config.load_zcml('collective.generic.webbuilder:%s'%zcml)
 

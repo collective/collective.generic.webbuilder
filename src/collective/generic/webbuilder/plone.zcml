@@ -1,10 +1,10 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Portal Plone42 NG">
+  <genericpaster name="Generic Portal Plone">
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
     <plugin name="egginfo_plugin" order="2"/>
-   <template name="genericskel.buildout.plone42" order="1">
+    <template name="genericskel.buildout.plone" order="1">
        <group name="Metadata" order="05">
         <option name="with_no_zcml"  type="hidden" default="y"/>
         <option name="with_generic"  type="hidden" default="y"/>
@@ -17,7 +17,7 @@
         <option name="install_method"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
-      <group name="Plone Settings" order="080">
+      <group name="Plone Settings" order="6">
         <option name="plone_version" />
         <option name="with_checked_versions" type="boolean" default="y"/>
         <option name="http_port" />
@@ -32,12 +32,17 @@
         <option name="with_zope2_skins"           type="boolean" default="y"/>
         <option name="with_zeo_socket" type="boolean" default="n" />
         <option name="zope_password" />
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+        <options prefix="^with_cache.*" type="boolean" />
+        <options prefix="^with_haproxy.*" type="boolean" />
+        <options prefix="^haproxy.*"  />
       </group>
       <group name="Deliverance support" order="100">
         <option name="with_deliverance_support" type="boolean" />
         <options prefix="deliverance_.*" />
       </group>
-      <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
+      <group name="Reverse proxy configuration if any (apache, nginx, etc.)" order="10">
         <options prefix="reverseproxy_.*" />
         <options prefix="apache.*" />
       </group>
@@ -47,17 +52,13 @@
       <group name="Relstorage options if any" order="200">
         <options  prefix="^relstorage.*"/>
       </group>
-      <group name="Contineous integration settings (buildbot and hudson support)" order="290">
-        <options prefix="^buildbot.*" />
-        <options prefix="^hudson.*" />
-      </group>
       <group name="Database bindings" order="30">
         <options prefix="^with_database.*" type="boolean"/>
       </group>
       <group name="Misc  bindings" order="40">
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
-      <group name="Plone Products - Infrastructure" order="500" >
+      <group name="Plone Products" order="590" >
         <option name='with_ploneproduct_cachesetup'   type="boolean" default="n"/>
         <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
         <option name="with_ploneproduct_ploneappblob" type="boolean"/>
@@ -66,28 +67,19 @@
         <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
         <option name="with_ploneproduct_clouseau"  type="boolean" default="n"/>
         <option name="with_ploneproduct_csteps"           type="boolean"/>
-        <options prefix="^fss.*"/>
-      </group>
-      <group name="Plone Products" order="590" >
+        <options prefix="^fss.*"/>   
         <option name="with_ploneproduct_patheming"  type="boolean" default="y"/>
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>
-      <group name="PYthon eggs to install from development repository" order="600" >
+      <group name="python eggs to install from development repository" order="600" >
         <options prefix="^with_autocheckout.*" type="boolean" default="n"/>
       </group>
       <group name="Additionnal Tools" order="800">
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
       </group>
-      <group name="Monitoring Tools" order="810">
-        <options prefix="^with_supervisor.*" type="boolean" />
-        <options prefix="^supervisor.*"  />
-      </group>
-      <group name="Loadbalancing Tools" order="820">
-        <options prefix="^with_haproxy.*" type="boolean" />
-        <options prefix="^haproxy.*"  />
-      </group>
+
       <group name="Solr support Tools" order="831">
         <options prefix="^with_indexing_solr.*" type="boolean" />
         <options prefix="^solr.*"  />
@@ -104,12 +96,13 @@
         <option name='version'            />
         <option name='author'             />
         <option name='author_email'       />
+        <option name="pthemename" />
         <option name='description'     alias="descriptionpn"   />
         <option name='keywords'           />
         <option name='license_name'       />
         <option name='default_theme'       />
         <option name='smtp_host'          />
-        <excludeoptions prefix=".*(namespace|project_name).*"/> 
+        <excludeoptions prefix=".*(namespace|project_name).*"/>
         <option name='smtp_port'          />
         <option name="with_generic"    type="hidden" default="true"    />
         <options prefix="with_zope2_skins" type="hidden" default="y"/>

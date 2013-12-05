@@ -36,14 +36,10 @@ use = egg:collective.generic.webbuilder#cgwb_app
 # this is a good place for adding some new paster configurations
 # to cgwb
 zcmls=
-      plone40_addon.zcml
-      plone41_addon.zcml
-      plone42_addon.zcml
-      plone43_addon.zcml
-      plone44_addon.zcml
+      plone.zcml
+      plone-addon.zcml
       django.zcml
       pyramid.zcml
-      plone-addon.zcml
       egg.zcml
 [app:static]
 #use = egg:Paste#static
