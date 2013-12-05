@@ -55,7 +55,7 @@ Download & install via the minibuild
     python bootstrap.py
     bin/buildout
 
-Generating & deploying your project using minitage
+Generating & deploying your project
 -----------------------------------------------------------
 Launching the cgwb server
 ++++++++++++++++++++++++++++++++
@@ -66,7 +66,7 @@ To see all the available options, just use::
     ./l.sh
 
 - At the moment, cgwb do not have some session mecanism, so the only way to replay a generation is to use the providen link in the generated tarball
-- If you want to store your choices to redo an updated tarball later, just clink on the link.
+- If you want to store your choices to redo an updated tarball later, just clink on the link providen by the file LINK_TO_REGENERATE.html in the produced tarball.
 
 Filling the settings, some notes
 +++++++++++++++++++++++++++++++++++++++++++
