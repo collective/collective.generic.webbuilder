@@ -1,14 +1,13 @@
 bin
+cgwb-eggs.tar.gz
 etc/generated-kgs.cfg
 kgs.cfg
 etc/cgwb.ini
-sys.cfg
 var
 etc/init.d
 etc/cwgb.ini
 seleniums
 tags.python
-sys
 eggs
 develop-eggs
 .minitage
@@ -22,3 +21,4 @@ src/collective.generic.devmode/
 src/collective.generic.skel/
 src/minitage.paste
 src/minitage.paste.old/
+gen_path

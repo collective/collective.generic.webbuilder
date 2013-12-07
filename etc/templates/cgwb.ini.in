@@ -1,29 +1,16 @@
 # CGWB WSGI CONFIGURATION FILE
-# You can just copy/edit and use with paster serve <file> instead of the ./cgwb shortlink
 
 [DEFAULT]
 url_test = false
-debug = ${parts.settings.debug}
+debug = ${parts.buildout.debug}
 
 [composite:main]
 use = egg:Paste#urlmap
 /= pwebbuilder
-/cgwb/ = pwebbuilder
-/static/ = pstatic
 
 [pipeline:pwebbuilder]
-pipeline = vhm
-           egg:Paste#cgitb
-	   translogger
-           egg:Paste#evalerror
+pipeline = translogger
            webbuilderapp
-[pipeline:pstatic]
-pipeline = vhm
-	   translogger
-           static
-
-[filter:vhm]
-use= egg:repoze.vhm#vhm_xheaders
 
 [filter:translogger]
 use=egg:Paste#translogger
@@ -31,29 +18,24 @@ setup_console_handler = False
 logger_name = wsgi
 
 [app:webbuilderapp]
-use = egg:collective.generic.webbuilder#cgwb_app
+use = egg:collective.generic.webbuilder#cgwb
 # alternative zcml to load on startup
 # this is a good place for adding some new paster configurations
 # to cgwb
-zcmls=
-      plone.zcml
-      plone-addon.zcml
-      django.zcml
-      pyramid.zcml
-      egg.zcml
-[app:static]
-#use = egg:Paste#static
-#document_root = %(here)s/templates/static
-use = egg:Paste#pkg_resources
-egg = collective.generic.webbuilder
-resource_name=collective/generic/webbuilder/templates/static
-
+gen_path=${parts.buildout.gen_path}
+zcmls= plone.zcml
+       plone-addon.zcml
+       django.zcml
+       django-addon.zcml
+       pyramid.zcml
+       pyramid-addon.zcml
+       egg.zcml
 
 [loggers]
 keys = root,wsgi,routes
 
 [handlers]
-keys = fconsole,console,accesslog,errorlog
+keys = console
 
 [formatters]
 keys = generic,accesslog
@@ -61,12 +43,12 @@ keys = generic,accesslog
 # Send warnings that are not caught by other loggers to the console
 [logger_root]
 level = NOTSET
-handlers = console,fconsole
+handlers = console
 
 # Send all messages to the 'wsgi' logger to the accesslog and errorlog handlers
 [logger_wsgi]
 level = NOTSET
-handlers = accesslog,errorlog,console,fconsole
+handlers = console
 qualname = wsgi
 propagate = 0
 
@@ -74,7 +56,7 @@ propagate = 0
 # with DEBUG level.
 [logger_routes]
 level = NOTSET
-handlers = console,fconsole
+handlers = console
 qualname = routes.middleware
 propagate = 0
 
@@ -83,27 +65,6 @@ propagate = 0
 class = StreamHandler
 args = (sys.stderr,)
 level = INFO
-formatter = generic
-
-# Handler for writing access.log style log lines to an "access.log" file
-[handler_fconsole]
-class = FileHandler
-args = ('${parts.buildout.directory}/var/log/console.log','a')
-level = INFO
-formatter = generic
-
-# Handler for writing access.log style log lines to an "access.log" file
-[handler_accesslog]
-class = FileHandler
-args = ('${parts.buildout.directory}/var/log/access.log','a')
-level = INFO
-formatter = accesslog
-
-# Handler for writing error messages to an "error.log" file
-[handler_errorlog]
-class = FileHandler
-args = ('${parts.buildout.directory}/var/log/error.log','a')
-level = WARNING
 formatter = generic
 
 # A generic formatter that prints the time, the logger's name, the level and the message
@@ -116,7 +77,7 @@ format = %(asctime)s %(name)s[%(levelname)s] %(message)s
 format = %(message)s
 
 [server:main]
-use=egg:Paste#http
-host=${parts.hosts.cgwb}
-port=${parts.ports.cgwb}
+use=egg:waitress#main
+host=${parts.buildout.host}
+port=${parts.buildout.port}
 # vim:set ft=cfg:

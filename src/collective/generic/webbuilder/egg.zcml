@@ -21,7 +21,6 @@
         <options prefix="^with_egg.*" type="boolean"/>
       </group>
       <group name="" order="1">
-        <excludeoption  name="python" />
         <excludeoption  name="project_name" />
         <excludeoption  name="nested_namespace" />
         <excludeoption  name="namespace" />

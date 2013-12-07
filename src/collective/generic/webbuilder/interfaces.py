@@ -33,10 +33,12 @@ from zope.interface.interface import adapter_hooks
 from zope.interface import Interface, Attribute
 from zope import component
 
+
 def hook(provided, object, name=''):
     adapter = component.getAdapter(object, provided, name=name)
     return adapter(object)
 adapter_hooks.append(hook)
+
 
 class IPostGenerationPlugin(Interface):
     """Run after all paster have ran
@@ -45,8 +47,10 @@ class IPostGenerationPlugin(Interface):
     """
     name = Attribute("name")
     order = Attribute("order")
+
     def process(output_dir, project_name, params):
         """."""
+
 
 class IPasterAssembly(Interface):
     """describe an assembly of pasters."""
@@ -54,6 +58,7 @@ class IPasterAssembly(Interface):
     configuration_name = Attribute('configuration name')
     template_data = Attribute('template data')
     added_options = Attribute('added options')
+
 
 class IPasterAssemblyReader(Interface):
     """."""

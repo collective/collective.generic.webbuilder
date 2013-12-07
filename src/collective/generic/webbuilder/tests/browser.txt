@@ -90,9 +90,7 @@ We can see that in the main page we have the default configurations and the cust
 
     >>> 'test Assembler' in browser.contents
     True
-    >>> 'Generic Portal Plone4' in browser.contents
-    True
-    >>> 'Generic Portal Plone3' in browser.contents
+    >>> 'Generic Portal Plone' in browser.contents
     True
 
 Following the test assembler link
@@ -131,19 +129,20 @@ In the produced tarball, output directories present in the zcml configuration ar
 
     >>> files = [a.name for a in tar];files.sort();pprint(files)
     ['.',
-     '1',
-     '1/myproject',
-     '1/myproject/test',
-     '2',
-     '2/myproject',
-     '2/myproject/test1',
-     '3',
-     '3/myproject',
-     '3/myproject/test2']
+     './1',
+     './1/myproject',
+     './1/myproject/test',
+     './2',
+     './2/myproject',
+     './2/myproject/test1',
+     './3',
+     './3/myproject',
+     './3/myproject/test2',
+     './LINK_TO_REGENERATE.html']
     >>> templates = dict([(a.name,a) for a in tar if 'test' in a.name])
-    >>> t2 = templates['2/myproject/test1']
-    >>> t3 = templates['3/myproject/test2']
-    >>> t1 = templates['1/myproject/test']
+    >>> t2 = templates['./2/myproject/test1']
+    >>> t3 = templates['./3/myproject/test2']
+    >>> t1 = templates['./1/myproject/test']
 
 Options filled in the interface are well interpreted in templates
 ::

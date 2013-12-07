@@ -1,11 +1,9 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Portal Django">
-    <template name="genericskel.buildout.django" order="4">
-     <group name="Medadata" order="050">
-       <!--
-         <option name="with_no_zcml"  type="hidden" default="y" />
-         -->
+  <genericpaster name="Generic Pyramid app">
+    <plugin name="egginfo_plugin" order="1"/>
+    <template name="genericskel.pyramid" order="2000">
+      <group name="Metadata" order="050">
         <option name="author_email" />
         <option name="author" />
         <option name="scm_type" />
@@ -16,25 +14,24 @@
         <option name="effective_user"/>
         <option name="homepage" default="http://www.generic.com"/>
       </group>
-      <group name="Django Settings" order="080">
-        <option name="django_version" />
+      <group name="Pyramid packages" order="1000">
+        <options prefix="^with_pyramid.*" type="boolean"/>
+      </group>
+      <group name="Python packages" order="078">
+        <options prefix="^with_egg.*" type="boolean"/>
+      </group>
+      <group name="pyramid Settings" order="080">
+        <option name="pyramid_version" />
         <option name="with_checked_versions" type="boolean" default="y"/>
         <option name="http_port" />
         <option name="address" />
         <option name="mode" />
         <option name="admin_user" />
         <option name="admin_password" />
-        <options prefix="^with_supervisor.*" type="boolean" />
-        <options prefix="^supervisor.*"  />
-        <options prefix="^django.*"  />
       </group>
       <group name="Database Settings" order="080">
         <options prefix="with_database.*" type="boolean"/>
         <options prefix="db_.*"/>
-      </group>
-      <group name="Deliverance support" order="100">
-        <option name="with_deliverance_support" type="boolean" />
-        <options prefix="deliverance_.*" />
       </group>
       <group name="Reverse proxy configuration if any (apache, etc.)" order="110">
         <options prefix="reverseproxy_.*" />
@@ -48,16 +45,13 @@
         <options prefix="^with_tool.*" type="boolean" />
         <option name='with_cgeneric'  type="boolean" default="n" />
       </group>
-
+      <group name="Monitoring Tools" order="810">
+        <options prefix="^with_supervisor.*" type="boolean" />
+        <options prefix="^supervisor.*"  />
+      </group>
       <group name="Loadbalancing Tools" order="820">
         <options prefix="^with_haproxy.*" type="boolean" />
         <options prefix="^haproxy.*"  />
-      </group>
-      <group name="Django packages" order="1000">
-        <options prefix="^with_django.*" type="boolean"/>
-      </group>
-      <group name="Python packages" order="1000">
-        <options prefix="^with_egg.*" type="boolean"/>
       </group>
       <group name="GIS Support" order="1000">
         <options prefix="^with_gis.*" type="boolean"/>
@@ -67,20 +61,6 @@
       </group>
       <excludeoptions prefix="project_.*" />
       <excludeoption  name="python" />
-    </template>
-    <template name="genericskel.django" output="src" order="2000">
-       <group name="Package tuning" order="1">
-        <option name='nested_namespace'   />
-        <option name='version'            />
-        <option name='author'             />
-        <option name='author_email'       />
-        <option name='url'                />
-        <option name='description'        />
-        <option name='keywords'           />
-        <option name='license_name'       />
-        <excludeoptions prefix=".*(namespace|description).*"/>
-      <excludeoptions prefix="project_.*" />
-      </group>
     </template>
   </genericpaster>
 </configure>

@@ -30,16 +30,16 @@
 __docformat__ = 'restructuredtext en'
 
 import os
-import sys
 import re
 
-re_flags = re.M|re.U|re.I|re.S
+re_flags = re.M | re.U | re.I | re.S
 
 from zope.interface import implements
 from collective.generic.webbuilder import interfaces
 from iniparse import INIConfig
 
 from collective.generic.webbuilder.utils import remove_path
+
 
 class DummyPlugin(object):
     implements(interfaces.IPostGenerationPlugin)
@@ -56,7 +56,7 @@ class DummyPlugin(object):
 
 def remove_egg_info(p):
     for dirpath, dirnames, filenames in os.walk(p):
-        for filename in dirnames+filenames:
+        for filename in dirnames + filenames:
             if 'egg-info' in filename:
                 remove_path(
                     os.path.join(dirpath, filename)
@@ -65,10 +65,12 @@ def remove_egg_info(p):
             subdir = os.path.join(dirpath, directory)
             remove_egg_info(subdir)
 
+
 class EggInfoPlugin(DummyPlugin):
 
     def process(self, output_dir, project_name, params):
         remove_egg_info(output_dir)
+
 
 class EggPlugin(DummyPlugin):
 
@@ -85,26 +87,23 @@ class EggPlugin(DummyPlugin):
                     devnames.append(os.path.join('src', path))
         zcmlnames = [n
                      for n in eggsnames
-                     if (('policy' in n)
-                         or (n==project_name)
-                         or (n=='%s.core' % project_name)
-                        )]
+                     if (
+                         ('policy' in n)
+                         or (n == project_name)
+                         or (n == '%s.core' % project_name)
+                     )]
 
         f = os.path.join(output_dir, 'buildout.cfg')
         sf = os.path.join(
             output_dir, 'etc', 'project', 'sources.cfg')
-        pf = os.path.join(output_dir,
-                         'etc', 'project',
-                         '%s.cfg' % project_name
-                        )
+        pf = os.path.join(
+            output_dir, 'etc', 'project', '%s.cfg' % project_name)
         if os.path.exists(pf):
             f = pf
         else:
             for i in ['django', 'plone', 'pyramid']:
-                pf = os.path.join(output_dir,
-                                  'etc', 'project',
-                                  '%s.cfg' % i
-                                 )
+                pf = os.path.join(
+                    output_dir, 'etc', 'project', '%s.cfg' % i)
                 if os.path.exists(pf):
                     f = pf
         cfg = INIConfig(open(f))
@@ -114,17 +113,16 @@ class EggPlugin(DummyPlugin):
         else:
             srccfg = cfg
 
-        extdevoption_re  = re.compile('develop\s*\+\s*', re_flags)
-        devoption_re     = re.compile('develop\s*', re_flags)
-        autocheckout_option_re     = re.compile(
+        extdevoption_re = re.compile('develop\s*\+\s*', re_flags)
+        devoption_re = re.compile('develop\s*', re_flags)
+        autocheckout_option_re = re.compile(
             'auto-checkout\s*', re_flags)
-        ext_autocheckout_option_re     = re.compile(
+        ext_autocheckout_option_re = re.compile(
             'auto-checkout\s*\+\s*', re_flags)
         exteggsoption_re = re.compile('eggs\s*\+\s*', re_flags)
-        eggsoption_re    = re.compile('eggs\s*', re_flags)
-        eggsoption_re    = re.compile('eggs\s*', re_flags)
-        devoption, eggsoption= 'develop+', 'eggs+'
-        autocheckout_option = 'autocheckout+'
+        eggsoption_re = re.compile('eggs\s*', re_flags)
+        eggsoption_re = re.compile('eggs\s*', re_flags)
+        devoption, eggsoption = 'develop+', 'eggs+'
         devfound, eggsfound, acfound = False, False, False
         for optionre in [ext_autocheckout_option_re,
                          autocheckout_option_re, ]:
@@ -197,8 +195,8 @@ class EggPlugin(DummyPlugin):
                          if a.strip()])
 
         # zcml are now handled via collective.generic.skel
-        extzcmloption_re  = re.compile('zcml\s*\+\s*', re_flags)
-        zcmloption_re     = re.compile('zcml\s*', re_flags)
+        extzcmloption_re = re.compile('zcml\s*\+\s*', re_flags)
+        zcmloption_re = re.compile('zcml\s*', re_flags)
         zcmlfound = False
         for optionre in [extzcmloption_re, zcmloption_re, ]:
             if 'buildout' in cfg:
@@ -212,26 +210,28 @@ class EggPlugin(DummyPlugin):
             for eggn in zcmlnames:
                 if 'buildout' in cfg:
                     if not (eggn in cfg.buildout[zcmloption]):
-                        if (('policy' in eggn )
+                        if (
+                            ('policy' in eggn)
                             or ('tma' in eggn)
                             or ('.core' in eggn)
                             or (project_name == eggn)
-                           ):
+                        ):
                             cfg.buildout[zcmloption] = '\n    '.join([
                                 a for a in
                                 cfg.buildout[zcmloption].strip(),
                                 eggn if a.strip()])
         else:
-            zcmloption = ''
             for eggn in zcmlnames:
                 if 'instance' in cfg:
                     if 'policy' in eggn:
-                        cfg.buildout[zcmloption] = '\n    ' % (
-                            [a for a in eggn,
-                            cfg.buildout[zcmloption].strip()
-                            if a.strip()])
+                        oldzcml = ''
+                        if 'zcml' in cfg.buildout:
+                            oldzcml = cfg.buildout['zcml'].strip()
+                        cfg.buildout['zcml'] = '\n    ' % (
+                            [a for a in eggn, oldzcml
+                             if a.strip()])
         f = open(f, 'w')
-        cfg = '%s'%cfg
+        cfg = '%s' % cfg
         cfg = cfg.replace('+ =', ' +=')
         f.write(cfg)
         f.close()

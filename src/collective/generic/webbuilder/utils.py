@@ -32,10 +32,12 @@ __docformat__ = 'restructuredtext en'
 import os
 import shutil
 
+
 def splitstrip(l):
     return [a.strip()
             for a in l.split()
             if a.strip()]
+
 
 def remove_path(path):
     """Remove a path."""

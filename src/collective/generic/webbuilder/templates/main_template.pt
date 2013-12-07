@@ -11,10 +11,10 @@
     <title>Welcome to Collective.generic.webbbuilder generator</title>
     <meta name="keywords" content="python web application" />
     <meta name="description" content="repoze.bfg web application" />
-    <link href="${request.application_url}/static/makina.css" rel="stylesheet" type="text/css" />
+    <link href="${request.application_url}/resources/makina.css" rel="stylesheet" type="text/css" />
     <tal metal:define-slot="css" tal:omit-tag=""></tal>
     <tal metal:define-slot="js" tal:omit-tag=""></tal>
-    <link href="${request.application_url}/static/images/favicon.ico" rel="shortcut icon"/>
+    <link href="${request.application_url}/resources/images/favicon.ico" rel="shortcut icon"/>
   </head>
   <body tal:define="url python:request.application_url">
     <div class="document">

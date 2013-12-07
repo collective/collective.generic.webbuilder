@@ -1,0 +1,64 @@
+#!/bin/bash
+REAL_PREFIX="$(python -c "import sys;print sys.real_prefix")"
+VENV="${OPENSHIFT_DATA_DIR}/virtenv-buildout"
+PY="${VENV}/bin/python"
+CACHE_URL="https://downloads.sourceforge.net/project/makinacorpus/eggs-cache/${OPENSHIFT_APP_NAME}-eggs.tar.gz"
+compil_flags() {
+    export CFLAGS="-I${VENV}/include"
+    for i in "${VENV}/lib"*;do
+        export LDFLAGS="$LDFLAGS -L$i -Wl,-rpath -Wl,$i"
+    done
+}
+for i in\
+    "${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache"\
+    "${OPENSHIFT_DATA_DIR}/egg-cache"\
+    "${OPENSHIFT_DATA_DIR}/eggs"\
+    "${OPENSHIFT_DATA_DIR}"\
+    ;do
+    if [ ! -e "${i}" ]; then
+        mkdir -p "$i"
+    fi
+done
+if [ ! -e ${VENV} ];then
+    virtualenv --no-site-packages "$VENV"
+    . $VENV/bin/activate
+    easy_install -U setuptools
+    deactivate
+fi
+for i in "$REAL_PREFIX/include"* "$REAL_PREFIX/lib"*;do
+    libdirname="$(basename $i)"
+    for f in $i/*;do
+        ficname="$(basename $f)"
+        dest="$VENV/$libdirname/$ficname"
+        if [[ ! -e "$dest" ]];then
+            ln -sfv "$f" "$dest"
+        fi
+    done
+done
+. $VENV/bin/activate
+pushd ${OPENSHIFT_REPO_DIR}
+if [[ ! -e "${OPENSHIFT_DATA_DIR}/cache.tgz" ]]; then
+    wget "$CACHE_URL" -cO "${OPENSHIFT_DATA_DIR}/cache.tgz"
+    if [[ "$?" != "0" ]];then
+        rm -rf "${OPENSHIFT_DATA_DIR}/cache.tgz"
+    fi
+    tar xzvf "${OPENSHIFT_DATA_DIR}/cache.tgz" -C "${OPENSHIFT_DATA_DIR}"
+fi
+cat >> openshift-buildout.cfg << EOF
+[buildout]
+extends=openshift.cfg
+data-directory = ${OPENSHIFT_DATA_DIR}
+host = ${OPENSHIFT_INTERNAL_IP}
+port = ${OPENSHIFT_INTERNAL_PORT}
+dnshost = ${OPENSHIFT_APP_DNS}
+
+eggs-directory = ${OPENSHIFT_DATA_DIR}/eggs/
+download-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
+extends-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
+EOF
+compil_flags
+${PY} bootstrap.py -c openshift-buildout.cfg &&\
+    ./bin/buildout -Nc openshift-buildout.cfg &&\
+    rm -f ./wsgi && mkdir wsgi &&\
+    cp ./parts/application/wsgi wsgi/application
+exit $?
