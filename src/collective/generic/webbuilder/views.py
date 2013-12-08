@@ -249,7 +249,7 @@ def webbuilder_process(context, request):
                         '</div>' % (action, e, e.report())
                     )
                 except Exception, e:
-                    trace traceback.format_exc()
+                    trace = traceback.format_exc()
                     # raise
                     errors.append(
                         '<div class="error">'

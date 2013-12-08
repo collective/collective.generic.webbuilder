@@ -19,6 +19,12 @@
   <body tal:define="url python:request.application_url">
     <div class="document">
       <div id="header">
+        <a  class="github-badge"
+          href="https://github.com/collective/collective.generic.webbuilder" >
+          <img style=""
+            src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+            alt="Fork me on GitHub"/>
+        </a>
         <a href="${url}"><h1>Collective.generic.webuilder</h1></a>
         <a href="${url}"><h2>The Magic Generator</h2></a>
       </div>
@@ -28,7 +34,7 @@
       <div metal:define-slot="content">CONTENT</div>
       <div id="footer">
         <p>A solution initiated by <a target="blank" href="http://www.makina-corpus.com">Makina Corpus</a> developers</p>
-      </div> 
+      </div>
     </div>
   </body>
 </html>

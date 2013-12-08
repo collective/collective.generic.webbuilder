@@ -1,7 +1,26 @@
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin:0; padding:0; }
 body {font:12px Verdana, Tahoma, Arial,sans-serif;margin:100px 5px 5px 150px;padding:5px;background-color:#E7E7E7;width:960px;}
 h1 {font-size: 28px; letter-spacing: -2px; font-weight: normal;margin-top:30px;}
-#header {height:80px;background-color:#000000;background-image:url(images/logo.png); background-repeat:no-repeat ;color:#ffffff;padding:2px 40px 10px 20px;}
+#header {
+  height:80px;
+  background-color:#000000;
+  background-image:url(images/logo.png);
+  background-repeat:no-repeat;
+  color:#ffffff;
+  padding:2px 40px 10px 20px;
+  position:relative;}
+
+.github-badge  img{
+  position: absolute;
+  top: 0; right: 0;
+  border: 0;
+}
+.github-badge {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
 #header h1 {color:white;}
 #header h2 {color:#87B220;margin:0;padding-left:20px;padding-bottom:20px;font-size:16px;letter-spacing:-1px;font-weight:normal;}
 /* h2 {font-size: 16px; letter-spacing: -1px; font-weight: normal;margin-top:15px;}*/
@@ -88,7 +107,7 @@ input.hidden {
     color:transparent;
     width:0;height:0;
     background: transparent;
-} 
+}
 input.generate {
     border:none;
     color:transparent;
@@ -106,11 +125,7 @@ input.generate {
     padding-bottom: 50px;
     line-height:auto;
     background: transparent url(/static/images/error.png) no-repeat;
-
 }
-
 #projectaccordion {
   width:800px;
 }
-
-
