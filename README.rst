@@ -4,7 +4,7 @@ Introduction
 .. contents::
 
 
-CGWB is a web interface to ``paster``, its goal is to generate a webinterface
+`CGWB <http://cgwb-makinacorpus.rhcloud.com>`_ is a web interface to ``paster``, its goal is to generate a webinterface
 to selection options aggregated from a set of templates.
 
 Imagine that you have 2 templates, the one that can deploy an application,
@@ -20,7 +20,7 @@ As this server was developped as a quick and efficient interface to paster,
 *it is not safe to open it to wide internet.*
 For security reason, just launch/use when you need it.
 
-You can een test it `here <http://cgwb-makinacorpus.rhcloud.com>`_
+You can even test it `here <http://cgwb-makinacorpus.rhcloud.com>`_
 
 For now, we extensivly use templates from the `collective.generic.skel <https://github.com/collective/collective.generic.skel>`_ package
 
