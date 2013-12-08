@@ -20,8 +20,7 @@ As this server was developped as a quick and efficient interface to paster,
 *it is not safe to open it to wide internet.*
 For security reason, just launch/use when you need it.
 
-Next versions will include some sessions/roles and improved security,
-it may be possible at this stage to leave it open.
+You can een test it `here <http://cgwb-makinacorpus.rhcloud.com>`_
 
 For now, we extensivly use templates from the `collective.generic.skel <https://github.com/collective/collective.generic.skel>`_ package
 
