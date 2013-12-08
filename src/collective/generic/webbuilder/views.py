@@ -1,4 +1,5 @@
 import os
+import traceback
 import re
 import pkg_resources
 from uuid import uuid4
@@ -86,7 +87,7 @@ def webbuilder_process(context, request):
     params = dict(request.params)
     actions = [action for action in request.params
                if re.match('^submit_', action)]
-    noecho = [params.pop(action) for action in actions]
+    [params.pop(action) for action in actions]
     configuration = params.pop('configuration', None)
     download_path = None
     if not configuration:
@@ -95,6 +96,8 @@ def webbuilder_process(context, request):
         errors.append('Invalid configurations')
     if not errors:
         for action in actions:
+            output_dir_prefix = os.path.join(
+                get_generation_path(), "%s" % uuid4())
             if action in valid_actions:
                 try:
                     paster = get_paster(configuration)
@@ -104,17 +107,15 @@ def webbuilder_process(context, request):
                             'paste.global_paster_command',
                             'create')
                     ][0].load()
-                    noecho = [params.update({param: True})
-                              for param in params
-                              if params[param] in [u'on', u'checkbox_enabled']]
+                    [params.update({param: True})
+                     for param in params
+                     if params[param] in [u'on', u'checkbox_enabled']]
                     project = params.pop('project', None)
                     if not project:
                         project = ''
                     project = project.strip()
                     if not project:
                         raise Exception('Project does not exist or is empty')
-                    output_dir_prefix = os.path.join(
-                        get_generation_path(), "%s" % uuid4())
                     if (
                         os.path.exists(output_dir_prefix)
                         and len(os.listdir(output_dir_prefix)) > 0
@@ -128,7 +129,6 @@ def webbuilder_process(context, request):
                                                 output_dir_prefix))
                     # keep track of boolean options for descendant templates
                     boolean_consumed_options = {}
-
                     for template in paster.templates_data:
                         cparams = params.copy()
                         output_dir = output_dir_prefix
@@ -232,7 +232,6 @@ def webbuilder_process(context, request):
                             request=request,
                         )
                         os.remove(file_path)
-                        remove_path(output_dir_prefix)
 
                         return resp
                 except NoSuchConfigurationError:
@@ -250,14 +249,18 @@ def webbuilder_process(context, request):
                         '</div>' % (action, e, e.report())
                     )
                 except Exception, e:
-                    raise
+                    trace traceback.format_exc()
+                    # raise
                     errors.append(
                         '<div class="error">'
                         '<p>%s/ -- Error while reading paster variables:</p>'
                         '<p class="pythonerror">%r</p>'
                         '<p class="pythonerror">%s</p>'
-                        '</div>' % (action, e, e)
+                        '<p class="pythonerror"><pre>%s</pre>/p>'
+                        '</div>' % (action, e, e, trace)
                     )
+                finally:
+                    remove_path(output_dir_prefix)
     main = get_template('templates/main_template.pt').implementation()
 
     return render_to_response(
