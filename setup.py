@@ -80,7 +80,9 @@ setup(
                  'zope.testbrowser']},
     packages=find_packages('src'),
     package_dir = {'': 'src'},
-    install_requires=['setuptools'],
+    # do not add directly deps here to have a mean with
+    # sed to remove them on openshift before deploy hook
+    install_requires=['setuptools'] + APP_requires,
     entry_points={
         'paste.app_factory': ['cgwb=collective.generic.webbuilder:main'],
         'paste.paster_create_template': [
