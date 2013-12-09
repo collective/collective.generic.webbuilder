@@ -87,7 +87,7 @@ Companies
 Authors
 -------
 
-- kiorky <kiorky@cryptelium.net>
+- Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
 - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
 
 .. _`minitage installation`: http://minitage.org/installation.html
