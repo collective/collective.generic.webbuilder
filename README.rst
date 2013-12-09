@@ -38,8 +38,8 @@ Installation
 Installing cgwb
 -----------------------------------
 
-Install or udpate minitage in your dedicated virtualenv if any
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Install or update prerequisites
+++++++++++++++++++++++++++++++++
 ::
 
     sudo apt-get install -y build-essential m4 libtool pkg-config autoconf gettext bzip2 groff man-db automake libsigc++-2.0-dev tcl8.5 git libssl-dev libxml2-dev libxslt1-dev libbz2-dev zlib1g-dev python-setuptools python-dev libjpeg62-dev libreadline-dev python-imaging wv poppler-utils libsqlite0-dev libgdbm-dev libdb-dev tcl8.5-dev tcl8.5-dev tcl8.4 tcl8.4-dev tk8.5-dev libsqlite3-dev
@@ -87,7 +87,7 @@ Companies
 Authors
 -------
 
-- kiorky <kiorky@cryptelium.net>
+- Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
 - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
 
 .. _`minitage installation`: http://minitage.org/installation.html
