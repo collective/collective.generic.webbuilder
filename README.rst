@@ -38,7 +38,7 @@ Installation
 Installing cgwb
 -----------------------------------
 
-Install or udpate prerequisites
+Install or update prerequisites
 ++++++++++++++++++++++++++++++++
 ::
 
