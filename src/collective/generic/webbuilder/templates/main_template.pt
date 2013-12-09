@@ -6,8 +6,6 @@
   metal:define-macro="main">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="alternate" type="application/rss+xml" title="Feed Title" href="_static/feed.xml" />
-    <link rel="alternate" type="application/rss+xml" title="Feed Title" href="_static/devs_feed.xml" />
     <title>Welcome to Collective.generic.webbbuilder generator</title>
     <meta name="keywords" content="python web application" />
     <meta name="description" content="repoze.bfg web application" />

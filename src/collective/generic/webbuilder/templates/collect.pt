@@ -13,7 +13,7 @@
       <div id='projectaccordion'>
         <h2>Project name</h2>
         <div class="options">
-          <input type="text" title="project name" name="project" 
+          <input type="text" title="project name" name="project"
           tal:attributes="value  python:request.GET.get('project', '')"></input>
           <p>Its form is 'namespace.nested_namespace'. If the templates assembly includes egg generations,
             the resulted namespace and nested namespace are extracted from your entry.
@@ -27,25 +27,25 @@
         </div>
       </div>
       <tal tal:repeat="template templates" tal:omit-tag="">
-        <tal 
-          tal:omit-tag="" 
+        <tal
+          tal:omit-tag=""
           tal:condition="python: template['added_options']"
           tal:repeat="group python:template['groups']">
-          <tal 
+          <tal
             tal:condition="group['options']"
             tal:define="aid python:context.get_id('group%s' % group['name'])"
             tal:attributes="id aid" tal:omit-tag="">
-            <tal:for 
+            <tal:for
               tal:omit-tag=""
               tal:repeat="option python:group['options']">
-              <tal  
+              <tal
                 tal:omit-tag=""
                 tal:define="paster_var python:option[0];
                 option_type python:option[1];
                 option_alias python:option[2];
                 option_title python:option_alias and option_alias or paster_var.name;
                 option_value python:get_value(template, option_alias, paster_var.default)">
-                <input 
+                <input
                   class="hidden" type="hidden"
                   tal:condition="python:option_type == 'hidden'"
                   tal:attributes="name option_title;value python: option_value"> </input>
@@ -56,60 +56,67 @@
       </tal>
       <div tal:repeat="template templates" class="template">
         <tal tal:omit-tag="" tal:condition="python:template['display']" >
-          <h1 
+          <h1
             tal:condition="python: template['added_options']"
             tal:content="python:template['name']">
           </h1>
-          <tal 
-            tal:omit-tag="" 
+          <tal
+            tal:omit-tag=""
             tal:condition="python: template['added_options']"
             tal:define="tgid python:'%s-groups' % template['name'];
             tgid python:context.get_id(tgid);foo accordions.append(tgid)">
-            <div 
-              class="groups" 
+            <div
+              class="groups"
               tal:attributes="id tgid">
-              <tal:for 
+              <tal:for
                 tal:omit-tag=""
                 tal:repeat="group python:template['groups']">
                 <h2 tal:condition="group['options'] and group['name']" tal:content="python:group['name']"></h2>
-                <tal:block 
+                <tal:block
                   tal:define="aid python:context.get_id('group%s' % group['name']);
                   realoptions python:[o for o in group['options'] if not o[1]=='hidden']">
                   <div tal:condition="realoptions" tal:attributes="id aid" class="group" >
-                    <div class="options" tal:condition="realoptions">
-                      <tal:for 
-                        tal:omit-tag=""
-                        tal:repeat="option group['options']">
-                        <span
-                          tal:attributes="class python:'%s'%(repeat['option'].index%2 and 'even' or 'odd')"
-                          tal:define="paster_var python:option[0];
-                          option_type python:option[1];
-                          option_alias python:option[2];
-                          option_option python:option[3];
-                          option_title python:option_alias and option_alias or paster_var.name;
-                          option_description python:context.rewrite_description(paster_var.description);
-                          option_default python:request.GET.get(option_title, paster_var.default)">
-                          <input class="textfield" type="text"
-                            tal:condition="python:option_type == 'default'"
-                            tal:attributes="title option_title;
-                            name option_title;value python:option_default"></input>
-                          <tal 
-                            tal:omit-tag=""
-                            tal:condition="python:option[1] == 'boolean'" 
-                            tal:define="checked python:context.compute_value(option_default)">
-                            <input class="booleanfield" type="checkbox"
-                              tal:attributes="title python:option_title;
-                              value python:checked and 'checkbox_enabled' or False;
-                              name python:option_title;checked checked"></input>
-                          </tal>
-                          <div
-                            tal:condition="python:not option[1] in ['hidden']"
-                            tal:attributes="title python:option_title">
-                            <tal tal:replace="structure python:option_description"></tal>
-                            <div class="spacer"></div>
+                    <div class="options"
+                      tal:define="paired_options python:pair_options(group['options'])"
+                      tal:condition="realoptions">
+                      <div 
+                        class="paired-options"
+                        tal:repeat="paired_option paired_options">
+                        <tal:for
+                          tal:omit-tag=""
+                          tal:repeat="option paired_option">
+                          <div 
+                            tal:attributes="class python:'option %s'%(repeat['option'].index%2 and 'even' or 'odd')"
+                            tal:define="paster_var python:option[0];
+                            option_type python:option[1];
+                            option_alias python:option[2];
+                            option_option python:option[3];
+                            option_title python:option_alias and option_alias or paster_var.name;
+                            option_description python:context.rewrite_description(paster_var.description);
+                            option_default python:request.GET.get(option_title, paster_var.default)">
+                            <input class="textfield" type="text"
+                              tal:condition="python:option_type == 'default'"
+                              tal:attributes="title option_title;
+                              name option_title;value python:option_default"></input>
+                            <tal
+                              tal:omit-tag=""
+                              tal:condition="python:option[1] == 'boolean'"
+                              tal:define="checked python:context.compute_value(option_default)">
+                              <input class="booleanfield" type="checkbox"
+                                tal:attributes="title python:option_title;
+                                value python:checked and 'checkbox_enabled' or False;
+                                name python:option_title;checked checked"></input>
+                            </tal>
+                            <div class="optname"
+                              tal:condition="python:not option[1] in ['hidden']"
+                              tal:attributes="title python:option_title">
+                              <tal tal:replace="structure python:option_description"></tal>
+                              <div class="spacer"></div>
+                            </div>
                           </div>
-                        </span>
-                      </tal:for>
+                        </tal:for>
+                        <div class="spacer"></div>
+                      </div>
                       <div class="spacer"></div>
                     </div>
                   </div>

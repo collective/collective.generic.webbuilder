@@ -60,23 +60,48 @@ div.group {
 .template h2.ui-accordion-header {
     padding-left:30px;color:white;
 }
-.options span {padding:0;margin:0;width:400px;margin-left:10px;padding-top:20px;}
-.options .even{float:left;}
-.options  .odd{float:right;clear:right;}
-.options {color:#ab8c67 !important ;}
-.template .options div {    z-index:-1;        display:inline;width:250px;margin-bottom:10px;padding:0 15px 0 0;}
-.template .options input {color:black;float:right;display:inline;width:120px;margin-bottom:10px;padding:2px 15px 2px 6px;}
+.options {
+  color:#ab8c67 !important;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.template .options div.paired-options {
+  margin-top: 5px;
+  margin-bottom: 5px; 
+  vertical-align: top;
+}
+.template .options div.option {
+  display: inline-block;
+  padding: 10px 2px 0px 15px;
+  float: left;
+  margin: 0;
+}
+.template .options div.optname {
+  z-index: -1;
+  display:inline-block;
+  width: 250px;
+  padding: 0 0px 0 0px;
+}
+.template .options input {
+  color: black;
+  float: right;
+  display: inline;
+  width: 120px;
+  padding: 2px 15px 2px 6px;
+}
+a.option-desc-url {
+    position: absolute;
+    float: right;
+    width: 32px !important;
+    height: 32px !important;
+    margin-left: 10px;
+    background: transparent url(images/googles.png) no-repeat;
+    display: inline;
+    z-index: 1;
+}
 .spacer{clear:both;}
 .ui-widget-content {background:#262626 !important;}
-a.option-desc-url {
-    position:absolute;
-    float:right;
-    width: 32px !important;
-    height:32px !important;
-    margin-left:10px;
-    background: transparent url(images/googles.png) no-repeat ;
-    display:inline;z-index:1;
-}
 .template h2.ui-accordion-header {
     padding-left:30px;color:white;
 }
@@ -86,7 +111,6 @@ a:link    {color:orange; text-decoration:none;}
 a:visited {color:orange; text-decoration:none;}
 a:hover   {color:white; text-decoration:none;}
 a:active  {color:black; text-decoration:none;}
-
 .main_index li {font-size: 16px; letter-spacing: -1px; font-weight: normal;margin-top:15px;color:white;margin-left:50px;margin-top:10px;}
 .main_index ul {margin-bottom:20px;padding-left:35px;}
 .main_index h1 {padding-left:40px;}
@@ -114,8 +138,6 @@ input.generate {
     width:32px;height:32px;
     background: transparent url(images/work.png) no-repeat;
 }
-
-
 .errors {
     margin-left:250px;
     padding:left:50px;

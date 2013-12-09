@@ -170,11 +170,11 @@ class PasterAssemblyReader(object):
             else:
                 sort_items.extend([name, desc])
             key = '_'.join(sort_items).lower()
-            print key
+            #print key
             return key
-        for templates_data in p.templates_data:
+        for template_data in p.templates_data:
             for group in template_data['groups']:
                 group['options'].sort(key=option_sorter)
-                from pprint import pprint
-                pprint(group['options'])
+                #from pprint import pprint
+                #pprint(group['options'])
         self.readed = True

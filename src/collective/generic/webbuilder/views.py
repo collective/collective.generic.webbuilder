@@ -305,6 +305,7 @@ def webbuilder_collectinformation(context, request):
              context=context,
              main=main,
              templates=templates_data,
+             pair_options=pair_options,
              get_value=get_value),
         request=request,
     )
@@ -318,3 +319,15 @@ def get_value(template, aliasname, default=None):
             if aliasname == alias:
                 res = default
     return res
+
+
+def pair_options(l):
+    if not l:
+        return l
+    values = []
+    for ix, i in enumerate(l):
+        if ix % 2 == 0:
+            cur = []
+            values.append(cur)
+        cur.append(i)
+    return values
