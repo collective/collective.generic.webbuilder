@@ -6,6 +6,7 @@ from zope.interface import implements
 
 from collective.generic.webbuilder import interfaces
 from collective.generic.webbuilder.models import root
+from collective.generic.skel.buildout import common
 
 
 class NoSuchConfigurationError(Exception):
@@ -157,4 +158,23 @@ class PasterAssemblyReader(object):
                         dgd['options'].append(not_explicit_options[name])
                         template_data['added_options'].append(name)
                         p.added_options.append(name)
+
+        def option_sorter(item):
+            tvar = item[0]
+            order = getattr(tvar, 'order', common.default_var_order)
+            sort_items = [str(order)]
+            name = tvar.name
+            desc = tvar.description
+            if 'with_ploneproduct' in name:
+                sort_items.extend([desc, name])
+            else:
+                sort_items.extend([name, desc])
+            key = '_'.join(sort_items).lower()
+            print key
+            return key
+        for templates_data in p.templates_data:
+            for group in template_data['groups']:
+                group['options'].sort(key=option_sorter)
+                from pprint import pprint
+                pprint(group['options'])
         self.readed = True
