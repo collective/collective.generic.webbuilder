@@ -33,7 +33,7 @@
         <options prefix="^with_database.*" type="boolean"/>
         <options prefix="^with_egg.*" type="boolean"/>
       </group>
-      <group name="Plone Products" order="590" >
+      <group name="Plone Products (you can install more later)" order="590" >
         <options prefix="^with_experimental.*" type="boolean" />
         <options prefix="^with_ploneproduct.*" type="boolean" />
       </group>

@@ -58,7 +58,7 @@
       <group name="Misc  bindings" order="40">
         <options  prefix="^with_binding.*" type="boolean"/>
       </group>
-      <group name="Plone Products" order="590" >
+      <group name="Plone Products (you can install more later)" order="590" >
         <option name='with_ploneproduct_cachesetup'   type="boolean" default="n"/>
         <option name='with_ploneproduct_fss'          type="boolean" default="n"/>
         <option name="with_ploneproduct_ploneappblob" type="boolean"/>
