@@ -34,7 +34,7 @@ class Data(object):
         return True
 
     def get_id(self, value):
-        special_chars = ['.', '_', '-', ' ']
+        special_chars = ['.', '_', '-', ' ', '(', ')']
         for c in special_chars:
             value = value.replace(c, '')
         return value

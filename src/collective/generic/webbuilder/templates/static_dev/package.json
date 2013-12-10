@@ -1,0 +1,31 @@
+{
+  "name": "collective.generic.webbuilder",
+  "description": "Generic webbuilder Theme",
+  "version": "1.0.0",
+  "keywords": [],
+  "homepage": "http://www.makina-corpus.com",
+  "author": "Makina Corpus Inc.",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:collective/collective.generic.webbuilder.git"
+  },
+  "licenses": [
+    {
+      "type": "GPL-2",
+      "url": "http://www.gnu.org/licenses/gpl-2.0.html"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.3.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-copy": "0.4.0",
+    "grunt-contrib-jshint": "0.6.0",
+    "grunt-contrib-watch": "0.5.1",
+    "grunt-html-validation": "git://github.com/praveenvijayan/grunt-html-validation.git"
+  }
+}

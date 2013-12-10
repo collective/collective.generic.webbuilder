@@ -1,0 +1,23 @@
+{
+  "name": "collective-generic-webbuilder",
+  "version": "0.0.0",
+  "authors": [
+    "JeanMichel FRANCOIS <toutpt@gmail.com>"
+  ],
+  "description": "Theme for generic webbuilder",
+  "license": "GPL",
+  "homepage": "http://www.makina-corpus.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.0.2",
+    "font-awesome": "4.0.3",
+    "jquery": "1.10.2"
+  }
+}

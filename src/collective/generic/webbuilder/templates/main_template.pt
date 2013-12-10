@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -7,32 +6,59 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Welcome to Collective.generic.webbbuilder generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="python web application" />
     <meta name="description" content="repoze.bfg web application" />
-    <link href="${request.application_url}/resources/makina.css" rel="stylesheet" type="text/css" />
+    <link href="${request.application_url}/resources/css/style.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${request.application_url}/resources/js/script.min.js" ></script>
     <tal metal:define-slot="css" tal:omit-tag=""></tal>
     <tal metal:define-slot="js" tal:omit-tag=""></tal>
     <link href="${request.application_url}/resources/images/favicon.ico" rel="shortcut icon"/>
   </head>
   <body tal:define="url python:request.application_url">
-    <div class="document">
-      <div id="header">
-        <a  class="github-badge"
-          href="https://github.com/collective/collective.generic.webbuilder" >
-          <img style=""
-            src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-            alt="Fork me on GitHub"/>
-        </a>
-        <a href="${url}"><h1>Collective.generic.webuilder</h1></a>
-        <a href="${url}"><h2>The Magic Generator</h2></a>
-      </div>
-      <div class="errors" tal:condition="errors">
-        <ul tal:repeat="error errors"> <li tal:replace="structure error"></li></ul>
-      </div>
+<tal:errors tal:condition="errors">
+<div class="alert alert-danger" tal:repeat="error errors"
+     tal:content="structure error">
+</div>
+</tal:errors>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.makina-corpus.com">Makina-Corpus</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li><a tal:attributes="href url">Home</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+          <li tal:repeat="c python:root.configurations.keys()">
+             <a tal:attributes="href string:$url/collect/$c" tal:content="c"></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="row">
       <div metal:define-slot="content">CONTENT</div>
-      <div id="footer">
+      <a href="https://github.com/collective/collective.generic.webbuilder"><img style="position: absolute; top: 50px; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    </div>
+</div>
+    <footer>
+      <div class="container">
+      <div class="row">
         <p>A solution initiated by <a target="blank" href="http://www.makina-corpus.com">Makina Corpus</a> developers</p>
       </div>
-    </div>
+      </div>
+    </footer>
   </body>
 </html>
