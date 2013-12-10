@@ -267,6 +267,7 @@ def webbuilder_process(context, request):
         'templates/process.pt',
         dict(errors=errors,
              context=context,
+             root=root,
              output=output_dir_prefix,
              download_path=download_path,
              main=main),
