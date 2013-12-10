@@ -65,7 +65,6 @@
         <option name='with_ploneproduct_csvreplica'          type="boolean" default="n" />
         <option name='with_ploneproduct_harlequin'   type="boolean" default="n"/>
         <option name="with_ploneproduct_cbdancing"  type="boolean" default="n"/>
-        <option name="with_ploneproduct_clouseau"  type="boolean" default="n"/>
         <option name="with_ploneproduct_csteps"           type="boolean"/>
         <options prefix="^fss.*"/>   
         <options prefix="^with_experimental.*" type="boolean" />
