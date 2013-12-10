@@ -88,17 +88,17 @@ Companies
 ---------
 |makinacom|_
 
-* `Planet Makina Corpus <http://www.makina-corpus.org>`_
-* `Contact us <mailto:python@makina-corpus.org>`_
+* `Contact Makina Corpus <mailto:python@makina-corpus.org>`_
 
 .. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
 .. _makinacom:  http://www.makina-corpus.com
 
-Authors
--------
+People
+------
 
 - Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
 - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
+- Jean-Michel FRANCOIS <toutpt@gmail.com>
 
 .. _`minitage installation`: http://minitage.org/installation.html
 .. _`cgwb`: http://localhost:6253
