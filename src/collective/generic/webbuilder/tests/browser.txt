@@ -90,7 +90,7 @@ We can see that in the main page we have the default configurations and the cust
 
     >>> 'test Assembler' in browser.contents
     True
-    >>> 'Generic Portal Plone' in browser.contents
+    >>> 'Plone portal' in browser.contents
     True
 
 Following the test assembler link

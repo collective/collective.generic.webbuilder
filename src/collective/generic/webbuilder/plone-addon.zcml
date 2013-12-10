@@ -1,6 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Plone addon">
+  <genericpaster name="Plone addon">
     <plugin name="egginfo_plugin" order="1"/>
     <template name="genericskel.plone_addon" order="4000">
       <group name="Package description" order="2">

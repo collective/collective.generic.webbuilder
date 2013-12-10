@@ -15,7 +15,9 @@
     <tal metal:define-slot="js" tal:omit-tag=""></tal>
     <link href="${request.application_url}/resources/images/favicon.ico" rel="shortcut icon"/>
   </head>
-  <body tal:define="url python:request.application_url">
+  <body tal:define="url python:request.application_url;
+        generators python:root.configurations.keys();
+        dummy python:generators.sort();">
 <tal:errors tal:condition="errors">
 <div class="alert alert-danger" tal:repeat="error errors"
      tal:content="structure error">
@@ -36,9 +38,9 @@
     <ul class="nav navbar-nav">
       <li><a tal:attributes="href url">Home</a></li>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration <i class="fa fa-caret-down"></i></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Generators <i class="fa fa-caret-down"></i></a>
         <ul class="dropdown-menu">
-          <li tal:repeat="c python:root.configurations.keys()">
+          <li tal:repeat="c generators">
              <a tal:attributes="href string:$url/collect/$c" tal:content="c"></a>
           </li>
         </ul>

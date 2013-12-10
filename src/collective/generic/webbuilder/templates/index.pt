@@ -8,11 +8,11 @@
 </div>
 
 <div class="col-md-12">
-  <h2>Choose a configuration</h2>
-  <p>You can use the configuration menu in the navigation to change</p>
+  <h2>Choose a generator</h2>
+  <p>You can use the generators menu in the navigation to choose the generator</p>
   <div class="list-group">
     <a class="list-group-item"
-       tal:repeat="c python:root.configurations.keys()"
+       tal:repeat="c generators"
        tal:attributes="href string:collect/$c" tal:content="c"></a>
   </div>
 </div>

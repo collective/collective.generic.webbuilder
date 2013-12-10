@@ -39,9 +39,9 @@ Boiler plate to simulate a generation
 Running the plugin
 
     >>> from collective.generic.webbuilder.models import root
-    >>> conf = root.configurations['Generic Portal Plone']
+    >>> conf = root.configurations['Plone portal']
     >>> from collective.generic.webbuilder import interfaces, paster
-    >>> pa = paster.PasterAssembly('Generic Portal Plone')
+    >>> pa = paster.PasterAssembly('Plone portal')
     >>> plugin = zope.component.queryAdapter(pa, interfaces.IPostGenerationPlugin, name='egg_plugin')
     >>> plugin.process(d, 'foo', {})
     >>> print open('buildout.cfg').read()
@@ -77,7 +77,7 @@ Here is an example about the "eggs_plugins"
             factory=".plugins.EggPlugin"
             for=".interfaces.IPasterAssembly"
         />
-        <cgwb:genericpaster name="Generic Portal Plone">
+        <cgwb:genericpaster name="Plone portal">
             <cgwb:plugin name="egg_plugin" order="2"/>
             <cgwb:template name="genericskel.buildout.plone" order="1">
             </template>

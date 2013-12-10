@@ -1,6 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Portal Django">
+  <genericpaster name="Django portal">
     <template name="genericskel.buildout.django" order="4">
      <group name="Medadata" order="050">
        <!--

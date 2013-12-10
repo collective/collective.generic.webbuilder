@@ -1,6 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Portal Pyramid">
+  <genericpaster name="Pyramid portal">
     <!--<plugin name="dummy_plugin" order="1"/>-->
     <plugin name="egg_plugin" order="2"/>
     <template name="genericskel.buildout.pyramid" order="4">

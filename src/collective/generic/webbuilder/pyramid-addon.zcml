@@ -1,6 +1,6 @@
 <configure xmlns="http://webbuilder.org/webbuilder">
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
-  <genericpaster name="Generic Pyramid app">
+  <genericpaster name="Pyramid app">
     <plugin name="egginfo_plugin" order="1"/>
     <template name="genericskel.pyramid" order="2000">
       <group name="Metadata" order="050">
