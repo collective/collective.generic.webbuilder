@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: collective.generic.webbuilder 1.2dev\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-12-09 18:57-0530\n"
+"POT-Creation-Date: 2013-12-10 11:28-0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 
 #: src/collective/generic/webbuilder/templates/main_template.pt:11
 msgid "Welcome to Collective.generic.webbbuilder generator"
+msgstr ""
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:24
+msgid "Fork me on GitHub"
 msgstr ""
 
 #: src/collective/generic/webbuilder/templates/main_template.pt:28

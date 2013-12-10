@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
   i18n:domain="collective.generic.webbuilder"
   metal:define-macro="main">
   <head>
@@ -20,7 +20,7 @@
     <div class="document">
       <div id="header">
         <a class="github-badge"
-          href="https://github.com/collective/collective.generic.webbuilder" >
+          href="https://github.com/collective/collective.generic.webbuilder" title="Fork me on GitHub" i18n:attributes="title">
           <img style=""
             src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
             alt="Fork me on GitHub" i18n:attributes="alt" />

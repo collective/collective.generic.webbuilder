@@ -30,6 +30,7 @@ zcmls= plone.zcml
        pyramid.zcml
        pyramid-addon.zcml
        egg.zcml
+pyramid.default_locale_name = en
 
 [loggers]
 keys = root,wsgi,routes
