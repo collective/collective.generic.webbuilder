@@ -52,13 +52,18 @@ host = ${OPENSHIFT_INTERNAL_IP}
 port = ${OPENSHIFT_INTERNAL_PORT}
 dnshost = ${OPENSHIFT_APP_DNS}
 
+sources-dir=${OPENSHIFT_DATA_DIR}/sources/ 
+parts-directory= ${OPENSHIFT_DATA_DIR}/parts/
+bin-directory= ${OPENSHIFT_DATA_DIR}/bin/
+installed= ${OPENSHIFT_DATA_DIR}/.installed.cfg
 eggs-directory = ${OPENSHIFT_DATA_DIR}/eggs/
 download-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
 extends-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
 EOF
 compil_flags
+export PATH=$OPENSHIFT_DATA_DIR/parts/nodejs/bin:$PATH
 ${PY} bootstrap.py -c openshift-buildout.cfg &&\
-    ./bin/buildout -Nc openshift-buildout.cfg &&\
+    $OPENSHIFT_DATA_DIR/bin/buildout -Nc openshift-buildout.cfg &&\
     rm -f ./wsgi && mkdir wsgi &&\
-    cp ./parts/application/wsgi wsgi/application
+    cp $OPENSHIFT_DATA_DIR/parts/application/wsgi wsgi/application
 exit $?
