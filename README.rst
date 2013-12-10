@@ -54,6 +54,16 @@ Download & install via the minibuild
     python bootstrap.py
     bin/buildout
 
+If you want to work on the front end you must install nodejs.
+Then use the make file to build the resources.
+
+    make clean-resources
+    make resources
+
+Then you can watch the static_dev folder using 'grunt watch' command
+
+    make watch
+
 Generating & deploying your project
 -----------------------------------------------------------
 Launching the cgwb server
