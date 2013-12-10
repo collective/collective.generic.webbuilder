@@ -304,6 +304,7 @@ def webbuilder_collectinformation(context, request):
         dict(errors=errors,
              context=context,
              main=main,
+             root=root,
              templates=templates_data,
              pair_options=pair_options,
              get_value=get_value),

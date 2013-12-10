@@ -16,7 +16,7 @@ module.exports = function(grunt) {
             font : {
                 expand : true,
                 cwd : 'bower_components/font-awesome/',
-                src : [ 'font/**', ],
+                src : [ 'fonts/**', ],
                 dest : '../static/'
             }
         },
@@ -28,30 +28,32 @@ module.exports = function(grunt) {
             js : {
                 src : [
                         'bower_components/jquery/jquery.js',
-                        'bower_components/bootstrap/dist/js/bootstrap.js'
+                        'bower_components/bootstrap/dist/js/bootstrap.js',
+                        'theme.js'
                       ],
-                dest : '../static/script.js'
+                dest : '../static/js/script.js'
             },
             minjs : {
                 src : [
                         'bower_components/jquery/jquery.min.js',
-                        'bower_components/bootstrap/dist/js/bootstrap.min.js'
+                        'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                        'theme.js'
                       ],
-                dest : '../static/script.min.js'
+                dest : '../static/js/script.min.js'
             },
             css : {
                 src : [
                         'bower_components/bootstrap/dist/css/bootstrap.css',
                         'bower_components/font-awesome/css/font-awesome.css',
                         'theme.css' ],
-                dest : '../static/style.css'
+                dest : '../static/css/style.css'
             },
             mincss : {
                 src : [
                        'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/font-awesome/css/font-awesome.min.css',
                         'theme.css' ],
-                dest : '../static/style.min.css'
+                dest : '../static/css/style.min.css'
             }
         },
 
@@ -59,6 +61,10 @@ module.exports = function(grunt) {
             style : {
                 files : [ 'theme.css' ],
                 tasks : [ 'dist-css' ]
+            },
+            script : {
+                files : [ 'theme.js' ],
+                tasks : [ 'dist-js' ]
             }
         }
     });

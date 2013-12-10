@@ -1,8 +1,20 @@
-<tal metal:use-macro="main.macros['main']">
-<div metal:fill-slot="content" class="main_index">
-  <h1>Choose a configuration</h1>
-  <ul >
-    <li tal:repeat="c python:root.configurations.keys()"><a tal:attributes="href string:collect/$c" tal:content="c"/></li>
-  </ul>
+<tal:main metal:use-macro="main.macros['main']">
+<div metal:fill-slot="content">
+<div class="col-md-12">
+<div class="jumbotron">
+  <h1>Welcome to generic webbuilder!</h1>
+  <p>Create your python project</p>
 </div>
-</tal>
+</div>
+
+<div class="col-md-12">
+  <h2>Choose a configuration</h2>
+  <p>You can use the configuration menu in the navigation to change</p>
+  <div class="list-group">
+    <a class="list-group-item"
+       tal:repeat="c python:root.configurations.keys()"
+       tal:attributes="href string:collect/$c" tal:content="c"></a>
+  </div>
+</div>
+</div>
+</tal:main>
