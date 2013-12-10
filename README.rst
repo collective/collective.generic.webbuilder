@@ -27,10 +27,10 @@ For now, we extensivly use templates from the `collective.generic.skel <https://
 
 |cgwbthumb|_
 
-.. |cgwbthumb| image:: https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb-min.jpeg
-.. _cgwbthumb: https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb.jpeg
+.. |cgwbthumb| image:: https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb-min.png
+.. _cgwbthumb: https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb.png
 
-`Zoom <https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb.jpeg>`_
+`Zoom <https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb.png>`_
 
 Installation
 ==============
