@@ -36,6 +36,7 @@ def main(global_config, **local_config):
     config.include('pyramid_chameleon')
     config.include('pyramid_zcml')
     config.add_static_view(name='resources', path=here + '/templates/static')
+    config.add_translation_dirs('collective.generic.webbuilder:locale')
     config.hook_zca()
     for z in wconf['zcmls']:
         config.load_zcml(z)

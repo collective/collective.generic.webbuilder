@@ -3,10 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  i18n:domain="collective.generic.webbuilder"
   metal:define-macro="main">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to Collective.generic.webbbuilder generator</title>
+    <title i18n:translate="">Welcome to Collective.generic.webbbuilder generator</title>
     <meta name="keywords" content="python web application" />
     <meta name="description" content="repoze.bfg web application" />
     <link href="${request.application_url}/resources/makina.css" rel="stylesheet" type="text/css" />
@@ -17,22 +19,22 @@
   <body tal:define="url python:request.application_url">
     <div class="document">
       <div id="header">
-        <a  class="github-badge"
+        <a class="github-badge"
           href="https://github.com/collective/collective.generic.webbuilder" >
           <img style=""
             src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-            alt="Fork me on GitHub"/>
+            alt="Fork me on GitHub" i18n:attributes="alt" />
         </a>
-        <a href="${url}"><h1>Collective.generic.webuilder</h1></a>
-        <a href="${url}"><h2>The Magic Generator</h2></a>
+        <a href="${url}"><h1 i18n:translate="">Collective.generic.webuilder</h1></a>
+        <a href="${url}"><h2 i18n:translate="">The Magic Generator</h2></a>
       </div>
       <div class="errors" tal:condition="errors">
         <ul tal:repeat="error errors"> <li tal:replace="structure error"></li></ul>
       </div>
-      <div metal:define-slot="content">CONTENT</div>
+      <div metal:define-slot="content"><tal:comment replace="nothing">CONTENT</tal:comment></div>
       <div id="footer">
-        <p>A solution initiated by <a target="blank" href="http://www.makina-corpus.com">Makina Corpus</a> developers</p>
-      </div>
+        <p i18n:translate="">A solution initiated by <a target="blank" href="http://www.makina-corpus.com" i18n:name="makina_corpus_website" i18n:translate="">Makina Corpus</a> developers</p>
+      </div> 
     </div>
   </body>
 </html>

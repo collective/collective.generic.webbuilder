@@ -1,0 +1,88 @@
+# Spanish translations for collective.generic.webbuilder.
+# Copyright (C) 2013 Makina Corpus
+# This file is distributed under the same license as the
+# collective.generic.webbuilder project.
+# Leonardo J. Caballero G. <leonardocaballero@gmail.com> 2011 - 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: collective.generic.webbuilder 1.2dev\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-12-09 18:57-0630\n"
+"PO-Revision-Date: 2013-12-09 19:11-0530\n"
+"Last-Translator: Leonardo J. Caballero G. <leonardocaballero@gmail.com>\n"
+"Language-Team: ES <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: src/collective/generic/webbuilder/templates/collect.pt:14
+msgid "Project name"
+msgstr "Nombre del proyecto"
+
+#: src/collective/generic/webbuilder/templates/collect.pt:16
+msgid "project name"
+msgstr "nombre del proyecto"
+
+#: src/collective/generic/webbuilder/templates/collect.pt:18
+msgid ""
+"Its form is 'namespace.nested_namespace'. If the templates assembly "
+"includes egg generations, the resulted namespace and nested namespace are"
+" extracted from your entry. For example, for 'foo.bar', we may generate "
+"those following eggs:"
+msgstr ""
+"Este formulario es 'namespace.nested_namespace'. Si el conjunto de "
+"plantillas incluye generaciones de paquete Egg Python, el espacio de "
+"nombres dado lugar y espacio de nombres anidado se extraen de su entrada."
+" Por ejemplo, para 'foo.bar', podemos generar los siguientes paquetes Egg"
+" Python:"
+
+#: src/collective/generic/webbuilder/templates/collect.pt:22
+msgid "foo.bar.mylittleegg foo.bar.myotheregg"
+msgstr "foo.bar.mipequenopaquetegg\\n foo.bar.miotrospaqueteegg"
+
+#: src/collective/generic/webbuilder/templates/collect.pt:135
+msgid "Download"
+msgstr "Descargar"
+
+#: src/collective/generic/webbuilder/templates/index.pt:3
+msgid "Choose a configuration"
+msgstr "Elegir una configuración"
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:11
+msgid "Welcome to Collective.generic.webbbuilder generator"
+msgstr "Bienvenidos al generador Collective.generic.webbbuilder"
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:28
+msgid "Collective.generic.webuilder"
+msgstr "Collective.generic.webuilder"
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:29
+msgid "The Magic Generator"
+msgstr "El Mágico Generador"
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:36
+msgid "Makina Corpus"
+msgstr "Makina Corpus"
+
+#: src/collective/generic/webbuilder/templates/main_template.pt:36
+msgid "A solution initiated by ${makina_corpus_website} developers"
+msgstr "Un solución inicialmente desarrollada por ${makina_corpus_website}"
+
+#: src/collective/generic/webbuilder/templates/process.pt:11
+msgid "Congratulations"
+msgstr "Felicitaciones"
+
+#: src/collective/generic/webbuilder/templates/process.pt:12
+msgid "Your project has been generated in ${project_generated_path}"
+msgstr "Su proyecto ha sido generado en ${project_generated_path}"
+
+#: src/collective/generic/webbuilder/templates/process.pt:14
+msgid "here"
+msgstr "aquí"
+
+#: src/collective/generic/webbuilder/templates/process.pt:13
+msgid "Your project is available ${download_path}."
+msgstr "Su proyecto esta disponible ${download_path}."
+

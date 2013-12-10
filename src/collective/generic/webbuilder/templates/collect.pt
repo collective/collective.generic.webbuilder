@@ -10,16 +10,16 @@
   <div metal:fill-slot="content"
     tal:define="accordions python:[]">
     <form action="../process" method="POST" tal:condition="python:not errors">
-      <div id='projectaccordion'>
-        <h2>Project name</h2>
+      <div id='projectaccordion' i18n:domain="collective.generic.webbuilder">
+        <h2 i18n:translate="">Project name</h2>
         <div class="options">
           <input type="text" title="project name" name="project"
-          tal:attributes="value  python:request.GET.get('project', '')"></input>
-          <p>Its form is 'namespace.nested_namespace'. If the templates assembly includes egg generations,
+          tal:attributes="value  python:request.GET.get('project', '')" i18n:attributes="title"></input>
+          <p i18n:translate="">Its form is 'namespace.nested_namespace'. If the templates assembly includes egg generations,
             the resulted namespace and nested namespace are extracted from your entry.
             For example, for 'foo.bar', we may generate those following eggs:
           </p>
-          <pre>
+          <pre i18n:translate="">
             foo.bar.mylittleegg
             foo.bar.myotheregg
           </pre>
@@ -128,11 +128,11 @@
         </tal>
       </div>
       <input type="hidden" name="configuration" tal:attributes="value python:context.configuration"> </input>
-      <div class="actions">
+      <div class="actions" i18n:domain="collective.generic.webbuilder">
         <!--
-        <input type="submit" title="Generate on server"
+        <input type="submit" title="Generate on server" i18n:attributes="title"
           id="submit_cgwbGenerate" name="submit_cgwbGenerate" value="" onclick="$('#submit_cgwbGenerate').form.submit();" class="generate"></input>-->
-        <input type="submit" title="Download"
+        <input type="submit" title="Download" i18n:attributes="title"
           id="submit_cgwbDownload" name="submit_cgwbDownload" value="" onclick="$('#submit_cgwbDownload').form.submit();" class="download"></input>
       </div>
       <div class="spacer"></div>

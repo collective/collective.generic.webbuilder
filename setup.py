@@ -49,6 +49,8 @@ APP_requires = [
     'PasteDeploy',
     'Paste',
     'Pastescript',
+    'Babel',
+    'lingua',
 ]
 
 setup(
@@ -88,4 +90,10 @@ setup(
         'paste.paster_create_template': [
         ],
     },
+
+    message_extractors = { '.': [
+        ('**.py', 'lingua_python', None ),
+        ('**.pt', 'lingua_xml', None ),
+        ('static/**', 'ignore', None)
+        ]},
 )

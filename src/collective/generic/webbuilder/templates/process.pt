@@ -6,12 +6,12 @@
   <tal metal:fill-slot="css" tal:omit-tag="">
     <link href="${request.application_url}/static/jquery-ui/css/ui-darkness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" />
   </tal>
-  <div metal:fill-slot="content">
+  <div metal:fill-slot="content" i18n:domain="collective.generic.webbuilder">
     <div class="generated" tal:condition="python: not errors">
-      <h2>Congratulations</h2>
-      <p tal:condition="python: not download_path">Your project has been generated in <tal tal:omit-tag="" tal:replace="output"></tal></p>
-      <p tal:condition="python: download_path">  Your project is available
-        <a href="/download/${download_path}">here</a>.
+      <h2 i18n:translate="">Congratulations</h2>
+      <p tal:condition="python: not download_path" i18n:translate="">Your project has been generated in <tal tal:omit-tag="" tal:replace="output" i18n:name="project_generated_path"></tal></p>
+      <p tal:condition="python: download_path" i18n:translate="">  Your project is available
+        <a href="/download/${download_path}" i18n:name="download_path" i18n:translate="">here</a>.
       </p>
     </div>
   </div>
