@@ -1,4 +1,6 @@
-bin
+/.project
+/.pydevproject
+/bin
 cgwb-eggs.tar.gz
 etc/generated-kgs.cfg
 kgs.cfg
@@ -17,8 +19,15 @@ cgwb.env
 parts
 src.others
 *.egg-info
-src/collective.generic.devmode/
-src/collective.generic.skel/
-src/minitage.paste
-src/minitage.paste.old/
+/src/collective.generic.devmode/
+/src/collective.generic.skel/
+/src/minitage.paste
+/src/minitage.paste.old/
 gen_path
+/src/collective/generic/webbuilder/templates/static_dev/bower_components
+/src/collective/generic/webbuilder/templates/static/font
+/src/collective/generic/webbuilder/templates/static/*.js
+/src/collective/generic/webbuilder/templates/static/*.css
+/lib
+/include
+
