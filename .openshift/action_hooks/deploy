@@ -62,6 +62,13 @@ extends-cache = ${OPENSHIFT_TMP_DIR}/${OPENSHIFT_APP_UUID}-cache/
 EOF
 compil_flags
 export PATH=$OPENSHIFT_DATA_DIR/parts/nodejs/bin:$PATH
+for i in  collective.generic.devmode  collective.generic.skel;do
+    if [[ -e  "$OPENSHIFT_DATA_DIR/sources/$i/.git" ]];then
+        pushd "$OPENSHIFT_DATA_DIR/sources/$i"
+        git fetch origin && git reset --hard origin/master
+        popd
+    fi
+done
 ${PY} bootstrap.py -c openshift-buildout.cfg &&\
     $OPENSHIFT_DATA_DIR/bin/buildout -Nc openshift-buildout.cfg &&\
     rm -f ./wsgi && mkdir wsgi &&\
