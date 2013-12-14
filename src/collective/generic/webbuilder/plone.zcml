@@ -2,20 +2,28 @@
   <include package="collective.generic.webbuilder" file="meta.zcml"/>
   <genericpaster name="Plone portal">
     <!--<plugin name="dummy_plugin" order="1"/>-->
-    <plugin name="egg_plugin" order="2"/>
     <plugin name="egginfo_plugin" order="2"/>
     <template name="genericskel.buildout.plone" order="1">
        <group name="Metadata" order="05">
+        <option name="author" />
+        <option name="description" />
+        <option name="version" />
+        <option name='keywords'           />
+        <option name='license_name'       />
+        <option name='default_theme'       />
         <option name="with_no_zcml"  type="hidden" default="y"/>
         <option name="with_generic"  type="hidden" default="y"/>
         <option name="with_generic_addon"  type="hidden" default="y"/>
         <option name="author_email" />
-        <option name="author" />
         <option name="scm_type" />
         <option name="static" />
         <option name="uri" />
         <option name="install_method"/>
         <option name="homepage" default="http://www.generic.com"/>
+        <option name="with_generic"    type="hidden" default="true"    />
+        <options prefix="with_zope2_skins" type="hidden" default="y"/>
+        <excludeoptions prefix=".*(namespace|project_name).*"/>
+        <options prefix="with_policy_support" type="hidden" default="y"/> 
       </group>
       <group name="Plone Settings" order="6">
         <option name="plone_version" />
@@ -95,16 +103,16 @@
         <option name='author'             />
         <option name='author_email'       />
         <option name="pthemename" />
-        <option name='description'     alias="descriptionpn"   />
+        <excludeoption name='description' />
         <option name='keywords'           />
         <option name='license_name'       />
         <option name='default_theme'       />
         <option name='smtp_host'          />
         <excludeoptions prefix=".*(namespace|project_name).*"/>
-        <option name='smtp_port'          />
         <option name="with_generic"    type="hidden" default="true"    />
         <options prefix="with_zope2_skins" type="hidden" default="y"/>
-        <options prefix="with_policy_support" type="hidden" default="y"/>
+        <options prefix="with_policy_support" type="hidden" default="y"/>  
+        <option name='smtp_port'          />
       </group>
       <group name="Automatic installing" order="2">
         <options prefix="with_autoinstall_ploneproduct_.*" type="boolean" default="true"/>
