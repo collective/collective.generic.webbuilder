@@ -25,6 +25,8 @@ You can even test it `here <http://cgwb-makinacorpus.rhcloud.com>`_
 For now, we extensivly use templates from the `collective.generic.skel <https://github.com/collective/collective.generic.skel>`_ package
 
 
+Want an idea of what it can generate, see `This example <https://github.com/makinacorpus/cgwb-test>`_
+
 |cgwbthumb|_
 
 .. |cgwbthumb| image:: https://raw.github.com/collective/collective.generic.webbuilder/master/docs/cgwb-min.png
