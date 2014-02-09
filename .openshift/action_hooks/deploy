@@ -47,6 +47,7 @@ fi
 cat >> openshift-buildout.cfg << EOF
 [buildout]
 extends=openshift.cfg
+parts-=nodejs
 data-directory = ${OPENSHIFT_DATA_DIR}
 host = ${OPENSHIFT_INTERNAL_IP}
 port = ${OPENSHIFT_INTERNAL_PORT}

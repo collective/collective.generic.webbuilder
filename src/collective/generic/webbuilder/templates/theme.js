@@ -1,3 +1,4 @@
+/* js for cgwb */
 $(document).ready(function(){
     $('a.option-desc-url').html('<i class="fa fa-external-link"></i>');
     $(document).on('click', 'a[data-toggle="collapse"]', function(){
@@ -10,3 +11,4 @@ $(document).ready(function(){
         }
     });
 });
+

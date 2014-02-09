@@ -1,4 +1,6 @@
 /.project
+bower_components/
+node_modules/
 /.pydevproject
 /bin
 cgwb-eggs.tar.gz

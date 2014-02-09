@@ -1,21 +1,35 @@
+#
+# Makefile for javascript resources
+#
 PATH_BASE=$(PWD)
 PATH_RESOURCES_TARGET=$(PATH_BASE)/src/collective/generic/webbuilder/templates
-
-NPM=npm
-GRUNT=grunt
-BOWER=bower
+PATH := $(PWD)/node_modules/.bin:$(PWD)/bin:$(PATH)
+B=node_modules/.bin/
 
 all: buildout resources
 all-production: prod resources
 
-resources:
-	cd $(PATH_RESOURCES_TARGET)/static_dev; $(NPM) install; $(BOWER) install; $(GRUNT)
+$(B)/buildout:
+	python bootstrap.py
 
-watch:
-	cd $(PATH_RESOURCES_TARGET)/static_dev; $(GRUNT) watch
+bin/npm: bin/buildout
+	bin/buildout install nodejs
 
-buildout:
-	bin/buildout
+npm_install:
+	npm install -d
+
+$(B)/bower: npm_install
+
+$(B)/gulp: npm_install
+
+resources: $(B)/bower $(B)/gulp  bin/npm
+	echo $$PATH
+	npm install
+	bower install
+	gulp
+
+watch: resources
+	bin/grunt watch
 
 openshift:
 	bin/buildout -c openshift.cfg
