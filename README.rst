@@ -1,26 +1,24 @@
-Introduction
+Introduccion
 ============
 
-.. contents::
+.. contenido::
 
 
-`CGWB <http://cgwb-makinacorpus.rhcloud.com>`_ is a web interface to ``paster``, its goal is to generate a webinterface
-to selection options aggregated from a set of templates.
+`CGWB <http://cgwb-makinacorpus.rhcloud.com>`_ es una interfaz web para ``paster``, su meta es generar una interfaz web para seleccionar opciones agregadas en base a unas plantillas.
 
-Imagine that you have 2 templates, the one that can deploy an application,
-and the other which generates the application in itself.
+Imagine que usted tiene 2 plantillas, la primera que usted puede hacer deploy de una aplicacion,
+y la otra que genera la aplicacion por si sola.
 
-Declaring the two templates as a ``cgwb set`` will make a webinterface for
-those 2 templates. Answering correctly to the questions will produce a tarball
-that you ll be able download and unpack to have your base installation setup.
+Declarando las dos plantillas como ``cgwb set`` les dara una interfaz web para esas dos plantillas.
+Respondiendo correctamente las preguntas, este generara un tarball que estara disponible para descargar y descomprimir, y asi tener el setup basico para la instalacion.
 
-To make the templates available, you must define the set using ZCML.
+Para tener las plantillas disponibles, usted debera definir el uso de ZCML.
 
-As this server was developped as a quick and efficient interface to paster,
-*it is not safe to open it to wide internet.*
-For security reason, just launch/use when you need it.
+Como este servidor ha sido desarrollado como una rapida y eficiente interfaz para paster,
+*No es seguro abrirlo a todo el ancho del internet.*
+Por razones de seguridad, solo lance/use cuando lo necesite.
 
-You can even test it `here <http://cgwb-makinacorpus.rhcloud.com>`_
+Usted puede probarlo `aqui <http://cgwb-makinacorpus.rhcloud.com>`_
 
 For now, we extensivly use templates from the `collective.generic.skel <https://github.com/collective/collective.generic.skel>`_ package
 
