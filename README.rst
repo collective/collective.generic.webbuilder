@@ -98,6 +98,7 @@ Personas
 - Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
 - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
 - Jean-Michel FRANCOIS <toutpt@gmail.com>
+- Carlos Malave - hellfish2 <hellfish2@gmail.com>
 
 .. _`minitage installation`: http://minitage.org/installation.html
 .. _`cgwb`: http://localhost:6253
