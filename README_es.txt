@@ -58,6 +58,7 @@ Luego use el archivo make para construir los recursos.
 
     make clean-resources
     make resources
+    
 
 Luego usted puede ver la carpeta static_dev usando el comando 'grunt watch'
 
