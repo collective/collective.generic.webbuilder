@@ -61,9 +61,9 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords='',
-    author='Mathieu Pasquet, Jean-Philippe Camguilhem',
+    author='Makina Corpus, Jean-Philippe Camguilhem',
     author_email=(
-        'kiorky@cryptelium.net, '
+        'freesoftware@makina-corpus.com, '
         'jean-philippe.camguilhem@makina-corpus.com'),
     url='http://pypi.python.org/pypi/collective.generic.webbuilder',
     license='BSD',

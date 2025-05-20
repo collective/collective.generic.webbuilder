@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copyright (C) 2010, Mathieu PASQUET <mpa@makina-corpus.com>
+# Copyright (C) 2010, Makina Corpus <freesoftware@makina-corpus.com>
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

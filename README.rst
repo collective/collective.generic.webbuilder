@@ -98,7 +98,7 @@ Companies
 People
 ------
 
-- Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
+- Makina Corpus <freesoftware@makina-corpus.com>
 - Jean-Philippe Camguilhem <jpc@makina-corpus.com>
 - Jean-Michel FRANCOIS <toutpt@gmail.com>
 
